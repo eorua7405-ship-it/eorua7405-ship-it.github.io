@@ -267,6 +267,30 @@
     font-size:clamp(26px,7.5cqw,46px);font-weight:900;letter-spacing:-.04em;
     line-height:1;color:var(--hot);font-variant-numeric:tabular-nums;
   }
+
+  /* 수치가 없는 항목 — 이름을 크게 세운 텍스트 비주얼 */
+  .viz-word{
+    background:var(--ink);border-color:var(--ink);
+    align-content:start;justify-items:start;text-align:left;padding:18px;gap:0;
+  }
+  .viz-word .viz-kicker{
+    font-family:var(--f-mono);font-size:9.5px;font-weight:600;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--hot);margin-bottom:10px;
+  }
+  .viz-word .viz-word-big{
+    font-family:var(--f-display);font-weight:900;letter-spacing:-.045em;
+    font-size:clamp(20px,9cqw,34px);line-height:1.12;color:var(--paper);
+    display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;
+    word-break:keep-all;
+  }
+  .viz-word::after{
+    content:"";position:absolute;left:18px;right:18px;bottom:16px;height:2px;
+    background:var(--hot);opacity:.85;
+  }
+  .items.open .item .viz-word{padding:11px}
+  .items.open .item .viz-word .viz-kicker{font-size:8px;margin-bottom:6px;letter-spacing:.12em}
+  .items.open .item .viz-word .viz-word-big{font-size:14px;-webkit-line-clamp:4}
+  .items.open .item .viz-word::after{left:11px;right:11px;bottom:10px}
   .viz-credit{
     position:absolute;left:0;right:0;bottom:0;padding:5px 8px;
     font-size:8.5px;line-height:1.2;color:#fff;text-align:left;
@@ -2857,9 +2881,16 @@
                   t.match(/\$[\d,.]+\s?[BMK]?/) ||
                   t.match(/[\d,.]+\s?[BTMK]/);
         var label = (item.querySelector('.tag') || {}).textContent || '';
-        viz.className = 'viz viz-type';
-        viz.innerHTML = '<span class="viz-big">' + (big ? big[0].trim() : label) + '</span>' +
-                        '<span class="viz-cap">' + h3.textContent + '</span>';
+        var group = item.dataset.group || '';
+        viz.className = 'viz viz-type' + (big ? '' : ' viz-word');
+        if (big){
+          viz.innerHTML = '<span class="viz-big">' + big[0].trim() + '</span>' +
+                          '<span class="viz-cap">' + h3.textContent + '</span>';
+        } else {
+          // 수치가 없는 항목(밈·포맷 등)은 이름 자체를 크게 세운다
+          viz.innerHTML = '<span class="viz-kicker">' + (group || label) + '</span>' +
+                          '<span class="viz-word-big">' + h3.textContent + '</span>';
+        }
       }
 
       if (item.dataset.img){
