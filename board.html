@@ -1637,7 +1637,11 @@
       if (item.dataset.img){
         viz.innerHTML = '<img src="' + item.dataset.img + '" alt="' + h3.textContent + '" loading="lazy">';
       } else {
-        var big = (item.dataset.traffic || '').match(/[+\-]?[\d,.]+\s?(?:조|억|만|천|%|배|주|장|초|건|회|B|T|M|K)?/);
+        // 연도(2026 같은)는 지표가 아니므로 단위가 붙은 수치만 고른다
+        var t = item.dataset.traffic || '';
+        var big = t.match(/[+\-]?\$?[\d,.]+\s?(?:조|억|만|천|%|배|주|장|초|건|회|명|권|위)/) ||
+                  t.match(/\$[\d,.]+\s?[BMK]?/) ||
+                  t.match(/[\d,.]+\s?[BTMK]/);
         var label = (item.querySelector('.tag') || {}).textContent || '';
         viz.innerHTML = '<span class="viz-big">' + (big ? big[0].trim() : label) + '</span>' +
                         '<span class="viz-cap">' + h3.textContent + '</span>';
