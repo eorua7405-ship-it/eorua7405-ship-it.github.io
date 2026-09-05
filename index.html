@@ -113,6 +113,10 @@
   .week span{display:block;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-bottom:2px}
   .week b{font-family:var(--f-mono);font-size:14px;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
   .week>div:first-child b{color:var(--hot)}
+  .badge-old{
+    font-family:var(--f-body);font-size:9.5px;font-weight:700;letter-spacing:.02em;
+    background:transparent;color:var(--muted);border:1px solid var(--line);padding:3px 7px;border-radius:3px;
+  }
   .badge-new{font-family:var(--f-mono);font-size:9.5px;font-weight:500;letter-spacing:.12em;background:var(--hot-fill);color:var(--on-hot);padding:3px 7px;border-radius:3px}
   .clocks{display:flex;flex-wrap:wrap;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
   .clock{flex:1 1 110px;padding:10px 14px 11px;border-right:1px solid var(--line-soft);display:grid;gap:1px}
@@ -1608,100 +1612,215 @@
     <section class="cat" data-cat="travel" data-plat="travel">
       <div class="cat-head"><h2>여행</h2><span class="en">Travel</span></div>
       <ul class="items">
-        <li class="item" data-img="https://live.staticflickr.com/3904/14254037017_c1a6333659_b.jpg" data-credit="D-Stanley · BY" data-sum="트립어드바이저 급상승 세계 1위" data-take="오버투어리즘 피한 대안 섬이 1위. 유명 도시를 피하는 게 올해 여행 기준이 된 듯." data-group="어워드 1위" data-q="Madeira Tripadvisor top trending destination 2026" data-since="2026 어워드 발표" data-traffic="트립어드바이저 급상승 세계 1위">
+<li class="item" data-img="https://live.staticflickr.com/3904/14254037017_c1a6333659_b.jpg" data-credit="D-Stanley · BY" data-sum="트립어드바이저 급상승 세계 1위" data-take="오버투어리즘 피한 대안 섬이 1위. 유명 도시를 피하는 게 올해 여행 기준이 된 듯." data-group="어워드 1위" data-q="Madeira Tripadvisor top trending destination 2026" data-since="2026 어워드 발표" data-traffic="트립어드바이저 급상승 세계 1위">
           <h3>마데이라, 포르투갈</h3>
           <p>트래블러스 초이스 2026 1위. 가족 단위 액티비티 목적지로 밀고 있다.</p>
           <div class="meta"><span class="tag">Tripadvisor</span></div>
         </li>
-        <li class="item" data-img="https://live.staticflickr.com/8126/8614477174_9a840703bb_b.jpg" data-credit="Zach Dischner · BY" data-sum="검색 +92%, 미국 산악 리조트의 급등" data-take="미국 안에서 산악 리조트가 급등했다. 팬데믹 때 생긴 '넓은 곳' 선호가 아직 안 꺼진 듯." data-group="검색 급상승" data-q="Big Sky Montana Expedia trending destination 2026" data-since="2026 실시간 검색" data-traffic="검색 관심도 +92%">
+<li class="item" data-img="https://live.staticflickr.com/8126/8614477174_9a840703bb_b.jpg" data-credit="Zach Dischner · BY" data-sum="검색 +92%, 미국 산악 리조트의 급등" data-take="미국 안에서 산악 리조트가 급등했다. 팬데믹 때 생긴 '넓은 곳' 선호가 아직 안 꺼진 듯." data-group="검색 급상승" data-q="Big Sky Montana Expedia trending destination 2026" data-since="2026 실시간 검색" data-traffic="검색 관심도 +92%">
           <h3>빅 스카이, 미국</h3>
           <p>익스피디아 실시간 검색량 1위. 증가폭이 가장 크다.</p>
           <div class="meta"><span class="tag">Expedia</span><span class="tag up">+92%</span></div>
         </li>
-        <li class="item" data-img="https://live.staticflickr.com/7298/11380434874_919a03da7f_b.jpg" data-credit="mxmstryo · BY" data-sum="검색 +71%, 일본에서 도시 아닌 섬으로" data-take="일본에서도 도쿄·오사카가 아니라 섬. 한국인 여행 패턴이랑 정확히 겹쳐서 항공권부터 오를 듯." data-group="검색 급상승" data-q="Okinawa trending travel destination 2026" data-since="2026 실시간 검색" data-traffic="검색 관심도 +71%">
+<li class="item" data-img="https://live.staticflickr.com/7298/11380434874_919a03da7f_b.jpg" data-credit="mxmstryo · BY" data-sum="검색 +71%, 일본에서 도시 아닌 섬으로" data-take="일본에서도 도쿄·오사카가 아니라 섬. 한국인 여행 패턴이랑 정확히 겹쳐서 항공권부터 오를 듯." data-group="검색 급상승" data-q="Okinawa trending travel destination 2026" data-since="2026 실시간 검색" data-traffic="검색 관심도 +71%">
           <h3>오키나와</h3>
           <p>급상승 2위. 일본 안에서도 도시 아닌 섬 쪽으로 관심이 옮겨간다.</p>
           <div class="meta"><span class="tag">JP</span><span class="tag up">+71%</span></div>
         </li>
-        <li class="item" data-img="https://live.staticflickr.com/3521/3825618785_ae9f2a19aa_b.jpg" data-credit="Walters Art Museum Illuminated Manuscrip · CC0" data-sum="검색 +63%, 이탈리아 본토를 건너뛴다" data-take="이탈리아 본토를 건너뛰는 흐름인 듯. 유럽 두 번째 이상 가는 사람들이 만든 순위 같다." data-group="검색 급상승" data-q="Sardinia trending destination 2026 Expedia" data-since="2026 실시간 검색" data-traffic="검색 관심도 +63%">
+<li class="item" data-img="https://live.staticflickr.com/3521/3825618785_ae9f2a19aa_b.jpg" data-credit="Walters Art Museum Illuminated Manuscrip · CC0" data-sum="검색 +63%, 이탈리아 본토를 건너뛴다" data-take="이탈리아 본토를 건너뛰는 흐름인 듯. 유럽 두 번째 이상 가는 사람들이 만든 순위 같다." data-group="검색 급상승" data-q="Sardinia trending destination 2026 Expedia" data-since="2026 실시간 검색" data-traffic="검색 관심도 +63%">
           <h3>사르데냐, 이탈리아</h3>
           <p>급상승 3위. 유럽 섬 휴양지 수요가 본토보다 빠르게 는다.</p>
           <div class="meta"><span class="tag">IT</span><span class="tag up">+63%</span></div>
         </li>
-        <li class="item" data-img="https://live.staticflickr.com/8746/17063722720_f6ccbe0a79_b.jpg" data-credit="kthypryn · BY" data-sum="검색·예약 모두 1위, 당분간 안 바뀐다" data-take="검색이랑 예약 둘 다 1위. 물가랑 항공편이 만든 결과라 당분간 안 바뀔 듯." data-group="예약 기준" data-q="Bangkok most booked city 2026 eDreams" data-since="2026 예약 데이터" data-traffic="전 세계 검색·예약 1위 도시">
+        <li class="item" data-group="검색 급상승" data-sum="트립어드바이저 급상승 2위" data-take="물가·비자·음식 삼박자가 맞는 도시인 듯. 유럽 감성을 훨씬 싼 값에 산다는 계산이 통한다." data-q="Tbilisi Georgia trending destination 2026" data-since="2026 어워드" data-traffic="트립어드바이저 급상승 2위" data-img="https://live.staticflickr.com/3277/2789668249_52c691fb4d_b.jpg" data-credit="Chemi Ubani · BY">
+          <h3>트빌리시, 조지아</h3>
+          <p>문화가 빽빽한 조지아 수도. 마데이라에 이어 2위에 올랐다.</p>
+          <div class="meta"><span class="tag">02위</span></div>
+        </li>
+        <li class="item" data-group="검색 급상승" data-sum="트립어드바이저 급상승 3위" data-take="미국 안에서도 3대 도시를 피하는 흐름인 듯. 건축과 음식으로 승부하는 도시가 지금 정서에 맞는다." data-q="Chicago trending destination 2026" data-since="2026 어워드" data-traffic="트립어드바이저 급상승 3위" data-img="https://live.staticflickr.com/1121/4730438120_8f0b1c327e_b.jpg" data-credit="kevin dooley · BY">
+          <h3>시카고, 미국</h3>
+          <p>뉴욕·LA를 벗어난 미국 도시 여행의 중심으로 올라왔다.</p>
+          <div class="meta"><span class="tag">03위</span></div>
+        </li>
+        <li class="item" data-group="KAYAK 이머징 TOP 10" data-sum="KAYAK 선정 2026 신흥 여행지 1위" data-take="수도를 피해 2번 도시로 가는 게 올해 여행의 기본 문법인 듯. 항공권이 아직 안 오른 구간이라 지금이 싸다." data-q="Cork Ireland travel 2026 emerging destination" data-since="2026 KAYAK 집계" data-traffic="KAYAK 이머징 1위" data-img="https://live.staticflickr.com/118/304400723_3b64b0745d_b.jpg" data-credit="royskeane · BY">
+          <h3>코크, 아일랜드</h3>
+          <p>더블린 다음을 찾는 사람들이 가는 남부 항구 도시. 아일랜드 미식의 중심으로도 꼽힌다.</p>
+          <div class="meta"><span class="tag">01위</span></div>
+        </li>
+        <li class="item" data-group="KAYAK 이머징 TOP 10" data-sum="KAYAK 선정 2026 신흥 여행지 2위" data-take="영상으로 봤을 때 비현실적으로 보이는 도시가 유리한 시대인 듯. 충칭은 그 조건을 거의 완벽하게 갖췄다." data-q="Chongqing China travel 2026 emerging destination" data-since="2026 KAYAK 집계" data-traffic="KAYAK 이머징 2위" data-img="https://live.staticflickr.com/65535/49155388648_07102d4c64_b.jpg" data-credit="Kristoffer Trolle · BY">
+          <h3>충칭, 중국</h3>
+          <p>산과 강 사이에 층층이 쌓인 도시. 야경과 훠궈로 숏폼에서 먼저 퍼졌다.</p>
+          <div class="meta"><span class="tag">02위</span></div>
+        </li>
+        <li class="item" data-group="KAYAK 이머징 TOP 10" data-sum="KAYAK 선정 2026 신흥 여행지 3위" data-take="한 계절짜리 관광지가 사계절로 확장되는 건 드문 성공 사례인 듯. 국내 겨울 여행 수요와도 겹친다." data-q="Harbin China travel 2026 emerging destination" data-since="2026 KAYAK 집계" data-traffic="KAYAK 이머징 3위" data-img="https://live.staticflickr.com/3333/3237681827_ebc2bc797c_b.jpg" data-credit="Rincewind42 · BY">
+          <h3>하얼빈, 중국</h3>
+          <p>얼음축제로 알려진 북방 도시. 겨울 한정 목적지에서 사계절 도시로 넘어가는 중.</p>
+          <div class="meta"><span class="tag">03위</span></div>
+        </li>
+        <li class="item" data-group="KAYAK 이머징 TOP 10" data-sum="KAYAK 선정 2026 신흥 여행지 4위" data-take="그리스 본토와 섬 전체가 수십 년 만에 최대 호황이라는 이야기가 같이 나오는 듯. 산토리니 과밀의 반사이익이다." data-q="Zakynthos Greece travel 2026 emerging destination" data-since="2026 KAYAK 집계" data-traffic="KAYAK 이머징 4위" data-img="https://live.staticflickr.com/5459/9473733203_efc960d183_b.jpg" data-credit="jase™ · BY">
+          <h3>자킨토스, 그리스</h3>
+          <p>난파선 해변으로 유명한 이오니아해 섬. 산토리니를 피한 사람들이 몰린다.</p>
+          <div class="meta"><span class="tag">04위</span></div>
+        </li>
+        <li class="item" data-group="KAYAK 이머징 TOP 10" data-sum="KAYAK 선정 2026 신흥 여행지 5위" data-take="전자상가 구경이 관광이 되는 시대인 듯. 테크 유튜버들이 만든 수요라고 봐야 한다." data-q="Shenzhen China travel 2026 emerging destination" data-since="2026 KAYAK 집계" data-traffic="KAYAK 이머징 5위" data-img="https://live.staticflickr.com/24/52128193_83f9581373.jpg" data-credit="jurvetson · BY">
+          <h3>선전, 중국</h3>
+          <p>제조와 테크의 도시. 관광지가 아니었던 곳이 여행 목적지 목록에 올라왔다.</p>
+          <div class="meta"><span class="tag">05위</span></div>
+        </li>
+        <li class="item" data-group="KAYAK 이머징 TOP 10" data-sum="KAYAK 선정 2026 신흥 여행지 6위" data-take="중앙아시아가 유럽 대체재로 떠오르는 흐름인 듯. 인천에서 직항이 있다는 게 국내 수요엔 결정적이다." data-q="Almaty Kazakhstan travel 2026 emerging destination" data-since="2026 KAYAK 집계" data-traffic="KAYAK 이머징 6위" data-img="https://live.staticflickr.com/3171/2575543604_b269837054_b.jpg" data-credit="Irene2005 · BY">
+          <h3>알마티, 카자흐스탄</h3>
+          <p>천산 산맥 아래 도시. 비자 부담이 낮고 물가가 싸다는 게 강점.</p>
+          <div class="meta"><span class="tag">06위</span></div>
+        </li>
+        <li class="item" data-group="KAYAK 이머징 TOP 10" data-sum="KAYAK 선정 2026 신흥 여행지 7위" data-take="같은 하와이 안에서도 덜 붐비는 섬으로 옮겨가는 듯. 목적지를 바꾸는 게 아니라 한 단계 안으로 들어가는 방식이다." data-q="Hilo Big Island Hawaii travel 2026 emerging destination" data-since="2026 KAYAK 집계" data-traffic="KAYAK 이머징 7위" data-img="https://live.staticflickr.com/7630/16368518133_91cc3496c6_b.jpg" data-credit="U.S. Geological Survey · CC0">
+          <h3>힐로, 하와이 빅아일랜드</h3>
+          <p>오아후를 피한 하와이. 화산과 비의 도시라 사람이 적다.</p>
+          <div class="meta"><span class="tag">07위</span></div>
+        </li>
+        <li class="item" data-group="KAYAK 이머징 TOP 10" data-sum="KAYAK 선정 2026 신흥 여행지 8위" data-take="한국에서 직항 거리가 애매한 게 오히려 붐비지 않는 이유인 듯. 신혼여행 시장에서 먼저 반응할 것 같다." data-q="Noumea New Caledonia travel 2026 emerging destination" data-since="2026 KAYAK 집계" data-traffic="KAYAK 이머징 8위" data-img="https://live.staticflickr.com/65535/52278514961_f145ed1bfd_b.jpg" data-credit="Signal Corps Archive · PDM">
+          <h3>누메아, 뉴칼레도니아</h3>
+          <p>프랑스령 남태평양 섬. 유럽 문화와 열대 자연이 섞여 있다.</p>
+          <div class="meta"><span class="tag">08위</span></div>
+        </li>
+        <li class="item" data-group="KAYAK 이머징 TOP 10" data-sum="KAYAK 선정 2026 신흥 여행지 9위" data-take="칸쿤이 붐비니까 카리브 안에서 옆으로 이동하는 전형적인 패턴인 듯." data-q="La Romana Dominican Republic travel 2026 emerging destination" data-since="2026 KAYAK 집계" data-traffic="KAYAK 이머징 9위" data-img="https://live.staticflickr.com/104/296833999_bfe8ae766d_b.jpg" data-credit="HeatherXBradley · BY">
+          <h3>라 로마나, 도미니카공화국</h3>
+          <p>카리브 리조트 벨트의 조용한 쪽. 골프와 해변이 중심이다.</p>
+          <div class="meta"><span class="tag">09위</span></div>
+        </li>
+        <li class="item" data-group="KAYAK 이머징 TOP 10" data-sum="KAYAK 선정 2026 신흥 여행지 10위" data-take="적게 가고 오래 머무는 흐름이 아니었으면 계속 지나쳤을 목적지인 듯. 유행이 지도를 다시 그리는 사례다." data-q="Luxembourg travel 2026 emerging destination" data-since="2026 KAYAK 집계" data-traffic="KAYAK 이머징 10위" data-img="https://live.staticflickr.com/7888/46213335805_3c719fc8c4_b.jpg" data-credit="laurentlux · BY">
+          <h3>룩셈부르크</h3>
+          <p>작아서 그동안 건너뛰던 나라. 슬로우 트래블 흐름에 맞아 재발견됐다.</p>
+          <div class="meta"><span class="tag">10위</span></div>
+        </li>
+<li class="item" data-img="https://live.staticflickr.com/8746/17063722720_f6ccbe0a79_b.jpg" data-credit="kthypryn · BY" data-sum="검색·예약 모두 1위, 당분간 안 바뀐다" data-take="검색이랑 예약 둘 다 1위. 물가랑 항공편이 만든 결과라 당분간 안 바뀔 듯." data-group="예약 기준" data-q="Bangkok most booked city 2026 eDreams" data-since="2026 예약 데이터" data-traffic="전 세계 검색·예약 1위 도시">
           <h3>방콕</h3>
           <p>eDreams 기준 가장 많이 검색되고 가장 많이 예약된 도시. 2위는 파리.</p>
           <div class="meta"><span class="tag">Booking #1</span></div>
         </li>
-        <li class="item" data-img="https://live.staticflickr.com/7353/12991669365_6534de9bbd_b.jpg" data-credit="Ndecam · BY" data-sum="카니발 한 번에 1년 예약이 몰린다" data-take="카니발 한 번에 1년 예약이 몰린다. 이벤트가 도시 수요를 만드는 대표 사례인 듯." data-group="예약 기준" data-q="Rio de Janeiro Carnival bookings 2026" data-since="2026 예약 데이터" data-traffic="향후 1년 예약 3위">
+<li class="item" data-img="https://live.staticflickr.com/7353/12991669365_6534de9bbd_b.jpg" data-credit="Ndecam · BY" data-sum="카니발 한 번에 1년 예약이 몰린다" data-take="카니발 한 번에 1년 예약이 몰린다. 이벤트가 도시 수요를 만드는 대표 사례인 듯." data-group="예약 기준" data-q="Rio de Janeiro Carnival bookings 2026" data-since="2026 예약 데이터" data-traffic="향후 1년 예약 3위">
           <h3>리우데자네이루</h3>
           <p>카니발 시즌에 방문이 몰린다.</p>
           <div class="meta"><span class="tag">BR</span></div>
         </li>
-        <li class="item" data-img="https://live.staticflickr.com/11/12486706_5933881653_b.jpg" data-credit="Z_dead · BY" data-sum="잘 자려고 떠나는 여행" data-take="라이프스타일 파트의 신경계 관리와 정확히 같은 뿌리인 듯. 쉬는 것이 목적인 여행은 사진 찍을 게 없어서 SNS로는 안 퍼지는데도 예약이 는다는 게 흥미롭다." data-group="여행 방식" data-q="sleep tourism 2026 travel trend hotels" data-since="2026 대표 트렌드" data-traffic="식스센스 등 전용 프로그램 운영" data-need="국내에선 방음·암막 갖춘 호텔부터" data-shop="수면안대">
+<li class="item" data-img="https://live.staticflickr.com/11/12486706_5933881653_b.jpg" data-credit="Z_dead · BY" data-sum="잘 자려고 떠나는 여행" data-take="라이프스타일 파트의 신경계 관리와 정확히 같은 뿌리인 듯. 쉬는 것이 목적인 여행은 사진 찍을 게 없어서 SNS로는 안 퍼지는데도 예약이 는다는 게 흥미롭다." data-group="여행 방식" data-q="sleep tourism 2026 travel trend hotels" data-since="2026 대표 트렌드" data-traffic="식스센스 등 전용 프로그램 운영" data-need="국내에선 방음·암막 갖춘 호텔부터" data-shop="수면안대">
           <h3>슬립 투어리즘</h3>
           <p>호텔과 웰니스 리조트가 오직 수면을 목표로 한 패키지를 만든다. 방음실, 맞춤 침구, 명상 가이드, 수면 관리 프로그램까지 붙는다.</p>
           <div class="meta"><span class="tag">Wellness</span></div>
         </li>
-        <li class="item" data-img="https://live.staticflickr.com/7413/9738193580_c014e02409_b.jpg" data-credit="Grand Canyon NPS · BY" data-sum="응답자 절반이 올해 혼자 떠날 계획" data-take="밀레니얼·Z가 주도하는데, 도시를 고르는 비율이 높은 게 핵심인 듯. 혼자여도 안전하고 심심하지 않은 곳을 고른다는 뜻이라, 오지 여행과는 결이 다르다." data-group="여행 방식" data-q="solo travel 2026 statistics 48 percent urban" data-since="2026 조사" data-traffic="솔로 계획 48% · 도시 선택 54%">
+<li class="item" data-img="https://live.staticflickr.com/7413/9738193580_c014e02409_b.jpg" data-credit="Grand Canyon NPS · BY" data-sum="응답자 절반이 올해 혼자 떠날 계획" data-take="밀레니얼·Z가 주도하는데, 도시를 고르는 비율이 높은 게 핵심인 듯. 혼자여도 안전하고 심심하지 않은 곳을 고른다는 뜻이라, 오지 여행과는 결이 다르다." data-group="여행 방식" data-q="solo travel 2026 statistics 48 percent urban" data-since="2026 조사" data-traffic="솔로 계획 48% · 도시 선택 54%">
           <h3>혼자 가는 여행 48%</h3>
           <p>48%가 솔로 여행을 계획하고, 그중 54%는 도시를 고른다. 혼자 여행에 대한 눈치가 거의 사라졌다.</p>
           <div class="meta"><span class="tag">Solo</span><span class="tag up">48%</span></div>
         </li>
-        <li class="item" data-img="https://live.staticflickr.com/7171/6442895081_e0144bc13d_b.jpg" data-credit="Grand Canyon NPS · BY" data-sum="적게 가고 오래 머문다" data-take="항공권 값이 오른 영향도 있겠지만, 도장 찍기식 여행에 대한 피로가 더 커 보인다. 마데이라나 사르데냐 같은 섬이 뜨는 이유와 같은 자리다." data-group="여행 방식" data-q="slow travel longer trips 2026 booking data" data-since="2026 예약 데이터" data-traffic="선호 기간 1~2주로 이동">
+<li class="item" data-img="https://live.staticflickr.com/7171/6442895081_e0144bc13d_b.jpg" data-credit="Grand Canyon NPS · BY" data-sum="적게 가고 오래 머문다" data-take="항공권 값이 오른 영향도 있겠지만, 도장 찍기식 여행에 대한 피로가 더 커 보인다. 마데이라나 사르데냐 같은 섬이 뜨는 이유와 같은 자리다." data-group="여행 방식" data-q="slow travel longer trips 2026 booking data" data-since="2026 예약 데이터" data-traffic="선호 기간 1~2주로 이동">
           <h3>슬로우 트래블</h3>
           <p>선호 여행 기간이 1~2주로 옮겨갔다. 횟수를 줄이고 한 곳에 오래 머물며 깊게 보는 쪽이다.</p>
           <div class="meta"><span class="tag">Style</span></div>
         </li>
-        <li class="item" data-img="https://live.staticflickr.com/2753/4297809244_b7c7c9aa3d_b.jpg" data-credit="Alan Cleaver · BY" data-sum="결정 피로를 줄이는 휴가" data-take="아날로그 회귀와 같은 정서인 듯. 일정이 빡빡한 여행이 곧 일처럼 느껴지니까, 아무것도 안 하는 걸 상품으로 파는 게 먹힌다." data-group="여행 방식" data-q="quiet travel reading decision fatigue trend 2026" data-since="2026 전반" data-traffic="2026 소비자 조사 공통 항목">
+<li class="item" data-img="https://live.staticflickr.com/2753/4297809244_b7c7c9aa3d_b.jpg" data-credit="Alan Cleaver · BY" data-sum="결정 피로를 줄이는 휴가" data-take="아날로그 회귀와 같은 정서인 듯. 일정이 빡빡한 여행이 곧 일처럼 느껴지니까, 아무것도 안 하는 걸 상품으로 파는 게 먹힌다." data-group="여행 방식" data-q="quiet travel reading decision fatigue trend 2026" data-since="2026 전반" data-traffic="2026 소비자 조사 공통 항목">
           <h3>조용함과 독서</h3>
           <p>쉼과 침묵, 혼자 있는 시간, 독서, 문화, 로드트립을 찾는다. 선택할 게 적은 일정을 일부러 고른다.</p>
           <div class="meta"><span class="tag">Style</span></div>
         </li>
-        <li class="item" data-img="https://live.staticflickr.com/8476/8432054043_84c943dc73_b.jpg" data-credit="~Matt LightJam {Mattia Merlo} · BY" data-sum="도피가 아니라 내가 어떤 사람인지 보여주는 일정" data-take="여행지가 취향의 증명서가 되는 듯. 남들 다 가는 곳을 피하는 흐름과 붙어 있어서, 앞으로 순위표 상위는 계속 덜 알려진 곳으로 채워질 것 같다." data-group="여행 방식" data-q="travel as self expression trend 2026" data-since="2026 전반" data-traffic="2026 트렌드 리포트 공통 관측">
+<li class="item" data-img="https://live.staticflickr.com/8476/8432054043_84c943dc73_b.jpg" data-credit="~Matt LightJam {Mattia Merlo} · BY" data-sum="도피가 아니라 내가 어떤 사람인지 보여주는 일정" data-take="여행지가 취향의 증명서가 되는 듯. 남들 다 가는 곳을 피하는 흐름과 붙어 있어서, 앞으로 순위표 상위는 계속 덜 알려진 곳으로 채워질 것 같다." data-group="여행 방식" data-q="travel as self expression trend 2026" data-since="2026 전반" data-traffic="2026 트렌드 리포트 공통 관측">
           <h3>자기표현으로서의 여행</h3>
           <p>목적지와 일정을 고르는 기준이 탈출이 아니라 자기표현으로 옮겨간다.</p>
           <div class="meta"><span class="tag">Style</span></div>
         </li>
+        <li class="item" data-group="여행 방식" data-sum="Z세대 69%, 밀레니얼 66%" data-take="남들 다 가는 곳에 가면 콘텐츠 가치가 없다는 계산인 듯. 여행이 자기표현이 되면 희소성이 곧 가치가 된다." data-q="Gen Z 69% millennials 66% off feed destinations 2026" data-since="2026 조사" data-traffic="Z세대 69% · 밀레니얼 66%">
+          <h3>피드에 안 나오는 곳으로</h3>
+          <p>자기 피드에 자주 보이지 않는 목적지를 선호한다고 답했다. 붐비는 곳을 피하는 게 기준이 됐다.</p>
+          <div class="meta"><span class="tag">Behavior</span><span class="tag">69%</span></div>
+        </li>
+        <li class="item" data-group="여행 방식" data-sum="섬 말고 육지" data-take="유명 관광지를 한 번 겪고 나면 그 옆으로 이동하는 게 공식인 듯. 다음 순번은 알바니아나 몬테네그로가 될 것 같다." data-q="Greek mainland biggest moment decades 2026" data-since="2026 흐름" data-traffic="본토 수요 급증" data-img="https://live.staticflickr.com/6219/6247127068_7ce9b0fee2_b.jpg" data-credit="Arian Zwegers · BY">
+          <h3>그리스 본토의 수십 년 만의 호황</h3>
+          <p>산토리니·미코노스를 겪은 사람들이 본토로 옮겨간다. 사르데냐도 아말피를 마친 사람들이 찾는다.</p>
+          <div class="meta"><span class="tag">Trend</span></div>
+        </li>
       </ul>
-      <p class="src">출처 · <a href="https://www.timeout.com/news/the-top-trending-destinations-for-2026-travel-revealed-by-expedia-102325">Time Out</a> · <a href="https://www.expedia.com/unpack26/destinations-of-the-year">Expedia</a> · <a href="https://traveltomorrow.com/quiet-time-solo-trips-and-reading-dominate-travel-trends-for-2026/">Travel Tomorrow</a> · <a href="https://globalwellnessinstitute.org/global-wellness-institute-blog/2026/03/27/wellness-tourism-initiative-trends-for-2026/">Global Wellness Institute</a></p>
+      <p class="src">출처 · <a href="https://www.timeout.com/news/the-top-trending-destinations-for-2026-travel-revealed-by-expedia-102325">Time Out</a> · <a href="https://www.expedia.com/unpack26/destinations-of-the-year">Expedia</a> · <a href="https://traveltomorrow.com/quiet-time-solo-trips-and-reading-dominate-travel-trends-for-2026/">Travel Tomorrow</a> · <a href="https://globalwellnessinstitute.org/global-wellness-institute-blog/2026/03/27/wellness-tourism-initiative-trends-for-2026/">Global Wellness Institute</a> · <a href="https://www.barchart.com/story/news/37061618/kayak-predicts-well-th-trips-next-gen-destinations-and-small-town-escapes-to-define-travel-this-year">KAYAK</a></p>
     </section>
 
     <section class="cat" data-cat="tech" data-plat="review">
       <div class="cat-head"><h2>전자기기</h2><span class="en">Tech</span></div>
       <ul class="items">
-        <li class="item" data-img="https://upload.wikimedia.org/wikipedia/commons/d/d7/Foldable_Smartphones.jpg" data-credit="Ka Kit Pang · BY" data-need="국내 출시 전이라 지금 살 수 있는 건 전작 폴더블·바형" data-shop="아이폰" data-sum="애플의 첫 폴더블, 크리스를 없앴다" data-take="애플이 늦게 들어와서 기준 가져가는 패턴이 또 반복되는 듯. 국내 제조사엔 시장이 커지는 기회이자 위기 같다." data-group="이달 신제품" data-q="foldable iPhone Ultra September 2026 crease" data-since="2026.09.09 공개" data-traffic="가격 약 $2,000" data-aff="https://link.coupang.com/a/gNidROvusC">
+<li class="item" data-img="https://upload.wikimedia.org/wikipedia/commons/d/d7/Foldable_Smartphones.jpg" data-credit="Ka Kit Pang · BY" data-need="국내 출시 전이라 지금 살 수 있는 건 전작 폴더블·바형" data-shop="아이폰" data-sum="애플의 첫 폴더블, 크리스를 없앴다" data-take="애플이 늦게 들어와서 기준 가져가는 패턴이 또 반복되는 듯. 국내 제조사엔 시장이 커지는 기회이자 위기 같다." data-group="이달 신제품" data-q="foldable iPhone Ultra September 2026 crease" data-since="2026.09.09 공개" data-traffic="가격 약 $2,000" data-aff="https://link.coupang.com/a/gNidROvusC">
           <h3>폴더블 iPhone Ultra</h3>
           <p>접히는 자국(크리스)을 없앤 게 이번 달 최대 화제. 애플의 첫 폴더블.</p>
           <div class="meta"><span class="tag">Apple</span><span class="tag">09.09</span></div>
         </li>
-        <li class="item" data-img="https://live.staticflickr.com/7294/11694299396_930ce789e7_b.jpg" data-credit="wwarby · BY" data-need="아직 출시 전. 지금은 음파 전동칫솔이 현실적인 대안" data-shop="음파 전동칫솔" data-sum="브러시 헤드 안에 카메라가 들어갔다" data-take="카메라 넣는 게 목적이 아니라 데이터를 넣는 것 같음. 구강 데이터가 다음 헬스케어 시장이 될 듯." data-group="이달 신제품" data-q="Dyson toothbrush with camera 2026" data-new="1" data-since="2026.09 공개" data-traffic="2026.09 공개 · 가격 미정" data-aff="https://link.coupang.com/a/gNieFG59c4">
+<li class="item" data-img="https://live.staticflickr.com/7294/11694299396_930ce789e7_b.jpg" data-credit="wwarby · BY" data-need="아직 출시 전. 지금은 음파 전동칫솔이 현실적인 대안" data-shop="음파 전동칫솔" data-sum="브러시 헤드 안에 카메라가 들어갔다" data-take="카메라 넣는 게 목적이 아니라 데이터를 넣는 것 같음. 구강 데이터가 다음 헬스케어 시장이 될 듯." data-group="이달 신제품" data-q="Dyson toothbrush with camera 2026" data-new="1" data-since="2026.09 공개" data-traffic="2026.09 공개 · 가격 미정" data-aff="https://link.coupang.com/a/gNieFG59c4">
           <h3>카메라 달린 다이슨 칫솔</h3>
           <p>브러시 헤드 안에 카메라가 들어갔다. 이번 달 가장 이상한 가젯.</p>
           <div class="meta"><span class="tag">Gadget</span></div>
         </li>
-        <li class="item" data-img="https://live.staticflickr.com/3710/32755587313_9b125f3c51_b.jpg" data-credit="vastateparksstaff · BY" data-need="입문용은 구경 70mm 이상이어야 실망하지 않는다" data-shop="휴대용 천체망원경" data-sum="기내 반입 되는 크기로 접히는 천체망원경" data-take="취미 장비 소형화는 여행 콘텐츠 수요랑 붙어 있는 듯. 캠핑 다음 아이템 후보 같다." data-group="이달 신제품" data-q="portable travel telescope 2026 carry on" data-new="1" data-since="2026.09 공개" data-traffic="기내 반입 크기 · 2026.09 공개" data-aff="https://link.coupang.com/a/gNifxhijEi">
+<li class="item" data-img="https://live.staticflickr.com/3710/32755587313_9b125f3c51_b.jpg" data-credit="vastateparksstaff · BY" data-need="입문용은 구경 70mm 이상이어야 실망하지 않는다" data-shop="휴대용 천체망원경" data-sum="기내 반입 되는 크기로 접히는 천체망원경" data-take="취미 장비 소형화는 여행 콘텐츠 수요랑 붙어 있는 듯. 캠핑 다음 아이템 후보 같다." data-group="이달 신제품" data-q="portable travel telescope 2026 carry on" data-new="1" data-since="2026.09 공개" data-traffic="기내 반입 크기 · 2026.09 공개" data-aff="https://link.coupang.com/a/gNifxhijEi">
           <h3>가방에 들어가는 망원경</h3>
           <p>기내 반입 가능한 크기까지 접히는 천체망원경. 취미 장비의 소형화 흐름.</p>
           <div class="meta"><span class="tag">Gadget</span></div>
         </li>
-        <li class="item" data-img="https://live.staticflickr.com/7373/9431726458_d36e39890d_b.jpg" data-credit="the_tphipps · BY" data-need="짐벌 없이 손각대만으로 흔들림이 잡힌다" data-shop="인스타360" data-sum="1인 촬영 수요가 만든 이달 최고 평점" data-take="360 카메라가 리뷰 상위권인 걸 보면 1인 촬영 수요가 계속 큰 듯." data-group="크리에이터 장비" data-q="Insta360 X6 review 2026" data-since="2026 출시" data-traffic="TechRadar 9월 최고 평가 기기" data-aff="https://link.coupang.com/a/gNigqJbBCK">
+        <li class="item" data-group="이달 신제품" data-sum="이잉크 액자가 그림을 직접 만든다" data-take="액자에 구독을 붙이는 발상인 듯. AI 슬롭 피로가 커지는 와중에 집 벽에 AI 그림을 거는 게 팔릴지는 지켜볼 일이다." data-q="Fraimic E Ink AI image display 399 2026" data-since="2026 출시" data-traffic="$399 · 연 100장 생성 포함">
+          <h3>Fraimic</h3>
+          <p>OpenAI에 연결해 이미지를 생성하는 전자잉크 디스플레이. 연 100장 생성이 399달러에 포함된다.</p>
+          <div class="meta"><span class="tag">Gadget</span><span class="tag">$399</span></div>
+        </li>
+        <li class="item" data-group="이달 신제품" data-sum="싸진 스마트링과 수영장 청소 로봇" data-take="카테고리가 성숙하면 가격이 내려오고 용도가 쪼개지는 듯. 스마트링은 이제 얼리어답터 물건이 아니다." data-q="RingConn Gen 2 Air Beatbot AquaSense X 2026" data-since="2026 출시" data-traffic="보급형 스마트링 · 특수 청소 로봇">
+          <h3>RingConn Gen 2 Air · Beatbot AquaSense X</h3>
+          <p>스마트링 가격대가 내려오고, 로봇청소기 개념이 수영장까지 확장됐다.</p>
+          <div class="meta"><span class="tag">Gadget</span></div>
+        </li>
+        <li class="item" data-group="AI 웨어러블" data-sum="1,200만 화소 초광각에 오픈이어 스피커" data-take="AI 글래스 카테고리에서 유일하게 실제로 팔리는 제품인 듯. 안경 브랜드와 손잡은 게 결정적이었다." data-q="Ray-Ban Meta smart glasses 2026" data-since="2023 1세대 · 2026 확산" data-traffic="12MP 초광각 · 메타 AI 연동" data-img="https://live.staticflickr.com/5681/30582914536_4bcdc673a5_b.jpg" data-credit="freestocks.org · CC0">
+          <h3>Ray-Ban Meta 스마트 글래스</h3>
+          <p>핸즈프리 영상통화, 메타 AI 연동, 라이브 스트리밍까지 된다. AI 글래스 중 가장 많이 팔린 축.</p>
+          <div class="meta"><span class="tag">Wearable</span></div>
+        </li>
+        <li class="item" data-group="AI 웨어러블" data-sum="반지형 건강 추적의 기준" data-take="신경계 관리와 수면 관광이 뜨는 것과 같은 자리인 듯. 잠을 수치로 보여주는 기기가 그 서사를 완성한다." data-q="Oura Ring 2026 health wearable" data-since="2015 출시 · 2026 주류" data-traffic="스마트링 카테고리 대표">
+          <h3>Oura Ring</h3>
+          <p>수면과 회복을 추적하는 스마트링. 웰니스 흐름과 맞물려 계속 팔린다.</p>
+          <div class="meta"><span class="tag">Wearable</span></div>
+        </li>
+        <li class="item" data-group="AI 웨어러블" data-sum="회의를 알아서 녹음하고 요약한다" data-take="스마트폰이 이미 할 수 있는 걸 전용 기기로 파는 구조인 듯. 그런데도 팔리는 건 "꺼내지 않아도 된다"는 것 하나 때문이다." data-q="Plaud NotePin AI recorder 2026" data-since="2026 확산" data-traffic="AI 녹음·요약 웨어러블" data-img="https://live.staticflickr.com/30/42956883_532f06b439_b.jpg" data-credit="timtak · BY">
+          <h3>Plaud NotePin · Switchbot AI Mindclip</h3>
+          <p>옷에 붙이는 형태의 AI 녹음기. 회의 내용을 받아 적고 정리까지 해준다.</p>
+          <div class="meta"><span class="tag">Wearable</span></div>
+        </li>
+        <li class="item" data-group="AI 웨어러블" data-sum="대화를 받아 적고 일정에 넣는 반지" data-take="반지에 마이크가 들어가는 건 프라이버시 논쟁을 부를 듯. 기술보다 사회적 합의가 병목이 될 카테고리다." data-q="Pebble Index 01 smart ring notes transcribe 2026" data-since="2026 출시" data-traffic="녹취·일정 연동 스마트링">
+          <h3>Pebble Index 01</h3>
+          <p>스마트링이 건강 추적을 넘어 메모와 일정 관리까지 한다.</p>
+          <div class="meta"><span class="tag">Wearable</span></div>
+        </li>
+        <li class="item" data-group="AI 로봇" data-sum="따라다니고 체온과 비슷하게 따뜻한 로봇" data-take="기능이 아니라 온도로 승부하는 게 포인트인 듯. 반려동물 자리를 노린다는 게 분명하게 드러난다." data-q="Ludens AI Cocomo companion robot CES 2026" data-since="2026 CES 공개" data-traffic="AI 컴패니언 로봇" data-img="https://live.staticflickr.com/4146/4833395890_fec22615d1_b.jpg" data-credit="JD Hancock · BY">
+          <h3>Cocomo</h3>
+          <p>목소리와 촉각에 반응하고 집 안에서 따라다닌다. 사람 체온에 가깝게 유지된다.</p>
+          <div class="meta"><span class="tag">Robot</span></div>
+        </li>
+        <li class="item" data-group="AI 로봇" data-sum="노인을 위한 판다 모양 로봇" data-take="초고령 사회로 가는 한국이 가장 큰 시장이 될 카테고리인 듯. 돌봄 인력 부족이 기술 수요를 만든다." data-q="An'An panda robot elderly companion 2026" data-since="2026 CES 공개" data-traffic="고령자 돌봄 로봇">
+          <h3>An'An</h3>
+          <p>분산 센서와 감정 인식 소프트웨어를 넣어 고령자 곁을 지키도록 만들었다.</p>
+          <div class="meta"><span class="tag">Robot</span></div>
+        </li>
+        <li class="item" data-group="AI 로봇" data-sum="집 안 로봇이 감정을 배운다" data-take="로봇청소기 다음 단계를 뭘로 잡을지 업계가 찾는 중인 듯. 청소가 아니라 정서가 답이라는 쪽에 돈이 몰린다." data-q="Tesla HomeBot Sony Aibo Neo 2026 home robots" data-since="2026 공개" data-traffic="가정용 로봇 감정 지능 탑재" data-img="https://live.staticflickr.com/65535/49062446596_5c75782326.jpg" data-credit="shop8447 · CC0">
+          <h3>Tesla HomeBot · Sony Aibo Neo</h3>
+          <p>감정 인식, 목소리 학습, 사용자에 맞춘 루틴 적응이 들어갔다. 2026년 가장 큰 진전으로 꼽힌다.</p>
+          <div class="meta"><span class="tag">Robot</span></div>
+        </li>
+<li class="item" data-img="https://live.staticflickr.com/7373/9431726458_d36e39890d_b.jpg" data-credit="the_tphipps · BY" data-need="짐벌 없이 손각대만으로 흔들림이 잡힌다" data-shop="인스타360" data-sum="1인 촬영 수요가 만든 이달 최고 평점" data-take="360 카메라가 리뷰 상위권인 걸 보면 1인 촬영 수요가 계속 큰 듯." data-group="크리에이터 장비" data-q="Insta360 X6 review 2026" data-since="2026 출시" data-traffic="TechRadar 9월 최고 평가 기기" data-aff="https://link.coupang.com/a/gNigqJbBCK">
           <h3>Insta360 X6</h3>
           <p>튼튼한 마감, 긴 배터리, 어떤 조명에서도 선명한 결과물로 리뷰어들을 설득했다.</p>
           <div class="meta"><span class="tag">Creator</span></div>
         </li>
-        <li class="item" data-img="https://live.staticflickr.com/2917/14567065687_a63a616af3_b.jpg" data-credit="qubodup · BY" data-need="카메라보다 마이크가 먼저다" data-shop="무선 마이크" data-sum="플래그십 기능 절반값 무선 마이크" data-take="소리가 화질보다 먼저인 듯. 장비 하나만 산다면 마이크가 맞는 것 같다." data-group="크리에이터 장비" data-q="DJI Mic Mini 2S review price" data-since="2026 출시" data-traffic="플래그십 Mic 3의 약 절반 가격" data-aff="https://link.coupang.com/a/gNihk2RkEm">
+<li class="item" data-img="https://live.staticflickr.com/2917/14567065687_a63a616af3_b.jpg" data-credit="qubodup · BY" data-need="카메라보다 마이크가 먼저다" data-shop="무선 마이크" data-sum="플래그십 기능 절반값 무선 마이크" data-take="소리가 화질보다 먼저인 듯. 장비 하나만 산다면 마이크가 맞는 것 같다." data-group="크리에이터 장비" data-q="DJI Mic Mini 2S review price" data-since="2026 출시" data-traffic="플래그십 Mic 3의 약 절반 가격" data-aff="https://link.coupang.com/a/gNihk2RkEm">
           <h3>DJI Mic Mini 2S</h3>
           <p>내장 녹음, AI 노이즈 캔슬 등 상위 모델 기능 상당수를 절반값에 넣었다.</p>
           <div class="meta"><span class="tag">Creator</span></div>
         </li>
-        <li class="item" data-img="https://live.staticflickr.com/5507/11827457474_7319488569.jpg" data-credit="Vuarnet · BY" data-need="지금 살 수 있는 건 카메라 달린 스마트 글래스 정도" data-shop="스마트 글래스" data-sum="화제성과 판매량 간극이 제일 큰 카테고리" data-take="화제성이랑 판매량 간극이 제일 큰 카테고리인 듯. 기사만 보고 시장 크기 판단하면 크게 틀린다." data-group="카테고리" data-q="AI smart glasses 2026 market hype" data-since="2026 본격화" data-traffic="판매·점유율은 폰·워치가 여전히 우위" data-aff="https://link.coupang.com/a/gNiixpksLc">
+<li class="item" data-img="https://live.staticflickr.com/5507/11827457474_7319488569.jpg" data-credit="Vuarnet · BY" data-need="지금 살 수 있는 건 카메라 달린 스마트 글래스 정도" data-shop="스마트 글래스" data-sum="화제성과 판매량 간극이 제일 큰 카테고리" data-take="화제성이랑 판매량 간극이 제일 큰 카테고리인 듯. 기사만 보고 시장 크기 판단하면 크게 틀린다." data-group="카테고리" data-q="AI smart glasses 2026 market hype" data-since="2026 본격화" data-traffic="판매·점유율은 폰·워치가 여전히 우위" data-aff="https://link.coupang.com/a/gNiixpksLc">
           <h3>AI 글래스 / 스마트 글래스</h3>
           <p>올해 가장 말이 많은 카테고리. 화제성과 실제 판매량의 간극이 가장 큰 제품군이기도 하다.</p>
           <div class="meta"><span class="tag">Category</span></div>
         </li>
       </ul>
-      <p class="src">출처 · <a href="https://www.yankodesign.com/2026/09/03/the-8-best-gadgets-of-september-2026/">Yanko Design</a> · <a href="https://www.techradar.com/tech/top-tech-of-the-month-the-best-new-gadgets-weve-tested-for-september-2026">TechRadar</a></p>
+      <p class="src">출처 · <a href="https://www.yankodesign.com/2026/09/03/the-8-best-gadgets-of-september-2026/">Yanko Design</a> · <a href="https://www.techradar.com/tech/top-tech-of-the-month-the-best-new-gadgets-weve-tested-for-september-2026">TechRadar</a> · <a href="https://www.engadget.com/general/all-the-tech-and-gadgets-announced-at-ces-2026-130124023.html">Engadget CES 2026</a></p>
     </section>
 
     <section class="cat" data-cat="music" data-plat="spotify">
@@ -2248,61 +2367,91 @@
     <section class="cat" data-cat="movie" data-plat="movie">
       <div class="cat-head"><h2>영화 순위</h2><span class="en">Movies</span></div>
       <ul class="items">
-        <li class="item" data-sum="게임 원작이 올해 흥행 1위, $1B 돌파" data-take="게임 원작 영화가 연간 1위 먹는 게 이제 이변이 아닌 듯. IP 팬덤이 극장을 떠받치는 구조로 굳었다." data-group="글로벌 흥행" data-q="Super Mario Galaxy Movie box office 2026" data-since="2026 연초 개봉" data-traffic="월드와이드 $1B 돌파">
+<li class="item" data-sum="게임 원작이 올해 흥행 1위, $1B 돌파" data-take="게임 원작 영화가 연간 1위 먹는 게 이제 이변이 아닌 듯. IP 팬덤이 극장을 떠받치는 구조로 굳었다." data-group="글로벌 흥행" data-q="Super Mario Galaxy Movie box office 2026" data-since="2026 연초 개봉" data-traffic="월드와이드 $1B 돌파">
           <span class="rank">01</span>
           <h3>The Super Mario Galaxy Movie</h3>
           <p>2026년 할리우드 최고 흥행작이자 게임 원작 영화의 최고 기록.</p>
           <div class="meta"><span class="tag">Worldwide</span></div>
         </li>
-        <li class="item" data-sum="해외 매출이 북미의 두 배" data-take="해외 매출이 북미의 두 배. 애니메이션은 자막·더빙 장벽이 낮아서 처음부터 글로벌로 설계되는 듯." data-group="글로벌 흥행" data-q="Minions and Monsters movie box office 2026" data-since="확인 안 됨" data-traffic="$505.8M (북미 182.3 / 해외 323.4)">
+<li class="item" data-sum="해외 매출이 북미의 두 배" data-take="해외 매출이 북미의 두 배. 애니메이션은 자막·더빙 장벽이 낮아서 처음부터 글로벌로 설계되는 듯." data-group="글로벌 흥행" data-q="Minions and Monsters movie box office 2026" data-since="확인 안 됨" data-traffic="$505.8M (북미 182.3 / 해외 323.4)">
           <span class="rank">02</span>
           <h3>Minions &amp; Monsters</h3>
           <p>해외 매출이 북미의 두 배 가까이. 애니메이션 IP의 전형적인 흥행 구조.</p>
           <div class="meta"><span class="tag">Worldwide</span></div>
         </li>
-        <li class="item" data-sum="북미에 몰린 흥행, 해외에선 반토막" data-take="북미 편중형인 듯. 문화 맥락 센 작품이 해외에서 반토막 나는 걸 그대로 보여준다." data-group="글로벌 흥행" data-q="Obsession movie 2026 box office" data-since="2026.05.15 개봉" data-traffic="$501.6M (북미 263.4 / 해외 238.2)">
+<li class="item" data-sum="북미에 몰린 흥행, 해외에선 반토막" data-take="북미 편중형인 듯. 문화 맥락 센 작품이 해외에서 반토막 나는 걸 그대로 보여준다." data-group="글로벌 흥행" data-q="Obsession movie 2026 box office" data-since="2026.05.15 개봉" data-traffic="$501.6M (북미 263.4 / 해외 238.2)">
           <span class="rank">03</span>
           <h3>Obsession</h3>
           <p>북미 성적만 놓고 보면 이쪽이 더 좋다. 미국 취향에 더 맞은 작품.</p>
           <div class="meta"><span class="tag">Worldwide</span></div>
         </li>
-        <li class="item" data-sum="일본 1위, 매년 같은 규모로 터진다" data-take="매년 같은 시기에 같은 규모로 터진다. 일본 극장가는 유행이 아니라 연례행사로 굴러가는 듯." data-group="일본" data-q="Detective Conan Fallen Angel of the Highway box office Japan" data-since="확인 안 됨" data-traffic="¥137억 (약 $85.8M) · 일본 1위">
+        <li class="item" data-group="글로벌 흥행" data-sum="마이클 잭슨 전기영화가 10억 달러를 넘겼다" data-take="음악 전기영화가 확실한 흥행 공식이 된 듯. 이미 아는 노래로 채우니까 예고편 없이도 관객이 온다." data-q="Michael Jackson biopic 2026 box office 1 billion" data-since="2026.04.24 개봉" data-traffic="월드와이드 $1B+ · 오프닝 $97.2M">
+          <h3>Michael</h3>
+          <p>4월 24일 개봉해 첫 주말 9,720만 달러라는 기록을 세웠다. 역대 뮤지션 전기영화 최고 흥행.</p>
+          <div class="meta"><span class="tag">Worldwide</span><span class="tag">$1B+</span></div>
+        </li>
+        <li class="item" data-group="글로벌 흥행" data-sum="11억 달러, 시리즈 최고 오프닝" data-take="픽사가 오리지널로 고전하다 속편으로 돌아온 셈인 듯. 극장에 오는 건 결국 아는 IP라는 게 또 확인됐다." data-q="Toy Story 5 box office 2026" data-since="2026 개봉" data-traffic="월드와이드 $1.1B · 시리즈 최대 오프닝">
+          <h3>Toy Story 5</h3>
+          <p>북미·해외·글로벌 모두에서 시리즈 역대 최대 오프닝을 기록했다.</p>
+          <div class="meta"><span class="tag">Worldwide</span><span class="tag">$1.1B</span></div>
+        </li>
+        <li class="item" data-group="글로벌 흥행" data-sum="라이언 고슬링 SF가 6.8억" data-take="IP 없는 오리지널 SF가 이 정도면 성공인 듯. 원작 소설 팬층이 초반 관객을 만들어준 케이스다." data-q="Project Hail Mary box office 2026 Ryan Gosling" data-since="2026.03.20 개봉" data-traffic="$684.2M">
+          <h3>Project Hail Mary</h3>
+          <p>3월 20일 개봉해 6억 8,420만 달러를 벌었다.</p>
+          <div class="meta"><span class="tag">Worldwide</span></div>
+        </li>
+<li class="item" data-sum="일본 1위, 매년 같은 규모로 터진다" data-take="매년 같은 시기에 같은 규모로 터진다. 일본 극장가는 유행이 아니라 연례행사로 굴러가는 듯." data-group="일본" data-q="Detective Conan Fallen Angel of the Highway box office Japan" data-since="확인 안 됨" data-traffic="¥137억 (약 $85.8M) · 일본 1위">
           <h3>명탐정 코난: 하이웨이의 타천사</h3>
           <p>일본 박스오피스 1위. 극장판 시리즈가 매년 상위권을 가져간다.</p>
           <div class="meta"><span class="tag">JP #1</span></div>
         </li>
-        <li class="item" data-sum="서사보다 캐릭터가 센 시장의 증거" data-take="서사보다 캐릭터가 센 시장인 듯. 한국 굿즈나 팝업 업계가 제일 먼저 반응할 지점 같다." data-group="일본" data-q="Chiikawa the Movie box office Japan 2026" data-since="확인 안 됨" data-traffic="¥122.3억 (약 $76.6M) · 일본 2위">
+<li class="item" data-sum="서사보다 캐릭터가 센 시장의 증거" data-take="서사보다 캐릭터가 센 시장인 듯. 한국 굿즈나 팝업 업계가 제일 먼저 반응할 지점 같다." data-group="일본" data-q="Chiikawa the Movie box office Japan 2026" data-since="확인 안 됨" data-traffic="¥122.3억 (약 $76.6M) · 일본 2위">
           <h3>치이카와 더 무비</h3>
           <p>캐릭터 IP가 일본 극장가 상위를 그대로 가져갔다.</p>
           <div class="meta"><span class="tag">JP #2</span></div>
         </li>
-        <li class="item" data-sum="한국 1위, 내수만으로 1억 달러" data-take="한국 1위가 1억 달러를 넘긴 건 내수만으로 만든 숫자. 아직 한국 관객이 극장에 오긴 온다는 증거인 듯." data-group="한국" data-q="The King's Warden 2026 Korean box office" data-since="확인 안 됨" data-traffic="$115,075,699 · 한국 1위">
+<li class="item" data-sum="한국 1위, 내수만으로 1억 달러" data-take="한국 1위가 1억 달러를 넘긴 건 내수만으로 만든 숫자. 아직 한국 관객이 극장에 오긴 온다는 증거인 듯." data-group="한국" data-q="The King's Warden 2026 Korean box office" data-since="확인 안 됨" data-traffic="$115,075,699 · 한국 1위">
           <h3>The King's Warden</h3>
           <p>한국 박스오피스 1위.</p>
           <div class="meta"><span class="tag">KR #1</span></div>
         </li>
-        <li class="item" data-sum="1위와 4천만 달러 차이 나는 2위" data-take="1위랑 격차가 4천만 달러다. 한국 극장가는 1위 쏠림이 유독 심한 듯." data-group="한국" data-q="The Odyssey movie 2026 box office" data-since="확인 안 됨" data-traffic="$71,471,882 · 한국 2위">
+<li class="item" data-sum="1위와 4천만 달러 차이 나는 2위" data-take="1위랑 격차가 4천만 달러다. 한국 극장가는 1위 쏠림이 유독 심한 듯." data-group="한국" data-q="The Odyssey movie 2026 box office" data-since="확인 안 됨" data-traffic="$71,471,882 · 한국 2위">
           <h3>The Odyssey</h3>
           <p>한국 박스오피스 2위.</p>
           <div class="meta"><span class="tag">KR #2</span></div>
         </li>
-        <li class="item" data-sum="마블이 한국 3위, 히어로물 피로" data-take="마블이 한국에서 3위면 예전 기준으론 부진인 듯. 히어로물 피로가 숫자로 드러난 자리 같다." data-group="한국" data-q="Spider-Man Brand New Day 2026 box office" data-since="확인 안 됨" data-traffic="$64,789,457 · 한국 3위">
+<li class="item" data-sum="마블이 한국 3위, 히어로물 피로" data-take="마블이 한국에서 3위면 예전 기준으론 부진인 듯. 히어로물 피로가 숫자로 드러난 자리 같다." data-group="한국" data-q="Spider-Man Brand New Day 2026 box office" data-since="확인 안 됨" data-traffic="$64,789,457 · 한국 3위">
           <h3>Spider-Man: Brand New Day</h3>
           <p>마블이 다시 극장에서 먹히는지 보는 지표.</p>
           <div class="meta"><span class="tag">KR #3</span></div>
         </li>
-        <li class="item" data-sum="본편 끝나기 전에 붙인 스핀오프" data-take="본편 끝나기도 전에 스핀오프를 붙이는 전략. 넷플릭스가 IP 늘리는 방식이 바뀐 듯하다." data-group="스트리밍 · 일정" data-q="Stranger Things Tales From 85 Netflix" data-new="1" data-since="2026.09 공개" data-traffic="9월 넷플릭스 톱10 (일별 수치 비공개)">
+        <li class="item" data-group="한국" data-sum="북미에서만 8.9억" data-take="같은 영화가 시장별로 이렇게 갈리는 게 흥미로운 듯. 히어로물 피로는 한국이 미국보다 먼저 온 것 같다." data-q="Spider-Man Brand New Day domestic box office 891.8" data-since="2026 집계" data-traffic="북미 $891.8M">
+          <h3>북미 1위 Spider-Man: Brand New Day</h3>
+          <p>미국 국내 흥행 1위. 한국에서는 3위였던 것과 대비된다.</p>
+          <div class="meta"><span class="tag">US #1</span></div>
+        </li>
+        <li class="item" data-group="한국" data-sum="북미 5.6억" data-take="두 시장에서 같은 순위인 몇 안 되는 작품인 듯. 신화 원작이라 문화 장벽이 낮은 게 이유일 것 같다." data-q="The Odyssey domestic box office 563.9 2026" data-since="2026 집계" data-traffic="북미 $563.9M">
+          <h3>북미 2위 The Odyssey</h3>
+          <p>미국 국내 2위. 한국에서도 2위를 기록했다.</p>
+          <div class="meta"><span class="tag">US #2</span></div>
+        </li>
+<li class="item" data-sum="본편 끝나기 전에 붙인 스핀오프" data-take="본편 끝나기도 전에 스핀오프를 붙이는 전략. 넷플릭스가 IP 늘리는 방식이 바뀐 듯하다." data-group="스트리밍 · 일정" data-q="Stranger Things Tales From 85 Netflix" data-new="1" data-since="2026.09 공개" data-traffic="9월 넷플릭스 톱10 (일별 수치 비공개)">
           <h3>〈Stranger Things: Tales From '85〉</h3>
           <p>상반기 최다 시청작에 본편도 올라 있어 IP가 아직 안 식었다.</p>
           <div class="meta"><span class="tag">Netflix</span><span class="tag">TV</span></div>
         </li>
-        <li class="item" data-sum="이 주 지나면 스트리밍 순위가 뒤집힌다" data-take="시상식 다음 주에 스트리밍 순위가 한 번 뒤집힌다. 콘텐츠 기획은 14일 이후 일주일이 기회일 듯." data-group="스트리밍 · 일정" data-q="Emmy Awards 2026 September 14" data-since="1949 첫 개최" data-traffic="1949년 첫 개최 · 미국 TV 최대 시상식">
+<li class="item" data-sum="이 주 지나면 스트리밍 순위가 뒤집힌다" data-take="시상식 다음 주에 스트리밍 순위가 한 번 뒤집힌다. 콘텐츠 기획은 14일 이후 일주일이 기회일 듯." data-group="스트리밍 · 일정" data-q="Emmy Awards 2026 September 14" data-since="1949 첫 개최" data-traffic="1949년 첫 개최 · 미국 TV 최대 시상식">
           <h3>9월 14일 — 에미상</h3>
           <p>시상식 시즌 개막. 다음 몇 주 드라마 화제작 순위가 여기서 정리된다.</p>
           <div class="meta"><span class="tag">US</span><span class="tag">09.14</span></div>
         </li>
+        <li class="item" data-group="스트리밍 · 일정" data-sum="라이트닝 맥퀸 데이" data-take="기념일을 만들어서 재개봉을 붙이는 방식인 듯. 노스탤지어 소비를 스케줄로 관리하는 단계에 왔다." data-q="Cars 20th anniversary re-release Lightning McQueen Day 2026" data-since="2026.09.05" data-traffic="20주년 특별 재개봉">
+          <h3>9월 5일, 카 20주년 재개봉</h3>
+          <p>〈카〉 개봉 20주년을 맞아 특별 재개봉한다. 9월 5일이 라이트닝 맥퀸 데이로 지정됐다.</p>
+          <div class="meta"><span class="tag">Re-release</span><span class="tag">09.05</span></div>
+        </li>
       </ul>
-      <p class="src">출처 · <a href="https://screenrant.com/highest-grossing-movies-2026-box-office/">Screen Rant</a> · <a href="https://en.wikipedia.org/wiki/List_of_Japanese_films_of_2026">Wikipedia</a> · <a href="https://flixpatrol.com/top10/netflix/">FlixPatrol</a></p>
+      <p class="src">출처 · <a href="https://screenrant.com/highest-grossing-movies-2026-box-office/">Screen Rant</a> · <a href="https://en.wikipedia.org/wiki/List_of_Japanese_films_of_2026">Wikipedia</a> · <a href="https://flixpatrol.com/top10/netflix/">FlixPatrol</a> · <a href="https://www.the-numbers.com/market/2026/top-grossing-movies">The Numbers</a></p>
     </section>
 
     <section class="cat" data-cat="meme" data-plat="meme">
@@ -2363,26 +2512,10 @@
           <p>아이러니가 겹겹이 쌓인 브레인롯에 지쳐서, 판을 한 번 지우고 새로 시작하자는 이야기가 틱톡에서 나왔다. 일부는 미리 옛날 밈을 다시 올리기 시작했다.</p>
           <div class="meta"><span class="tag">Discourse</span></div>
         </li>
-        <li class="item" data-group="템플릿" data-sum="인기 없지만 맞는 말을 할 때" data-take="템플릿 밈은 유행이 아니라 어휘에 가까운 듯. 한 번 자리 잡으면 몇 년씩 쓰인다." data-q="Gigachad meme template 2026" data-since="2017 원본 · 2026 현역" data-traffic="2026 최다 사용 템플릿권">
-          <h3>Gigachad</h3>
-          <p>대놓고 자신만만하게 소수 의견을 밀 때 쓴다. 2026년에도 가장 많이 쓰이는 템플릿 중 하나.</p>
-          <div class="meta"><span class="tag">Template</span></div>
-        </li>
-        <li class="item" data-group="템플릿" data-sum="숫자가 올라가는 모든 순간" data-take="금융 밈이 일상어가 된 사례인 듯. 뜻이 넓어질수록 오래 사는 게 밈의 규칙이다." data-q="Stonks meme template 2026" data-since="2017 원본 · 2026 현역" data-traffic="2026 최다 사용 템플릿권">
-          <h3>Stonks</h3>
-          <p>주식이든 조회수든 뭐든 올라갈 때 쓰는 축약 표현이 됐다.</p>
-          <div class="meta"><span class="tag">Template</span></div>
-        </li>
-        <li class="item" data-group="템플릿" data-sum=""저기 그거 나왔다"를 그림으로" data-take="레퍼런스를 알아본 순간의 기쁨을 표현하는 도구인 듯. 팬덤 문화가 커질수록 쓰임이 늘어난다." data-q="Soyjak Pointing meme template 2026" data-since="2020 원본 · 2026 현역" data-traffic="2026 최다 사용 템플릿권">
-          <h3>Soyjak Pointing</h3>
-          <p>두 사람이 흥분해서 뭔가를 가리키는 그림. 인터넷식 지목의 기본형이다.</p>
-          <div class="meta"><span class="tag">Template</span></div>
-        </li>
-        <li class="item" data-group="템플릿" data-sum="다 타는데 괜찮다고 말하기" data-take="10년 넘게 쓰이는데 매년 더 잘 맞는 게 문제인 듯. 이 밈의 수명이 곧 시대의 상태를 보여준다." data-q="This Is Fine meme template 2026" data-since="2013 원본 · 2026 현역" data-traffic="2026 최다 사용 템플릿권">
-          <h3>This Is Fine</h3>
-          <p>불난 방에 앉아 커피를 마시는 개. 상황이 무너지는데 아무렇지 않은 척할 때 쓴다.</p>
-          <div class="meta"><span class="tag">Template</span></div>
-        </li>
+        
+        
+        
+        
 <li class="item" data-sum="3년 묵은 클립이 음정만 바꿔 부활" data-take="3년 묵은 클립이 음정만 바꿔서 부활했다. 요즘은 원본보다 편집본이 유행을 만드는 듯." data-group="돌아온 밈" data-q="Say Wallahi Bro meme IShowSpeed origin" data-since="원본 2023.05 · 재유행 2026.03" data-traffic="원본 클립 로블록스 1,800만 로벅스 (약 $225,000)">
           <h3>Say Wallahi Bro</h3>
           <p>IShowSpeed가 1,800만 로벅스(당시 약 22.5만 달러)짜리 로블록스 티셔츠를 사고 울먹인 클립. 3년 뒤 음정을 올린 버전으로 되살아났다.</p>
@@ -2440,38 +2573,78 @@
     <section class="cat" data-cat="life" data-plat="web">
       <div class="cat-head"><h2>라이프스타일</h2><span class="en">Lifestyle</span></div>
       <ul class="items">
-        <li class="item" data-sum="신경계를 수치로 관리하는 웰니스" data-take="스트레스 관리가 '수치로 관리하는 것'이 된 듯. 웨어러블 시장이랑 바로 붙는 흐름." data-group="웰니스" data-q="nervous system maxxing wellness trend 2026" data-since="2026 리포트 등재" data-traffic="Spate 2026 6대 글로벌 테마">
+<li class="item" data-sum="신경계를 수치로 관리하는 웰니스" data-take="스트레스 관리가 '수치로 관리하는 것'이 된 듯. 웨어러블 시장이랑 바로 붙는 흐름." data-group="웰니스" data-q="nervous system maxxing wellness trend 2026" data-since="2026 리포트 등재" data-traffic="Spate 2026 6대 글로벌 테마">
           <h3>Nervous System Maxxing</h3>
           <p>신경계를 관리 대상으로 보는 웰니스. 바르고 입는 웰니스, 최적화 강박이 같은 묶음으로 움직인다.</p>
           <div class="meta"><span class="tag">Wellness</span></div>
         </li>
-        <li class="item" data-sum="불확실할수록 커지는 점성술·타로 소비" data-take="불확실성 커지면 점 보러 간다. 경기 지표의 정서적 대체재로 읽어야 할 듯." data-group="웰니스" data-q="Mystic Momentum astrology spirituality trend 2026" data-since="2026 리포트 등재" data-traffic="Spate 2026 6대 글로벌 테마">
+<li class="item" data-sum="불확실할수록 커지는 점성술·타로 소비" data-take="불확실성 커지면 점 보러 간다. 경기 지표의 정서적 대체재로 읽어야 할 듯." data-group="웰니스" data-q="Mystic Momentum astrology spirituality trend 2026" data-since="2026 리포트 등재" data-traffic="Spate 2026 6대 글로벌 테마">
           <h3>Mystic Momentum</h3>
           <p>점성술·타로·영성 소비가 웰니스 옆자리로 들어왔다. 불확실성이 클수록 커지는 카테고리.</p>
           <div class="meta"><span class="tag">Wellness</span></div>
         </li>
-        <li class="item" data-sum="AI가 빨라질수록 아날로그가 팔린다" data-take="AI가 빨라질수록 손으로 만지는 게 팔리는 듯. 필름, LP, 종이 다이어리가 같이 움직인다." data-group="정서" data-q="nostalgia mania analog obsession trend 2026" data-since="2026 리포트 등재" data-traffic="Spate 2026 6대 글로벌 테마">
+        <li class="item" data-group="웰니스" data-sum="2029년엔 9.8조 달러 전망" data-take="이제 웰니스는 카테고리가 아니라 정체성인 듯. 뷰티·음식·여행 파트가 전부 이 흐름과 연결되는 이유다." data-q="wellness market 6.8 trillion 2026 9.8 trillion 2029" data-since="2026 집계" data-traffic="시장 $6.8조 · 2029 전망 $9.8조 · 미국 82% 최우선">
+          <h3>웰니스 시장 6.8조 달러</h3>
+          <p>글로벌 웰니스 시장이 사상 최대를 기록했다. 미국 소비자의 82%가 웰니스를 최우선 순위로 꼽는다.</p>
+          <div class="meta"><span class="tag">Market</span><span class="tag">$6.8T</span></div>
+        </li>
+        <li class="item" data-group="웰니스" data-sum="Z세대 68%가 커뮤니티가 있으면 더 할 만하다고 답했다" data-take="번아웃의 해독제로 커뮤니티를 찾는 듯. 혼자 하는 자기관리가 결국 또 다른 노동이 된다는 걸 다들 알아버렸다." data-q="Gen Z 68% wellness community run clubs 2026" data-since="2026 조사" data-traffic="Z세대 68% 커뮤니티 선호" data-img="https://live.staticflickr.com/8561/15862685748_5cd7ec46cb_b.jpg" data-credit="Fabrice Le Coq · BY">
+          <h3>혼자 말고 같이</h3>
+          <p>런클럽, 그룹 트레이닝, 웰니스 여행이 늘어난 배경이다. 자기최적화에서 함께하는 동력으로 축이 옮겨간다.</p>
+          <div class="meta"><span class="tag">Wellness</span><span class="tag">68%</span></div>
+        </li>
+        <li class="item" data-group="웰니스" data-sum="극단적 제한 대신 리듬에 맞추기" data-take="스킨 롱제비티나 배리어 퍼스트와 같은 문법인 듯. 밀어붙이지 않고 맞춰준다는 게 올해 전 분야 공통어다." data-q="bioharmony nutrition circadian eating 2026" data-since="2026 흐름" data-traffic="극단 다이어트 이탈">
+          <h3>바이오하모니 뉴트리션</h3>
+          <p>생체 리듬, 대사 상태, 소화 편안함에 맞춰 먹는 방식. 장 건강 식단과 장기 지원 식품이 기본이 됐다.</p>
+          <div class="meta"><span class="tag">Wellness</span></div>
+        </li>
+<li class="item" data-sum="AI가 빨라질수록 아날로그가 팔린다" data-take="AI가 빨라질수록 손으로 만지는 게 팔리는 듯. 필름, LP, 종이 다이어리가 같이 움직인다." data-group="정서" data-q="nostalgia mania analog obsession trend 2026" data-since="2026 리포트 등재" data-traffic="Spate 2026 6대 글로벌 테마">
           <h3>Nostalgia Mania · Analog Obsession</h3>
           <p>필름, 종이, 옛 물건. AI가 빨라질수록 손에 잡히는 아날로그로 돌아가는 반작용.</p>
           <div class="meta"><span class="tag">Global</span></div>
         </li>
-        <li class="item" data-sum="낯선 기술일수록 익숙한 외피를 입는다" data-take="신제품에 옛날 디자인 코드 붙이는 건 일종의 안전장치인 듯. 낯선 기술일수록 익숙한 외피가 필요한 것 같다." data-group="정서" data-q="return to tradition heritage design trend 2026" data-since="2026 전반" data-traffic="미국·인도·유럽·중동 공통 관측">
+<li class="item" data-sum="낯선 기술일수록 익숙한 외피를 입는다" data-take="신제품에 옛날 디자인 코드 붙이는 건 일종의 안전장치인 듯. 낯선 기술일수록 익숙한 외피가 필요한 것 같다." data-group="정서" data-q="return to tradition heritage design trend 2026" data-since="2026 전반" data-traffic="미국·인도·유럽·중동 공통 관측">
           <h3>전통으로의 회귀</h3>
           <p>기술이 미래로 갈수록 톤은 오래된 쪽으로. 옛 디자인 코드를 입은 신제품이 늘고 있다.</p>
           <div class="meta"><span class="tag">Cross-region</span></div>
         </li>
-        <li class="item" data-sum="매끈하지만 특징 없는 콘텐츠의 끝" data-take="브랜드가 제일 늦게 받아들이는 변화인 듯. 잘 만든 광고가 손해 보는 시기다." data-group="소비 · 콘텐츠" data-q="authenticity over perfection content trend 2026" data-since="2026 전반" data-traffic="Weber Shandwick 2026 10대 트렌드">
+        <li class="item" data-group="정서" data-sum="죄책감 없는 휴식" data-take="슬로우 트래블, 스킨 롱제비티, 배리어 퍼스트가 전부 같은 말인 듯. 올해를 한 단어로 줄이면 "덜 하기"다." data-q="slow living guilt free rest 2026 hustle culture" data-since="2026 흐름" data-traffic="허슬 컬처 반작용" data-img="https://live.staticflickr.com/7367/9007808153_c6c98a0b83_b.jpg" data-credit="moonjazz · PDM">
+          <h3>슬로우 리빙</h3>
+          <p>아침 루틴, 가족과 취미에 쓰는 시간을 늘린다. 과로를 훈장처럼 여기던 문화에 대한 직접적인 반작용이다.</p>
+          <div class="meta"><span class="tag">Culture</span></div>
+        </li>
+        <li class="item" data-group="정서" data-sum="위안과 단순함을 산다" data-take="이 숫자 하나가 올해 트렌드 대부분을 설명하는 듯. 부드러운 질감, 아날로그, 수면 관광이 전부 여기서 나온다." data-q="consumers 58% daily stress comfort simplicity 2026" data-since="2026 조사" data-traffic="소비자 58% 일상 스트레스">
+          <h3>58%가 매일 스트레스를 느낀다</h3>
+          <p>소비자 58%가 일상적으로 중간 이상의 스트레스를 겪는다. 자연스럽고 단순한 것에서 정서적 안심을 찾는다.</p>
+          <div class="meta"><span class="tag">Culture</span><span class="tag">58%</span></div>
+        </li>
+<li class="item" data-sum="매끈하지만 특징 없는 콘텐츠의 끝" data-take="브랜드가 제일 늦게 받아들이는 변화인 듯. 잘 만든 광고가 손해 보는 시기다." data-group="소비 · 콘텐츠" data-q="authenticity over perfection content trend 2026" data-since="2026 전반" data-traffic="Weber Shandwick 2026 10대 트렌드">
           <h3>완벽함보다 진짜</h3>
           <p>매끈하지만 특징 없는 콘텐츠의 시대가 끝나가는 중. 사람이 끌고 가는 이야기가 다시 먹힌다.</p>
           <div class="meta"><span class="tag">Content</span></div>
         </li>
-        <li class="item" data-sum="술이 비운 자리를 카페인과 단백질이" data-take="술이 비운 자리를 카페인이랑 단백질이 가져갔다. 주류 회사가 무알콜 말고 기능성으로 가야 하는 이유인 듯." data-group="소비 · 콘텐츠" data-q="sober curious caffeine protein zyn trend 2026" data-since="확인 안 됨" data-traffic="Spate 2026 관측 · 무알콜 대체 수요">
+<li class="item" data-sum="술이 비운 자리를 카페인과 단백질이" data-take="술이 비운 자리를 카페인이랑 단백질이 가져갔다. 주류 회사가 무알콜 말고 기능성으로 가야 하는 이유인 듯." data-group="소비 · 콘텐츠" data-q="sober curious caffeine protein zyn trend 2026" data-since="확인 안 됨" data-traffic="Spate 2026 관측 · 무알콜 대체 수요">
           <h3>술 대신 다른 각성</h3>
           <p>음주는 줄고 카페인·니코틴 파우치·단백질로 대체. 커피 버킷, 몬스터 라떼가 그 증상.</p>
           <div class="meta"><span class="tag">US/EU</span></div>
         </li>
+        <li class="item" data-group="소비 · 콘텐츠" data-sum="아무것도 사지 않는 챌린지" data-take="소비를 부추기는 플랫폼에서 소비를 말리는 콘텐츠가 뜨는 게 아이러니한 듯. 제휴 링크를 다는 입장에선 정직하게 봐야 할 흐름이다." data-q="No Buy Year challenge 2026 secondhand gen z" data-since="2025 유행 · 2026 지속" data-traffic="중고 전용 구매층 확산">
+          <h3>노 바이 이어</h3>
+          <p>불필요한 소비를 멈추는 챌린지가 유행했다. "이거 사지 마세요" 류 콘텐츠가 늘고, 중고만 사는 Z세대도 생겼다.</p>
+          <div class="meta"><span class="tag">Money</span></div>
+        </li>
+        <li class="item" data-group="소비 · 콘텐츠" data-sum="추천을 못 믿겠다는 소비자" data-take="작은 커뮤니티로 이동하는 흐름과 같은 뿌리인 듯. 추천이 아니라 사람 말을 믿겠다는 쪽으로 간다." data-q="algorithm skepticism consumers 2026 reset year" data-since="2026 흐름" data-traffic="2026 리셋의 해 담론">
+          <h3>알고리즘 불신</h3>
+          <p>알고리즘에 대한 회의가 커지고 더 깊은 연결을 원한다. 일하고 데이트하고 사고 쉬는 방식을 재조정하는 중이다.</p>
+          <div class="meta"><span class="tag">Culture</span></div>
+        </li>
+        <li class="item" data-group="소비 · 콘텐츠" data-sum="루틴에 매끄럽게 들어오는 것만 산다" data-take="뷰티 제품 수가 7.2개에서 4.8개로 준 것과 정확히 같은 이야기인 듯. 시간이 가장 비싼 자원이 됐다." data-q="convenience wellness spending professionals 2026" data-since="2026 조사" data-traffic="단순화 제품 지불 의사 상승">
+          <h3>편의성에 돈을 쓴다</h3>
+          <p>전문직 소비자는 일상에 마찰 없이 끼워지는 제품과 서비스를 고른다. 단순하게 만들어주면 더 비싸도 산다.</p>
+          <div class="meta"><span class="tag">Money</span></div>
+        </li>
       </ul>
-      <p class="src">출처 · <a href="https://www.spate.nyc/reports/2026-global-culture-shifts-report">Spate 2026 Global Culture Shifts</a> · <a href="https://webershandwick.com/news-insights/predicting-the-unpredictable-the-top-10-cultural-trends-and-moments-of-2026">Weber Shandwick</a></p>
+      <p class="src">출처 · <a href="https://www.spate.nyc/reports/2026-global-culture-shifts-report">Spate 2026 Global Culture Shifts</a> · <a href="https://webershandwick.com/news-insights/predicting-the-unpredictable-the-top-10-cultural-trends-and-moments-of-2026">Weber Shandwick</a> · <a href="https://www.globalwellnesssummit.com/2026trends/">Global Wellness Summit</a> · <a href="https://www.newsweek.com/24-trends-about-to-change-how-we-live-from-finances-to-relationships-11196870">Newsweek</a></p>
     </section>
 
   </div>
@@ -2703,6 +2876,13 @@
       }
 
       // 이번 주 신규
+      // 원본이 오래됐지만 지금 다시 도는 항목은 재유행으로 구분
+      if (/재유행|원곡|원본|재사용|재개봉|반등|재조명/.test(item.dataset.since || '')){
+        var rb = document.createElement('span');
+        rb.className = 'badge-old';
+        rb.textContent = '재유행';
+        meta.insertBefore(rb, meta.firstChild);
+      }
       if (item.dataset.new === '1'){
         var nb = document.createElement('span');
         nb.className = 'badge-new';
