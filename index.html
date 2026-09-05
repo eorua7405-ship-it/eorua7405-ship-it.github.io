@@ -395,19 +395,19 @@
   /* 전체 보기 = 줄 형태 */
   .items.open{display:block;padding:0 0 24px;overflow:visible}
   .items.open .item{
-    display:grid;grid-template-columns:44px minmax(0,1fr) 236px 152px;
-    column-gap:20px;row-gap:3px;align-items:start;
+    display:grid;grid-template-columns:44px minmax(0,1fr) 120px 214px 150px;
+    column-gap:18px;row-gap:3px;align-items:start;
     padding:17px 6px;border:0;border-bottom:1px solid var(--line-soft);
     border-radius:0;background:transparent;box-shadow:none;
   }
   .items.open .item:hover{background:var(--chip)}
-  .items.open .rank{grid-column:1;grid-row:1 / span 2;font-size:13px;padding-top:2px}
+  .items.open .rank{grid-column:1;grid-row:1 / span 5;font-size:13px;padding-top:2px}
   .items.open .item h3{grid-column:2;grid-row:1;font-size:16.5px}
   .items.open .take-panel p{font-size:14px}
-  .items.open .facts{grid-column:3;grid-row:1 / span 2;margin:0;padding:0;background:transparent;align-self:center;gap:3px}
+  .items.open .facts{grid-column:4;grid-row:1 / span 5;margin:0;padding:0;background:transparent;align-self:center;gap:3px}
   .items.open .fact .lbl{flex-basis:32px}
-  .items.open .meta{grid-column:4;grid-row:1;margin:0;justify-content:flex-end}
-  .items.open .more{grid-column:4;grid-row:2;margin:0;padding:6px 0 0;border:0;text-align:right}
+  .items.open .meta{grid-column:5;grid-row:1;margin:0;justify-content:flex-end}
+  .items.open .more{grid-column:5;grid-row:2;margin:0;padding:6px 0 0;border:0;text-align:right}
   @media (max-width:860px){
     .items.open .item{grid-template-columns:38px minmax(0,1fr);row-gap:6px}
     .items.open .facts{grid-column:2;grid-row:auto;align-self:start}
