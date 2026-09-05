@@ -66,7 +66,8 @@ def game_li(r):
 m = re.search(r'(<section class="cat" data-cat="game" data-plat="steam">)(.*?)(</section>)', s, re.S)
 body = m.group(2)
 items = re.findall(r'\s*(<li class="item".*?</li>)', body, re.S)
-keep = [it for it in items if 'data-group="스팀 동시접속"' not in it]
+DROP_G = ('data-group="스팀 최다 플레이 TOP 50"', 'data-group="스팀 동시접속"')
+keep = [it for it in items if not any(d in it for d in DROP_G)]
 ul = re.search(r'(<ul class="items">)(.*?)(\n      </ul>)', body, re.S)
 body = (body[:ul.start()] + ul.group(1) + '\n' + '\n'.join(game_li(r) for r in ranks) +
         '\n' + '\n        '.join([''] + keep) + ul.group(3) + body[ul.end():])
@@ -139,7 +140,8 @@ def song_li(t):
 m = re.search(r'(<section class="cat" data-cat="music" data-plat="spotify">)(.*?)(</section>)', s, re.S)
 body = m.group(2)
 items = re.findall(r'\s*(<li class="item".*?</li>)', body, re.S)
-keep = [it for it in items if 'data-group="빌보드 핫100"' not in it]
+DROP_M = ('data-group="스포티파이 글로벌 TOP 50"', 'data-group="빌보드 핫100"')
+keep = [it for it in items if not any(d in it for d in DROP_M)]
 ul = re.search(r'(<ul class="items">)(.*?)(\n      </ul>)', body, re.S)
 body = (body[:ul.start()] + ul.group(1) + '\n' + '\n'.join(song_li(t) for t in tracks) +
         '\n' + '\n        '.join([''] + keep) + ul.group(3) + body[ul.end():])

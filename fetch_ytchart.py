@@ -63,7 +63,8 @@ m = re.search(r'(<section class="cat" data-cat="youtube" data-plat="youtube">)(.
 assert m
 body = m.group(2)
 items = re.findall(r'\s*(<li class="item".*?</li>)', body, re.S)
-keep = [it for it in items if 'data-group="롱폼"' not in it]      # 숏폼 + 플랫폼만 남긴다
+DROP = ('data-group="24시간 조회수 TOP 50"', 'data-group="롱폼"')   # 자기가 만든 그룹 + 옛 그룹
+keep = [it for it in items if not any(d in it for d in DROP)]
 print('기존', len(items), '-> 유지', len(keep))
 
 ul = re.search(r'(<ul class="items">)(.*?)(\n      </ul>)', body, re.S)
