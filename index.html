@@ -294,8 +294,11 @@
   @media (max-width:860px){.items.open .item .need{grid-column:2;grid-row:auto}}
 
   /* 제휴 고지 — 실제 파트너스 링크가 들어간 뒤에만 노출 */
-  .aff-note{display:none;font-size:11.5px;color:var(--muted);
-    border:1px dashed var(--line);border-radius:8px;padding:9px 11px}
+  .aff-note{
+    display:none;margin:20px 0 0;font-size:12px;font-weight:500;color:var(--muted);
+    border:1px dashed var(--line);border-radius:8px;padding:10px 13px;
+  }
+  @media (max-width:768px){.aff-note{margin-top:14px;font-size:11px;padding:9px 11px}}
   html.has-aff .aff-note{display:block}
   .take{margin-top:10px}
   .take summary{
@@ -613,6 +616,8 @@
 </nav>
 
 <main class="wrap">
+
+  <p class="aff-note">이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
 
   <details class="board">
     <summary>
@@ -1495,7 +1500,6 @@
 <footer>
   <div class="wrap foot">
     <p><b>이 보드는 매주 월요일에 다시 뽑는다.</b> 지금 보고 있는 건 WEEK 36(8월 31일~9월 6일) 스냅샷이고, 기준 시각은 2026년 9월 5일이다. 시작일과 트래픽은 출처에 실린 값만 옮겼고, 공개된 수치가 없는 항목은 숫자를 지어내는 대신 <b>어느 매체가 어떤 지위로 지목했는지</b>를 적었다. 틱톡 해시태그 조회수는 모두 <b>누적치</b>이며 단일 연도 수치가 아니다.</p>
-    <p class="aff-note">이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
     <div class="imprint">
       <p>「지금 이슈 있나요?」 &nbsp;|&nbsp; 운영 · 피유글로벌 &nbsp;|&nbsp; 문의 · 도메인 개설 후 등록 예정</p>
       <p>개인정보처리방침 · 이 페이지는 방문자 정보를 수집·저장하지 않으며 쿠키를 사용하지 않는다. 광고나 분석 도구를 붙이는 시점에 이 문구를 갱신해야 한다.</p>
