@@ -111,13 +111,29 @@
   .chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 
   /* ---------- #1 board ---------- */
-  .board{padding:36px 0 6px}
-  .board-title{
-    display:flex;align-items:center;gap:12px;margin:0 0 16px;font-family:var(--f-mono);
-    font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--hot);
+  .board{
+    margin:30px 0 0;background:var(--paper);border:1px solid var(--line);
+    border-left:4px solid var(--hot);border-radius:12px;
   }
-  .board-title::after{content:"";flex:1;height:1px;background:var(--line)}
-  .tops{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:14px}
+  .board summary{
+    display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+    padding:14px 18px;cursor:pointer;list-style:none;
+  }
+  .board summary::-webkit-details-marker{display:none}
+  .board .lbl{
+    font-family:var(--f-body);font-size:15px;font-weight:800;letter-spacing:-.02em;
+    color:var(--hot);white-space:nowrap;
+  }
+  .board .lead{flex:1 1 260px;font-size:15px;color:var(--body);line-height:1.6}
+  .board .chev{
+    margin-left:auto;font:600 11.5px/1 var(--f-body);color:var(--hot);
+    border:1px solid var(--hot);border-radius:999px;padding:7px 13px;white-space:nowrap;
+  }
+  .board summary:hover .chev{background:var(--hot-fill);color:var(--on-hot)}
+  .board[open] .chev{color:var(--muted);border-color:var(--line);font-size:0}
+  .board[open] .chev::after{content:"접기";font-size:12px}
+  .board[open] .lead{color:var(--ink)}
+  .tops{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:14px;padding:4px 18px 18px}
   .top{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--hot);border-radius:12px;padding:18px;display:grid;gap:6px;align-content:start;box-shadow:var(--shadow)}
   .top .k{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
   .top .n{font-family:var(--f-display);font-weight:800;font-size:23px;line-height:1.28;letter-spacing:-.025em}
@@ -343,7 +359,6 @@
 
   /* ================= 모바일 (세로) ================= */
   @media (max-width:768px){
-    .wrap{padding:0 14px}
 
     /* 머리말 — 첫 화면을 최대한 짧게 */
     .rule{height:3px}
@@ -353,6 +368,13 @@
     h1{font-size:clamp(24px,7.4vw,32px);line-height:1.12;letter-spacing:-.045em}
     .lede{font-size:12.5px;line-height:1.6;max-width:none}
 
+
+    /* 머리말 가운데 정렬 */
+    .wrap{padding:0 18px}
+    .desk-top{justify-content:center;text-align:center}
+    .head{text-align:center}
+    .lede{margin-left:auto;margin-right:auto}
+    .week>div,.clock{text-align:center}
     /* 주간 스트립 — 한 줄 3칸, 중복 정보는 숨김 */
     .week{border-radius:8px}
     .week>div{flex:1 1 0;min-width:0;padding:7px 9px 8px}
@@ -375,9 +397,12 @@
     .chip{flex:0 0 auto;font-size:11px;padding:6px 11px}
 
     /* 이번 주 1위 */
-    .board{padding:16px 0 2px}
-    .board-title{font-size:9px;letter-spacing:.12em;margin-bottom:9px}
-    .tops{grid-template-columns:1fr;gap:7px}
+    .board{margin-top:16px;border-radius:9px;border-left-width:3px}
+    .board summary{padding:10px 12px;gap:7px}
+    .board .lbl{font-size:13px}
+    .board .lead{flex:1 1 100%;font-size:12px;order:3;line-height:1.55}
+    .board .chev{font-size:10.5px;padding:5px 10px}
+    .tops{grid-template-columns:1fr;gap:7px;padding:2px 12px 12px}
     .top{padding:12px;border-radius:9px;gap:4px;border-top-width:2px}
     .top .k{font-size:8.5px;letter-spacing:.1em}
     .top .n{font-size:15.5px;line-height:1.25}
@@ -449,7 +474,7 @@
   @media (max-width:420px){
     h1{font-size:23px}
     .lede{font-size:12px}
-    .clock:nth-child(5){display:none}
+    .clock:nth-child(6){display:none}
     .week>div:nth-child(4){display:none}
     .item h3{font-size:13px}
   }
@@ -468,7 +493,7 @@
   </div>
   <div class="wrap head">
     <h1>지금<br><em>이슈</em> 있나요?</h1>
-    <p class="lede"><b>일주일 단위로 다시 뽑는 해외 유행 보드.</b> 이번 주 미국·유럽·일본에서 실제로 소비되고 있는 것들을, 항목마다 <b>언제 시작됐는지</b>와 <b>얼마나 큰지(트래픽)</b>까지 붙여 정리했다. 지난 스냅샷 이후 새로 들어온 항목은 <b>NEW</b>로 표시된다.</p>
+    <p class="lede">미국·유럽·일본에서 <b>지금</b> 뜨는 것들. 매주 월요일 새로 뽑고, 항목마다 <b>언제 시작됐는지</b>와 <b>얼마나 큰지</b>를 붙였다.</p>
     <div class="week">
       <div><span>이번 주</span><b>WEEK 36</b></div>
       <div><span>집계 기간</span><b>08.31 - 09.06</b></div>
@@ -507,8 +532,12 @@
 
 <main class="wrap">
 
-  <section class="board" aria-labelledby="b1">
-    <h2 class="board-title" id="b1">이번 주 1위 — 숫자로 확인된 것</h2>
+  <details class="board">
+    <summary>
+      <span class="lbl">이번 주 1위</span>
+      <span class="lead">차트·판매량으로 숫자가 확인된 네 가지</span>
+      <span class="chev">더 보기</span>
+    </summary>
     <div class="tops">
       <div class="top">
         <span class="k">Billboard Hot 100</span>
@@ -535,7 +564,7 @@
         <span class="stat">인류 10명 중 7명</span>
       </div>
     </div>
-  </section>
+  </details>
 
   <details class="weekly-note">
     <summary>
