@@ -340,6 +340,113 @@
     .clock{flex:1 1 33%;border-bottom:1px solid var(--line-soft)}
     .day{grid-template-columns:62px 1fr;gap:12px}
   }
+
+  /* ================= 모바일 (세로) ================= */
+  @media (max-width:640px){
+    .wrap{padding:0 16px}
+
+    /* 머리말 */
+    .desk-top{gap:4px 12px;padding:11px 0 9px;font-size:9.5px;letter-spacing:.1em}
+    .desk-top .push{display:none}
+    .head{padding:16px 0 20px;gap:14px}
+    h1{font-size:clamp(30px,9.2vw,42px);line-height:1.08;letter-spacing:-.04em}
+    .lede{font-size:13.5px;line-height:1.65}
+
+    /* 주간 스트립 — 2열 */
+    .week>div{flex:1 1 50%;padding:8px 12px 9px;border-bottom:1px solid var(--line-soft)}
+    .week>div:nth-child(2n){border-right:0}
+    .week span{font-size:9px;letter-spacing:.12em}
+    .week b{font-size:12.5px}
+
+    /* 시계 — 3열 압축 */
+    .clock{flex:1 1 33.333%;padding:7px 10px 8px}
+    .clock span{font-size:8.5px;letter-spacing:.1em}
+    .clock time{font-size:13.5px}
+
+    /* 칩 — 줄바꿈 대신 가로 스크롤 한 줄 */
+    .filters-inner{
+      flex-wrap:nowrap;overflow-x:auto;padding:9px 16px;gap:5px;
+      scrollbar-width:none;-ms-overflow-style:none;
+    }
+    .filters-inner::-webkit-scrollbar{display:none}
+    .chip{flex:0 0 auto;font-size:11.5px;padding:7px 12px}
+
+    /* 이번 주 1위 */
+    .board{padding:22px 0 4px}
+    .board-title{font-size:9.5px;letter-spacing:.14em;margin-bottom:11px}
+    .tops{grid-template-columns:1fr;gap:9px}
+    .top{padding:14px;border-radius:10px}
+    .top .k{font-size:9px}
+    .top .n{font-size:17px}
+    .top .d{font-size:12px}
+    .top .stat{font-size:10.5px;padding:4px 8px}
+
+    /* 이번 주 요약 */
+    .weekly-note{margin-top:20px;border-radius:10px}
+    .weekly-note summary{padding:12px 14px;gap:8px}
+    .weekly-note .lbl{font-size:14px}
+    .weekly-note .lead{flex:1 1 100%;font-size:12.5px;order:3}
+    .weekly-note .chev{font-size:11px;padding:6px 11px}
+    .note-body{margin:0 14px;padding-bottom:14px}
+    .note-body p{font-size:13.5px;line-height:1.7;margin-top:11px}
+
+    /* 파트 */
+    .cats{padding:26px 0 0;gap:22px}
+    .cat-head{gap:8px;padding-bottom:7px}
+    .cat-head h2{font-size:18px}
+    .cat-head .en{font-size:9px;letter-spacing:.12em}
+    .nav{gap:5px;width:100%;margin-left:0;margin-top:6px}
+    .nav .cnt{font-size:10px}
+    .nav .expand{font-size:11px;padding:8px 13px;margin-left:auto}
+    .nav .arrow{width:28px;height:28px}
+
+    /* 카드 */
+    .items{gap:11px;padding:12px 2px 16px}
+    .item{padding:14px;border-radius:10px;gap:6px}
+    .item h3{font-size:14.5px;line-height:1.42}
+    .summary{font-size:12.5px;line-height:1.5}
+    .item p{font-size:12.5px;line-height:1.65}
+    .take{margin-top:8px}
+    .take summary{font-size:10.5px;padding:6px 11px}
+    .take-body{font-size:12.5px;line-height:1.65}
+    .facts{padding:6px 8px;margin-top:5px}
+    .fact{font-size:10px;gap:7px}
+    .fact .lbl{flex-basis:30px;font-size:9px}
+    .fact.t .val{font-size:10.5px}
+    .tag{font-size:9.5px;padding:3px 6px}
+    .more{font-size:11px;padding-top:11px}
+    .rank{font-size:10.5px}
+
+    /* 전체 보기 = 줄 형태 */
+    .backbar{padding:18px 0 4px;gap:10px}
+    .backbar h2{font-size:22px}
+    .backbar .cnt{font-size:10px}
+    .items.open{padding-bottom:16px}
+    .items.open .item{padding:13px 2px;gap:4px}
+    .items.open .item h3{font-size:14px}
+    .items.open .group-head{font-size:10px;margin-top:18px;letter-spacing:.12em}
+
+    /* 캘린더 · 푸터 */
+    .diary{margin-top:30px}
+    .diary h2{font-size:19px}
+    .diary p.sub{font-size:12.5px}
+    .day{grid-template-columns:58px 1fr;gap:10px;padding:11px 0}
+    .day .dt{font-size:11.5px}
+    .day .ev{font-size:13px}
+    .day .ev small{font-size:12px}
+    .foot{padding:20px 0 32px}
+    .foot p{font-size:12px;line-height:1.65}
+    .foot .links{font-size:10.5px;gap:3px 12px}
+    .imprint p{font-size:10.5px}
+  }
+
+  @media (max-width:380px){
+    h1{font-size:27px}
+    .clock{flex:1 1 50%}
+    .week>div{flex:1 1 100%;border-right:0}
+    .item h3{font-size:14px}
+  }
+
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 
