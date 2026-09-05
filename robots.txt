@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eorua7405-ship-it.github.io/sitemap.xml
