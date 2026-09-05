@@ -1,0 +1,1447 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="매주 월요일 갱신되는 해외 유행 보드. 인스타 릴스·유튜브·음악·영화·게임·패션·음식·뷰티·밈·여행 트렌드를 시작일과 트래픽 수치, 그리고 왜 지금 뜨는지에 대한 해석과 함께 정리합니다.">
+<meta name="author" content="피유글로벌">
+<meta property="og:type" content="website">
+<meta property="og:title" content="지금 이슈 있나요?">
+<meta property="og:description" content="매주 월요일 갱신되는 해외 유행 보드. 인스타 릴스·유튜브·음악·영화·게임·패션·음식·뷰티·밈·여행 트렌드를 시작일과 트래픽 수치, 그리고 왜 지금 뜨는지에 대한 해석과 함께 정리합니다.">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%A5%3C/text%3E%3C/svg%3E">
+<title>지금 이슈 있나요?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap">
+<style>
+  :root{color-scheme:light dark}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;font:14px/1.5 system-ui,-apple-system,sans-serif}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+<style>
+  :root{
+    /* 2026 색 흐름: 에스프레소 브라운(새 블랙) · 체리 레드 · 코발트 블루 */
+    --bg:#F0EDE7;
+    --paper:#FCFAF7;
+    --ink:#2A211B;
+    --muted:#5C4F47;
+    --body:#372E28;
+    --faint:#7E6F64;
+    --line:#DBD2C7;
+    --line-soft:#E9E3DA;
+    --accent:#1B3FD6;
+    --hot:#C8102E;
+    --hot-fill:#C8102E;
+    --on-hot:#FFFFFF;
+    --chip:#E6DFD5;
+    --shadow:0 1px 2px rgba(42,33,27,.05),0 8px 24px -18px rgba(42,33,27,.35);
+
+    --f-display:"Noto Sans KR",system-ui,-apple-system,"Malgun Gothic",sans-serif;
+    --f-body:"Noto Sans KR",system-ui,-apple-system,"Malgun Gothic",sans-serif;
+    --f-mono:"Noto Sans KR",system-ui,-apple-system,"Malgun Gothic",sans-serif;
+    --wrap:1180px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#17120F;
+      --paper:#211B17;
+      --ink:#F2EBE3;
+      --muted:#B7A89C;
+      --body:#E6DDD4;
+      --faint:#938274;
+      --line:#382E27;
+      --line-soft:#2A231E;
+      --accent:#8AA3FF;
+      --hot:#FF5C72;
+      --hot-fill:#C0324A;
+      --on-hot:#FFFFFF;
+      --chip:#2C241E;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 26px -18px rgba(0,0,0,.9);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#17120F;
+    --paper:#211B17;
+    --ink:#F2EBE3;
+    --muted:#B7A89C;
+    --body:#E6DDD4;
+    --faint:#938274;
+    --line:#382E27;
+    --line-soft:#2A231E;
+    --accent:#8AA3FF;
+    --hot:#FF5C72;
+    --hot-fill:#C0324A;
+    --on-hot:#FFFFFF;
+    --chip:#2C241E;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 26px -18px rgba(0,0,0,.9);
+  }
+
+  *{box-sizing:border-box}
+  html{overflow-x:clip}
+  body{max-width:100%;overflow-x:clip;background:var(--bg);color:var(--ink);font-family:var(--f-body);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+
+  /* ---------- masthead ---------- */
+  .desk{background:var(--paper);border-bottom:1px solid var(--line)}
+  .rule{height:5px;background:var(--hot)}
+  .desk-top{
+    display:flex;flex-wrap:wrap;gap:8px 24px;align-items:baseline;padding:14px 0 12px;
+    font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  }
+  .desk-top strong{color:var(--ink);font-weight:500}
+  .desk-top .push{margin-left:auto}
+
+  .head{padding:22px 0 28px;display:grid;gap:18px}
+  h1{
+    font-family:var(--f-display);font-weight:900;margin:0;
+    font-size:clamp(40px,8.6vw,92px);line-height:1.02;letter-spacing:-.035em;text-wrap:balance;
+  }
+  h1 em{font-style:normal;color:var(--hot)}
+  .lede{max-width:58ch;margin:0;color:var(--body);font-size:16.5px;font-weight:400;line-height:1.7}
+  .lede b{color:var(--ink);font-weight:500}
+
+
+  .week{display:flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--paper)}
+  .week>div{flex:1 1 128px;padding:9px 14px 10px;border-right:1px solid var(--line-soft)}
+  .week>div:last-child{border-right:0}
+  .week span{display:block;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-bottom:2px}
+  .week b{font-family:var(--f-mono);font-size:14px;font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums}
+  .week>div:first-child b{color:var(--hot)}
+  .badge-new{font-family:var(--f-mono);font-size:9.5px;font-weight:500;letter-spacing:.12em;background:var(--hot-fill);color:var(--on-hot);padding:3px 7px;border-radius:3px}
+  .clocks{display:flex;flex-wrap:wrap;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+  .clock{flex:1 1 110px;padding:10px 14px 11px;border-right:1px solid var(--line-soft);display:grid;gap:1px}
+  .clock:last-child{border-right:0}
+  .clock span{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+  .clock time{font-family:var(--f-mono);font-size:18px;font-weight:500;font-variant-numeric:tabular-nums}
+
+  /* ---------- filters ---------- */
+  .filters{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+  .filters-inner{display:flex;flex-wrap:wrap;gap:6px;padding:11px 24px;max-width:var(--wrap);margin:0 auto}
+  .chip{
+    font:500 12.5px/1 var(--f-body);padding:8px 14px;border:1px solid var(--line);
+    border-radius:999px;background:transparent;color:var(--muted);cursor:pointer;transition:.15s;
+  }
+  .chip:hover{color:var(--ink);border-color:var(--muted)}
+  .chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+
+  /* ---------- #1 board ---------- */
+  .board{padding:36px 0 6px}
+  .board-title{
+    display:flex;align-items:center;gap:12px;margin:0 0 16px;font-family:var(--f-mono);
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--hot);
+  }
+  .board-title::after{content:"";flex:1;height:1px;background:var(--line)}
+  .tops{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:14px}
+  .top{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--hot);border-radius:12px;padding:18px;display:grid;gap:6px;align-content:start;box-shadow:var(--shadow)}
+  .top .k{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .top .n{font-family:var(--f-display);font-weight:800;font-size:23px;line-height:1.28;letter-spacing:-.025em}
+  .top .d{font-size:14px;color:var(--body);font-weight:400;line-height:1.6}
+  .top .stat{justify-self:start;margin-top:6px;font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.03em;background:var(--hot-fill);color:var(--on-hot);border-radius:4px;padding:4px 9px}
+
+  /* ---------- categories ---------- */
+  .cats{padding:40px 0 0;display:grid;grid-template-columns:minmax(0,1fr);gap:30px}
+  .cat{min-width:0}
+  .cat[hidden]{display:none}
+  .cat-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:8px}
+  .cat-head h2{font-family:var(--f-display);font-weight:800;font-size:clamp(20px,3vw,26px);margin:0;letter-spacing:-.03em}
+  .cat-head .en{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .nav{margin-left:auto;display:flex;align-items:center;gap:6px}
+  .nav .cnt{font-family:var(--f-mono);font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;margin-right:2px}
+  .nav .arrow{
+    width:30px;height:30px;border:1px solid var(--line);background:var(--paper);color:var(--ink);
+    border-radius:50%;cursor:pointer;font-size:14px;line-height:1;display:grid;place-items:center;transition:.15s;
+  }
+  .nav .arrow:hover:not(:disabled){background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .nav .arrow:disabled{opacity:.3;cursor:default}
+  .nav .expand{
+    font:700 12px/1 var(--f-body);padding:10px 16px;border:1px solid var(--hot-fill);border-radius:999px;
+    background:var(--hot-fill);color:var(--on-hot);cursor:pointer;transition:.15s;
+    box-shadow:0 2px 8px -3px var(--hot-fill);
+  }
+  .nav .expand:hover{filter:brightness(1.08);transform:translateY(-1px)}
+  .nav .expand[aria-expanded="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+
+  .items{
+    min-width:0;list-style:none;margin:0;padding:16px 2px 20px;display:flex;gap:16px;
+    overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:2px;
+    scrollbar-width:thin;scrollbar-color:var(--line) transparent;
+  }
+  .items::-webkit-scrollbar{height:6px}
+  .items::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+  .items.open{display:grid;grid-template-columns:repeat(auto-fill,minmax(262px,1fr));overflow:visible;scroll-snap-type:none}
+  .item{
+    flex:0 0 calc((100% - 32px)/3);scroll-snap-align:start;
+    background:var(--paper);border:1px solid var(--line);border-radius:12px;
+    padding:18px 18px 16px;display:flex;flex-direction:column;gap:7px;box-shadow:var(--shadow);
+  }
+  .items.open .item{flex:auto}
+  .rank{font-family:var(--f-mono);font-size:11px;font-weight:500;color:var(--hot);letter-spacing:.08em;font-variant-numeric:tabular-nums}
+  .item h3{margin:0;font-size:17.5px;font-weight:600;line-height:1.4;letter-spacing:-.005em}
+  .item p{margin:0;font-size:14.5px;font-weight:400;color:var(--body);line-height:1.68}
+
+  /* 시작일 · 트래픽 */
+  .facts{display:grid;gap:3px;margin-top:6px;padding:7px 9px;background:var(--chip);border-radius:7px}
+  .fact{display:flex;gap:9px;align-items:baseline;font-family:var(--f-body);font-variant-numeric:tabular-nums;font-size:11px;line-height:1.5}
+  .fact .lbl{flex:0 0 34px;color:var(--faint);font-size:10px;font-weight:500;letter-spacing:0}
+  .fact .val{color:var(--ink);font-variant-numeric:tabular-nums}
+  .fact.t{align-items:center}
+  .fact.t .lbl{color:var(--hot)}
+  .fact.t .val{color:var(--hot);font-weight:700;font-size:11px;line-height:1.5}
+  .fact.cont{margin-top:-1px}
+  .fact.t .val.soft{color:var(--body);font-weight:600}
+  .fact .val.na{color:var(--faint);font-weight:400}
+
+  .meta{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:2px}
+  .tag{font-family:var(--f-mono);font-size:10.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;background:var(--chip);color:var(--body);padding:4px 8px;border-radius:4px}
+  .tag.up{background:transparent;border:1px solid var(--accent);color:var(--accent);font-variant-numeric:tabular-nums}
+  .more{
+    margin-top:auto;padding-top:14px;font-family:var(--f-body);font-size:11.5px;font-weight:700;letter-spacing:.01em;
+    color:var(--accent);text-decoration:none;border-top:1px solid var(--line-soft);
+  }
+  .more:hover{color:var(--hot)}
+  .src{margin:0;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.05em;color:var(--muted)}
+  .src a{color:var(--muted)}
+  .src a:hover{color:var(--accent)}
+
+
+
+
+
+
+  .summary{
+    font-size:13.5px;font-weight:500;line-height:1.55;color:var(--body);
+    margin-top:1px;
+  }
+  .items.open .item .summary{grid-column:2;grid-row:2;font-size:13px}
+  @media (max-width:860px){.items.open .item .summary{grid-column:2;grid-row:auto}}
+  .take{margin-top:10px}
+  .take summary{
+    display:inline-flex;align-items:center;gap:6px;cursor:pointer;list-style:none;
+    font:600 11.5px/1 var(--f-body);color:var(--muted);
+    border:1px solid var(--line);border-radius:999px;padding:7px 13px;
+  }
+  .take summary::-webkit-details-marker{display:none}
+  .take summary::after{content:"＋";font-family:var(--f-mono);font-size:11px}
+  .take summary:hover{color:var(--ink);border-color:var(--muted)}
+  .take[open] summary{background:var(--hot-fill);border-color:var(--hot-fill);color:var(--on-hot)}
+  .take[open] summary::after{content:"−"}
+  .take-panel{padding-top:11px}
+  .take-panel p{margin:0 0 10px}
+  .take-body{
+    padding:2px 0 2px 11px;border-left:2px solid var(--hot);
+    font-size:14.5px;line-height:1.68;color:var(--ink);
+  }
+  .take-body span{
+    display:block;font-family:var(--f-mono);font-size:10px;font-weight:600;letter-spacing:.14em;
+    color:var(--hot);margin-bottom:4px;
+  }
+  .items.open .item .take{grid-column:2;grid-row:3;margin-top:6px}
+  @media (max-width:860px){.items.open .item .take{grid-column:2;grid-row:auto}}
+  .items.open .take summary{display:none}
+  .items.open .take-panel{padding-top:4px}
+
+  .weekly-note{
+    margin:30px 0 0;background:var(--paper);border:1px solid var(--line);
+    border-left:4px solid var(--hot);border-radius:12px;
+  }
+  .weekly-note summary{
+    display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+    padding:14px 18px;cursor:pointer;list-style:none;
+  }
+  .weekly-note summary::-webkit-details-marker{display:none}
+  .weekly-note summary:hover .lead{color:var(--ink)}
+  .weekly-note .lbl{
+    font-family:var(--f-mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--hot);white-space:nowrap;
+  }
+  .weekly-note .lead{flex:1 1 260px;font-size:15px;color:var(--body);line-height:1.6}
+  .weekly-note .chev{
+    margin-left:auto;font:600 11.5px/1 var(--f-body);color:var(--hot);
+    border:1px solid var(--hot);border-radius:999px;padding:7px 13px;white-space:nowrap;
+  }
+  .weekly-note summary:hover .chev{background:var(--hot-fill);color:var(--on-hot)}
+  .weekly-note[open] .chev{color:var(--muted);border-color:var(--line)}
+  .weekly-note[open] .chev::after{content:"접기"}
+  .weekly-note[open] .chev{font-size:0}
+  .weekly-note[open] .chev::after{font-size:12px}
+  .weekly-note[open] .lead{color:var(--ink)}
+  .note-body{padding:2px 18px 18px;border-top:1px solid var(--line-soft);margin:0 18px 0;padding-left:0;padding-right:0}
+  .note-body p{margin:14px 0 0;font-size:15.5px;line-height:1.75;max-width:70ch;color:var(--body)}
+  .note-body b{font-weight:600}
+
+  .imprint{margin-top:18px;padding-top:14px;border-top:1px solid var(--line-soft);display:grid;gap:5px}
+  .imprint p{font-size:11.5px;color:var(--faint)}
+
+
+  /* 중요한 수치는 굵게 — 작은 글씨에서도 먼저 눈에 들어오게 */
+  .item p strong{font-weight:700;color:var(--ink)}
+  .take-body strong{font-weight:700;color:var(--hot)}
+  .fact{letter-spacing:-.005em}
+  .fact .val{font-weight:500}
+  .tag{font-weight:500}
+  .rank{font-weight:600}
+  .src{color:var(--muted)}
+  .items.open .group-head{font-weight:500}
+
+  /* 그룹 헤더 (전체 보기에서만) */
+  .group-head{display:none}
+  .items.open .group-head{
+    display:flex;align-items:baseline;gap:10px;margin:26px 0 0;padding-bottom:7px;
+    border-bottom:2px solid var(--ink);font-family:var(--f-mono);font-size:11px;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--ink);
+  }
+  .items.open .group-head:first-child{margin-top:6px}
+  .items.open .group-head i{font-style:normal;margin-left:auto;color:var(--faint);letter-spacing:.06em}
+
+  /* 카드 슬라이드에서는 9개까지만 */
+  .items:not(.open) .item.over{display:none}
+
+  /* 전체 보기 = 줄 형태 */
+  .items.open{display:block;padding:0 0 24px;overflow:visible}
+  .items.open .item{
+    display:grid;grid-template-columns:44px minmax(0,1fr) 236px 152px;
+    column-gap:20px;row-gap:3px;align-items:start;
+    padding:17px 6px;border:0;border-bottom:1px solid var(--line-soft);
+    border-radius:0;background:transparent;box-shadow:none;
+  }
+  .items.open .item:hover{background:var(--chip)}
+  .items.open .rank{grid-column:1;grid-row:1 / span 2;font-size:13px;padding-top:2px}
+  .items.open .item h3{grid-column:2;grid-row:1;font-size:16.5px}
+  .items.open .take-panel p{font-size:14px}
+  .items.open .facts{grid-column:3;grid-row:1 / span 2;margin:0;padding:0;background:transparent;align-self:center;gap:3px}
+  .items.open .fact .lbl{flex-basis:32px}
+  .items.open .meta{grid-column:4;grid-row:1;margin:0;justify-content:flex-end}
+  .items.open .more{grid-column:4;grid-row:2;margin:0;padding:6px 0 0;border:0;text-align:right}
+  @media (max-width:860px){
+    .items.open .item{grid-template-columns:38px minmax(0,1fr);row-gap:6px}
+    .items.open .facts{grid-column:2;grid-row:auto;align-self:start}
+    .items.open .meta{grid-column:2;grid-row:auto;justify-content:flex-start}
+    .items.open .more{grid-column:2;grid-row:auto;text-align:left}
+  }
+
+  /* ---------- 상세 페이지 ---------- */
+  .backbar{display:none;align-items:baseline;gap:14px;flex-wrap:wrap;padding:26px 0 4px;border-bottom:2px solid var(--ink)}
+  .backbar a.back{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.08em;text-decoration:none;color:var(--muted)}
+  .backbar a.back:hover{color:var(--hot)}
+  .backbar h2{font-family:var(--f-display);font-weight:800;font-size:clamp(24px,4.4vw,36px);margin:0;letter-spacing:-.03em}
+  .backbar .cnt{margin-left:auto;font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+  body.detail .head,body.detail .board,body.detail .legend,body.detail .diary,body.detail .filters{display:none}
+  body.detail .backbar{display:flex}
+  body.detail .cats{padding-top:0}
+  body.detail .cat{display:none}
+  body.detail .cat.active{display:block}
+  body.detail .cat.active .cat-head{margin-top:16px}
+  body.detail .nav .arrow,body.detail .nav .expand{display:none}
+
+  /* ---------- diary ---------- */
+  .diary{margin:46px 0 0;border-top:2px solid var(--ink);padding-top:10px}
+  .diary h2{font-family:var(--f-display);font-weight:800;font-size:25px;margin:0 0 2px;letter-spacing:-.03em}
+  .diary p.sub{margin:0 0 16px;font-size:14.5px;color:var(--body);font-weight:400}
+  .days{list-style:none;margin:0;padding:0}
+  .day{display:grid;grid-template-columns:78px 1fr;gap:18px;padding:13px 0;border-bottom:1px solid var(--line-soft);align-items:baseline}
+  .day .dt{font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums;color:var(--hot)}
+  .day .ev{font-size:15px}
+  .day .ev small{display:block;color:var(--body);font-size:14px;font-weight:400;margin-top:3px;line-height:1.6}
+
+  footer{margin-top:52px;border-top:1px solid var(--line);background:var(--paper)}
+  .foot{padding:26px 0 40px;display:grid;gap:10px}
+  .foot p{margin:0;font-size:13.5px;color:var(--body);font-weight:400;line-height:1.7;max-width:70ch}
+  .foot .links{display:flex;flex-wrap:wrap;gap:4px 16px;font-family:var(--f-mono);font-size:11px}
+
+  @media (max-width:900px){.item{flex-basis:calc((100% - 16px)/2)}}
+  @media (max-width:620px){
+    .item{flex-basis:100%}
+    .clock{flex:1 1 33%;border-bottom:1px solid var(--line-soft)}
+    .day{grid-template-columns:62px 1fr;gap:12px}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="desk">
+  <div class="rule"></div>
+  <div class="wrap">
+    <div class="desk-top">
+      <span><strong>GLOBAL TREND DESK</strong></span>
+      <span>스냅샷 · <strong>2026.09.05</strong></span>
+      <span class="push">시작일 · 트래픽 · 자세히 보기 포함</span>
+    </div>
+  </div>
+  <div class="wrap head">
+    <h1>지금<br><em>이슈</em> 있나요?</h1>
+    <p class="lede"><b>일주일 단위로 다시 뽑는 해외 유행 보드.</b> 이번 주 미국·유럽·일본에서 실제로 소비되고 있는 것들을, 항목마다 <b>언제 시작됐는지</b>와 <b>얼마나 큰지(트래픽)</b>까지 붙여 정리했다. 지난 스냅샷 이후 새로 들어온 항목은 <b>NEW</b>로 표시된다.</p>
+    <div class="week">
+      <div><span>이번 주</span><b>WEEK 36</b></div>
+      <div><span>집계 기간</span><b>08.31 - 09.06</b></div>
+      <div><span>스냅샷</span><b>09.05 (토)</b></div>
+      <div><span>다음 갱신</span><b>09.07 (월)</b></div>
+      <div><span>이번 주 신규</span><b id="newCount">-</b></div>
+    </div>
+    <div class="clocks" id="clocks">
+      <div class="clock"><span>Seoul</span><time data-tz="Asia/Seoul">--:--</time></div>
+      <div class="clock"><span>Tokyo</span><time data-tz="Asia/Tokyo">--:--</time></div>
+      <div class="clock"><span>Paris</span><time data-tz="Europe/Paris">--:--</time></div>
+      <div class="clock"><span>London</span><time data-tz="Europe/London">--:--</time></div>
+      <div class="clock"><span>New York</span><time data-tz="America/New_York">--:--</time></div>
+      <div class="clock"><span>Los Angeles</span><time data-tz="America/Los_Angeles">--:--</time></div>
+    </div>
+  </div>
+</header>
+
+<nav class="filters" aria-label="분야 필터">
+  <div class="filters-inner" id="chips">
+    <button class="chip" aria-pressed="true" data-cat="all">전체</button>
+    <button class="chip" aria-pressed="false" data-cat="instagram">인스타그램</button>
+    <button class="chip" aria-pressed="false" data-cat="youtube">유튜브</button>
+    <button class="chip" aria-pressed="false" data-cat="music">음악 순위</button>
+    <button class="chip" aria-pressed="false" data-cat="movie">영화 순위</button>
+    <button class="chip" aria-pressed="false" data-cat="game">게임 순위</button>
+    <button class="chip" aria-pressed="false" data-cat="fashion">패션</button>
+    <button class="chip" aria-pressed="false" data-cat="food">음식</button>
+    <button class="chip" aria-pressed="false" data-cat="beauty">뷰티</button>
+    <button class="chip" aria-pressed="false" data-cat="meme">밈</button>
+    <button class="chip" aria-pressed="false" data-cat="tech">전자기기</button>
+    <button class="chip" aria-pressed="false" data-cat="travel">여행</button>
+    <button class="chip" aria-pressed="false" data-cat="life">라이프스타일</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section class="board" aria-labelledby="b1">
+    <h2 class="board-title" id="b1">이번 주 1위 — 숫자로 확인된 것</h2>
+    <div class="tops">
+      <div class="top">
+        <span class="k">Billboard Hot 100</span>
+        <span class="n">Choosin' Texas</span>
+        <span class="d">Ella Langley · 9월 5일자 차트</span>
+        <span class="stat">20주 연속 1위</span>
+      </div>
+      <div class="top">
+        <span class="k">2026 박스오피스</span>
+        <span class="n">Super Mario Galaxy</span>
+        <span class="d">올해 할리우드 최고 흥행작</span>
+        <span class="stat">월드와이드 $1B+</span>
+      </div>
+      <div class="top">
+        <span class="k">스팀 최다 접속</span>
+        <span class="n">Counter-Strike 2</span>
+        <span class="d">Dota 2, PUBG가 그 뒤 · 상위 3위는 몇 달째 고정</span>
+        <span class="stat">동시접속 119만</span>
+      </div>
+      <div class="top">
+        <span class="k">전 세계 SNS 계정</span>
+        <span class="n">57.9억</span>
+        <span class="d">2026년 4월 기준 · 세계 인구의 69.9%</span>
+        <span class="stat">인류 10명 중 7명</span>
+      </div>
+    </div>
+  </section>
+
+  <details class="weekly-note">
+    <summary>
+      <span class="lbl">이번 주 총평</span>
+      <span class="lead">매끈한 것이 지고, 새것보다 되살아난 것이 많았던 주. 세 산업이 동시에 &lsquo;부드러움&rsquo;으로 움직였다.</span>
+      <span class="chev">더 보기</span>
+    </summary>
+    <div class="note-body">
+      <p>이번 주 목록을 한 줄로 요약하면 <b>매끈한 것이 진다</b>는 거다. 인스타에서는 망한 순간만 올리는 Flop-Core가 새 포맷으로 올라왔고, 밈 쪽에서는 5분 만에 만든 것 같은 그래픽이 잘 만든 디자인보다 오래 기억된다는 관찰이 나왔고, SNS 운영 조언은 잘 편집된 캠페인보다 원테이크 영상이 낫다고 말한다. 세 곳에서 같은 방향의 신호가 동시에 잡히면 그건 취향이 아니라 흐름이다.</p>
+      <p>두 번째는 <b>오래된 것이 새것을 이겼다</b>는 점이다. 릴스 1위는 1979년 디스코 곡이고, 같은 목록에 2013년 "Timber"와 2019년 "Cruel Summer"가 함께 있다. 밈 쪽 City Boy는 2019·2022년에 이어 세 번째 유행이고, 스팀 1위는 12년 넘은 IP다. 이번 주에 새로 태어난 것보다 되살아난 것이 많았다.</p>
+      <p>세 번째는 업계를 가로지르는 <b>질감의 이동</b>이다. 음식에서는 바삭함이 빠지고 크리미가, 뷰티에서는 매트가 빠지고 벨벳이, 패션에서는 퍼와 새틴이 올라왔다. 서로 무관한 세 산업이 같은 주에 '부드러움'으로 움직인 건 우연으로 보기 어렵다.</p>
+      <p>한국 입장에서 실행 가능한 지점은 세 개다. ① 떡볶이·글래스 스킨·스와이시처럼 <b>한국이 이미 원조인 항목</b>이 해외에서 이름을 얻어 역수입되는 구간이라 지금이 타이밍이다. ② 오키나와 검색 급증(+71%)은 한국인 여행 패턴과 겹쳐서 항공권 가격에 먼저 반영된다. ③ 9월 한정 포맷(A New Season Had Begun)과 27일 VMAs 직전 주가 이번 달 남은 가장 큰 두 개의 창구다.</p>
+    </div>
+  </details>
+
+  <div class="backbar" id="backbar">
+    <a class="back" href="#">← 전체 보기</a>
+    <h2 id="dTitle"></h2>
+    <span class="cnt" id="dCnt"></span>
+  </div>
+
+  <div class="cats" id="cats">
+
+    <!-- ================= SNS · 인스타그램 ================= -->
+    <section class="cat" data-cat="instagram" data-plat="instagram">
+      <div class="cat-head"><h2>인스타그램</h2><span class="en">Instagram · 이번 주 릴스</span></div>
+      <ul class="items">
+        <li class="item" data-sum="47년 된 디스코가 '돈 부르는 노래'로 릴스 1위" data-take="미신 붙은 음원은 유난히 오래 가는 듯. 곡이 좋아서가 아니라 '틀면 돈 들어온다'니까 계속 트는 거라, 취향이랑 상관없이 재생수가 쌓인다. 한국 오면 '돈 들어오는 브금'으로 번역돼서 자영업 릴스나 매장 BGM에 먼저 붙을 것 같음." data-group="오디오" data-q="Anita Ward Ring My Bell abundance frequency Instagram Reels" data-term="Ring My Bell Anita Ward" data-since="2026.02 틱톡 &#39;어번던스 프리퀀시&#39; 밈" data-traffic="주간 스트리밍 253만 (+277%) · 미국 다운로드 +1,001%">
+          <span class="rank">01</span>
+          <h3>Anita Ward — "Ring My Bell" (1979)</h3>
+          <p>"이 비트에 돈을 부르는 '풍요의 주파수'가 있다"는 틱톡발 소문을 타고 47년 된 디스코 곡이 릴스를 점령했다. 주간 스트리밍 253만 회(+277%), 미국 다운로드는 1,001% 뛰었다.</p>
+          <div class="meta"><span class="tag">Audio</span><span class="tag up">+277%</span></div>
+        </li>
+        <li class="item" data-sum="'나갈 준비' 영상에 딱 맞는 밴조 앤섬" data-take="드롭이 '준비 끝' 컷이랑 딱 맞아떨어지는 곡은 뷰티나 주류 쪽에서 제일 먼저 가져가는 듯. 겟레디위드미가 아직 안 죽었다는 얘기이기도 하고." data-group="오디오" data-q="Sabrina Carpenter Mans Best Friend Instagram Reels trending audio" data-since="2026.09 상승 중" data-traffic="Buffer 9월 트렌딩 오디오 · 릴스 상승 중" data-new="1">
+          <span class="rank">02</span>
+          <h3>Sabrina Carpenter — "Man's Best Friend"</h3>
+          <p>밴조가 끌고 가는 '나갈 준비' 앤섬. 드롭 지점이 준비 영상과 시그니처 칵테일 공개 컷에 맞게 떨어진다.</p>
+          <div class="meta"><span class="tag">Audio</span></div>
+        </li>
+        <li class="item" data-sum="패션·뷰티·댄스 아무 데나 붙는 범용 오디오" data-take="장르가 딱히 없어서 아무 데나 붙는 게 강점인데, 그게 약점이기도 한 듯. 조회수는 나오는데 이 곡으로 기억되는 브랜드는 안 생긴다." data-group="오디오" data-q="Ariana Grande Petal Instagram Reels trending audio" data-since="2026 하반기" data-traffic="Buffer 9월 트렌딩 오디오 선정">
+          <span class="rank">03</span>
+          <h3>Ariana Grande — "Petal"</h3>
+          <p>몽환적인 신스 사운드. 패션·뷰티·댄스 릴스에 두루 붙는 범용 오디오다.</p>
+          <div class="meta"><span class="tag">Audio</span></div>
+        </li>
+        <li class="item" data-sum="13년 만에 돌아온 스로우백 파티곡" data-take="2013년 곡이 2026년에 도는 건 결국 알고리즘이 '아는 노래'를 좋아해서인 듯. 신곡 경쟁이 빡셀수록 옛날 히트곡이 반사이익을 먹는 구조." data-group="오디오" data-q="Timber Pitbull Kesha Instagram Reels throwback trend 2026" data-since="원곡 2013 · 재유행 2026" data-traffic="2013년 원곡 · 릴스 스로우백 상위">
+          <span class="rank">04</span>
+          <h3>Pitbull ft. Kesha — "Timber"</h3>
+          <p>13년 만의 스로우백. 큰 드롭이 운동·나이트아웃·여행 같은 빠른 컷 편집에 잘 맞는다.</p>
+          <div class="meta"><span class="tag">Audio</span><span class="tag">스로우백</span></div>
+        </li>
+        <li class="item" data-sum="감정 씬의 기본값이 된 사운드" data-take="이건 이제 유행이라기보단 그냥 인프라인 듯. 감정 씬에 기본값처럼 깔리는 소리라, 트렌드 지표로 보기엔 오히려 애매하다." data-group="오디오" data-q="Taylor Swift Cruel Summer Instagram Reels 2026 resurgence" data-since="원곡 2019 · 재유행 2026" data-traffic="2019년 원곡 · 2026년 재부상">
+          <span class="rank">05</span>
+          <h3>Taylor Swift — "Cruel Summer"</h3>
+          <p>2026년에 다시 강하게 올라왔다. 감정 실은 시네마틱 릴스의 기본값 오디오.</p>
+          <div class="meta"><span class="tag">Audio</span></div>
+        </li>
+        <li class="item" data-sum="지금 인스타에서 제일 큰 대화창" data-take="해시태그 하나로 뜨는 시대는 지났지만, 이미 열려 있는 대화에 숟가락 얹기엔 여전히 쓸 만한 듯." data-group="해시태그" data-q="EspressoChallenge Instagram hashtag trend 2026" data-since="확인 안 됨" data-traffic="인스타 대화량 상위 해시태그">
+          <h3>#EspressoChallenge</h3>
+          <p>지금 인스타에서 가장 큰 대화에 올라타는 해시태그. 커피·루틴 콘텐츠가 여기로 몰린다.</p>
+          <div class="meta"><span class="tag">Hashtag</span></div>
+        </li>
+        <li class="item" data-sum="태그는 많이가 아니라 정확하게" data-take="30개씩 붙이던 버릇은 이제 버려야 할 듯. 줄이면 노출 줄어들까 봐 다들 겁내는데, 실제로는 분류가 정확해져서 도달이 오히려 늘어난다." data-group="해시태그" data-q="Instagram Reels hashtag strategy 3-5 niche hashtags 2026" data-term="instagram reels hashtags" data-since="2026 전략 변화" data-traffic="권장 3~5개">
+          <h3>많이 말고, 3~5개만</h3>
+          <p>인기 태그를 쌓는 시대는 끝났다. 니치 태그 3~5개에 넓은 태그를 얹는 조합이 지금 기준. 관련성이 인기도를 이긴다.</p>
+          <div class="meta"><span class="tag">Hashtag</span></div>
+        </li>
+        <li class="item" data-sum="릴스 노출은 태그보다 오디오가 정한다" data-take="국내 운영자들이 제일 늦게 받아들이는 부분인 듯. 기획을 '무슨 말 하지'가 아니라 '어떤 소리에 얹지'로 시작해야 하는데 아직 그게 잘 안 된다." data-group="해시태그" data-q="Instagram Reels trending audio matters more than hashtags 2026" data-since="해당 없음" data-traffic="릴스 도달 기여도 · 오디오 > 해시태그">
+          <h3>해시태그보다 오디오가 먼저다</h3>
+          <p>릴스 노출에는 트렌딩 오디오가 해시태그 최적화보다 직접적인 영향을 준다. 둘 중 하나만 고른다면 오디오.</p>
+          <div class="meta"><span class="tag">Insight</span></div>
+        </li>
+        <li class="item" data-sum="차분한 상대 → 혼돈스러운 반전 컷" data-take="반전 포맷이 커플에만 쓰이란 법은 없는 듯. 사장 vs 직원, 계획 vs 실제로 갈아 끼우면 그대로 B2B 콘텐츠가 된다." data-group="릴스 포맷" data-q="The Fate of Ophelia Taylor Swift opposites attract bait and switch Reels trend" data-since="2026.09" data-traffic="New Engen 9월 릴스 대표 포맷" data-new="1">
+          <h3>정반대 커플 반전 포맷</h3>
+          <p>테일러 스위프트 "The Fate of Ophelia"에 맞춰, 차분한 상대를 보여주다가 혼돈스러운 반전 컷으로 끊는다. 이번 주 릴스 대표 포맷.</p>
+          <div class="meta"><span class="tag">Format</span></div>
+        </li>
+        <li class="item" data-sum="잘된 순간 말고 망한 순간만 올리기" data-take="완벽함 피로가 제일 노골적으로 드러난 형태인 듯. 브랜드가 따라 하기엔 제일 위험한데, 되면 제일 크게 터지는 것도 이쪽." data-group="릴스 포맷" data-q="Flop-Core Instagram Reels trend 2026" data-term="flop core" data-since="2026.09" data-traffic="New Engen 9월 신규 포맷" data-new="1">
+          <h3>Flop-Core</h3>
+          <p>하이라이트 릴의 반대말. 잘된 순간 대신 망한 순간, 창피했던 장면만 골라 올린다.</p>
+          <div class="meta"><span class="tag">Format</span></div>
+        </li>
+        <li class="item" data-sum="'내가 10점 주는 습관' 평점 훅" data-take="평점을 훅으로 쓰는 구조라 업종을 안 가리는 듯. 한국에선 '내가 10점 주는 ○○'로 그대로 옮겨질 것 같다." data-group="릴스 포맷" data-q="10/10 Habits Instagram Reels format 2026" data-term="10/10 habits reel" data-since="2026.09" data-traffic="New Engen 9월 신규 포맷" data-new="1">
+          <h3>10/10 Habits</h3>
+          <p>"내가 10점 만점을 주는 습관" 하나를 꺼내는 평점 훅. 팁·신념 공유형 릴스의 기본 포맷이 됐다.</p>
+          <div class="meta"><span class="tag">Format</span></div>
+        </li>
+        <li class="item" data-sum="가을맞이 스티치, 9월에만 먹히는 포맷" data-take="9월에만 먹히는 계절 포맷이라 지금 아니면 1년 기다려야 하는 듯. 만들 거면 이번 주 안에." data-group="릴스 포맷" data-q="A New Season Had Begun Instagram Reels autumn trend 2026" data-term="a new season had begun reel" data-since="2026.09" data-traffic="9월 한정 계절 포맷" data-new="1">
+          <h3>A New Season Had Begun</h3>
+          <p>가을을 맞이하는 스티치 클립 트렌드. 포근한 라이프스타일 장면을 이어 붙인다. 9월 한정으로 크게 도는 계절 포맷.</p>
+          <div class="meta"><span class="tag">Format</span><span class="tag">계절</span></div>
+        </li>
+        <li class="item" data-sum="릴스가 20분까지, 이제 영상 앱이다" data-take="릴스가 20분까지 늘어난 건 사실상 유튜브 노리겠다는 선언 같음. 이제 숏폼 앱이 아니라 영상 앱으로 봐야 할 듯." data-group="플랫폼" data-q="Instagram monthly active users 2026" data-since="2010.10 서비스 시작" data-traffic="MAU 30억 (집계에 따라 22~24억)">
+          <h3>플랫폼 규모</h3>
+          <p>4억 → 23.5억으로 세 배 넘게 커졌다. 릴스는 이제 최대 20분까지 올릴 수 있다.</p>
+          <div class="meta"><span class="tag">Meta</span></div>
+        </li>
+      </ul>
+      <p class="src">출처 · <a href="https://buffer.com/resources/trending-audio-instagram/">Buffer</a> · <a href="https://async.com/blog/best-hashtags-for-instagram-reels/">Async</a> · <a href="https://newengen.com/insights/instagram-trends/">New Engen</a> · <a href="https://www.socialpilot.co/blog/instagram-reels-trends">SocialPilot</a></p>
+    </section>
+
+    <!-- ================= SNS · 유튜브 ================= -->
+    <section class="cat" data-cat="youtube" data-plat="youtube">
+      <div class="cat-head"><h2>유튜브</h2><span class="en">YouTube · 롱폼 + 숏폼</span></div>
+      <ul class="items">
+        <li class="item" data-sum="이번 주 유튜브 트렌딩 1위 뮤비" data-take="롱폼 트렌딩 1위가 아직도 뮤비인 걸 보면, 유튜브 트렌딩 탭은 발견 도구라기보단 홍보 창구에 가까운 듯." data-group="롱폼" data-q="KAROL G Bruno Mars Still official video YouTube trending" data-since="2026.09.04 트렌딩 1위" data-traffic="당일 220만 뷰" data-new="1">
+          <span class="rank">01</span>
+          <h3>KAROL G, Bruno Mars — "Still"</h3>
+          <p>9월 4일 기준 유튜브 트렌딩 1위. 롱폼 트렌딩 상단은 여전히 뮤직비디오가 잡고 있다.</p>
+          <div class="meta"><span class="tag">Music Video</span></div>
+        </li>
+        <li class="item" data-sum="한 주 트렌딩이 만든 조회수 총량" data-take="이 숫자가 한 주 유행의 크기를 재는 기준선이 될 것 같다. 다음 주랑 비교해야 의미가 생기니까 매주 같은 자리에 적어두려고 한다." data-group="롱폼" data-q="YouTube weekly global trend report 17.7 billion views 2026" data-since="2026.08.30–09.05 집계" data-traffic="109개국 2,600개 영상 · 합계 177억 뷰" data-new="1">
+          <h3>이번 주 트렌딩 총량 177억 뷰</h3>
+          <p>109개국에서 2,600개 영상이 트렌딩에 올랐다. 이 사이트가 보는 한 주의 규모가 대략 이 정도다.</p>
+          <div class="meta"><span class="tag">Weekly</span><span class="tag up">17.7B</span></div>
+        </li>
+        <li class="item" data-sum="글로벌 트렌딩의 절반 가까이가 게임" data-take="유튜브에서 안전빵 찾는다면 게임인 듯. 대신 경쟁도 그만큼 살벌하다는 뜻이라 마냥 좋진 않다." data-group="롱폼" data-q="gaming dominates YouTube trending 42.6 percent 2026" data-since="2026.08.30–09.05 집계" data-traffic="트렌딩의 42.6%">
+          <span class="rank">02</span>
+          <h3>게이밍이 트렌딩의 42.6%</h3>
+          <p>글로벌 트렌딩 콘텐츠의 절반 가까이가 게임. 롱폼에서 가장 확실한 카테고리다.</p>
+          <div class="meta"><span class="tag">Category</span></div>
+        </li>
+        <li class="item" data-sum="5.08억 구독, 2년 넘게 1위 고정" data-take="구독자 수는 이제 순위 자랑용이지 수익 지표는 아닌 듯. 실제 돈은 조회수랑 시청 시간이 정한다." data-group="롱폼" data-q="MrBeast most subscribed YouTube channel 508 million 2026" data-since="2024.06부터 1위 유지" data-traffic="구독자 5.08억">
+          <h3>MrBeast — 구독 1위</h3>
+          <p>2026년 7월 기준 5.08억 명. 2024년 6월부터 한 번도 1위를 내주지 않았다.</p>
+          <div class="meta"><span class="tag">Creator</span></div>
+        </li>
+        <li class="item" data-sum="누적 3,520억 뷰, 백카탈로그의 힘" data-take="쌓아둔 영상이 많은 쪽이 누적에선 무조건 이기는 구조인 듯. 개인이 이 판에서 붙으려면 조회수 말고 구독으로 가야 한다." data-group="롱폼" data-q="T-Series most viewed YouTube channel 352 billion views" data-since="확인 안 됨" data-traffic="누적 3,520억 뷰">
+          <h3>T-Series — 조회 1위</h3>
+          <p>구독 순위와 조회 순위는 거의 겹치지 않는다. 개인 크리에이터는 구독으로, 브랜드 채널은 누적 조회로 이긴다.</p>
+          <div class="meta"><span class="tag">Channel</span></div>
+        </li>
+        <li class="item" data-sum="롱폼 1등이 숏폼도 1등" data-take="롱폼 1등이 숏폼도 1등이라는 건, 숏폼이 이제 신인 등용문이 아니라 기존 강자의 확장 무대가 됐다는 얘기인 듯." data-group="숏폼" data-plat="shorts" data-q="MrBeast biggest YouTube Shorts creator 2026" data-since="확인 안 됨" data-traffic="숏츠 최대 크리에이터">
+          <span class="rank">01</span>
+          <h3>MrBeast</h3>
+          <p>숏츠에서도 가장 큰 크리에이터. 톱5는 MrBeast, Zach King, Khaby Lame, Bella Poarch, Tiko 순.</p>
+          <div class="meta"><span class="tag">Creator</span></div>
+        </li>
+        <li class="item" data-sum="숏츠 한 편이 롱폼 최고 기록과 맞먹는다" data-take="숏츠 최고 기록이 롱폼 최고 기록이랑 맞먹는다. 단가만 낮을 뿐 도달력은 이미 동급인 듯." data-group="숏폼" data-plat="shorts" data-q="most viewed YouTube Short 4.66 billion views 2026" data-since="확인 안 됨" data-traffic="역대 1위 46.6억 뷰">
+          <h3>역대 최다 조회 숏츠 46.6억 뷰</h3>
+          <p>단일 숏츠 하나가 46.6억 뷰를 넘겼다. 웬만한 롱폼 최고 기록과 맞먹는 규모.</p>
+          <div class="meta"><span class="tag">Record</span><span class="tag up">4.66B</span></div>
+        </li>
+        <li class="item" data-sum="대사 없는 액션이 언어 장벽을 지웠다" data-take="대사가 없으면 번역이 필요 없다. 해외 노린다면 말을 빼는 게 제일 싸게 먹히는 현지화인 듯." data-group="숏폼" data-plat="shorts" data-q="Spider-Man VS T-Rex Golovin Maestro YouTube Shorts 3 billion views" data-since="확인 안 됨" data-traffic="30.8억 뷰">
+          <span class="rank">02</span>
+          <h3>"Spider-Man VS T-Rex" — Golovin Maestro</h3>
+          <p>30.8억 뷰. 대사 없는 액션 연출이 언어 장벽을 지운다.</p>
+          <div class="meta"><span class="tag">Shorts</span><span class="tag up">3.08B</span></div>
+        </li>
+        <li class="item" data-sum="11초짜리가 23억 뷰" data-take="11초. 길이 줄이는 게 조회수 올리는 제일 확실한 방법이라는 걸 숫자로 보여주는 듯." data-group="숏폼" data-plat="shorts" data-q="ZeeKay If we all had the same dream YouTube Short 2.3 billion" data-since="확인 안 됨" data-traffic="23억 뷰 (11초)">
+          <span class="rank">03</span>
+          <h3>"If we all had the same dream" — ZeeKay</h3>
+          <p>단 11초짜리로 23억 뷰. 짧을수록 완주율이 올라가는 구조를 그대로 보여준다.</p>
+          <div class="meta"><span class="tag">Shorts</span><span class="tag up">2.3B</span></div>
+        </li>
+        <li class="item" data-sum="얼굴도 언어도 필요 없는 형식" data-take="애니메이션은 얼굴도 언어도 장비도 필요 없다. 개인이 규모 낼 수 있는 몇 안 되는 형식인 듯." data-group="숏폼" data-plat="shorts" data-q="Monica Toy YouTube Shorts 2.2 billion views" data-since="확인 안 됨" data-traffic="22억 뷰">
+          <span class="rank">04</span>
+          <h3>Monica Toy 애니메이션</h3>
+          <p>22억 뷰. 애니메이션은 지역·연령을 안 가려서 숏츠에서 특히 강하다.</p>
+          <div class="meta"><span class="tag">Shorts</span></div>
+        </li>
+        <li class="item" data-sum="15초 안에 결과를 보여주는 정석" data-take="15초 안에 결과가 나와야 한다는 규칙의 교과서 같음. 과정 길게 보여주면 그냥 진다." data-group="숏폼" data-plat="shorts" data-q="Justin Flom YouTube Short 1.71 billion views magic" data-since="확인 안 됨" data-traffic="17.1억 뷰">
+          <span class="rank">05</span>
+          <h3>Justin Flom 마술</h3>
+          <p>17.1억 뷰. 15초 안에 결과를 보여주는 포맷이 숏츠의 정석.</p>
+          <div class="meta"><span class="tag">Shorts</span></div>
+        </li>
+        <li class="item" data-sum="숏폼의 현실적인 기대치 두 숫자" data-take="이 두 숫자를 보면 숏폼 기대치가 확 현실적으로 내려온다. 첫 3초에 못 잡으면 끝이고, 대박은 100개 중 1개꼴인 듯." data-group="숏폼" data-plat="shorts" data-q="YouTube Shorts average watch time 14.3 seconds 1.2 percent 10 million views" data-since="2026 집계" data-traffic="평균 시청 14.3초 · 1,000만 뷰 도달률 1.2%">
+          <h3>14.3초, 그리고 1.2%</h3>
+          <p>시청자는 평균 14.3초를 보고 넘긴다. 업로드된 숏츠 중 1,000만 뷰를 넘는 건 1.2%뿐.</p>
+          <div class="meta"><span class="tag">Benchmark</span></div>
+        </li>
+        <li class="item" data-sum="숏폼과 롱폼의 경계가 지워지는 중" data-take="숏폼이랑 롱폼 경계가 지워지는 중인 듯. 이제 기준이 '짧게'가 아니라 '지루하지 않게'로 넘어간 느낌." data-group="숏폼" data-plat="shorts" data-q="YouTube Shorts 3 minutes length limit 2026" data-since="2026 정책 변경" data-traffic="최대 3분">
+          <h3>쇼츠도 3분까지</h3>
+          <p>숏폼의 상한이 계속 올라간다. 릴스는 20분, 쇼츠는 3분.</p>
+          <div class="meta"><span class="tag">Format</span></div>
+        </li>
+        <li class="item" data-sum="숏츠로 모아 롱폼으로 태우는 구조" data-take="숏폼이랑 롱폼을 한 채널에서 굴릴 수 있다는 게 유튜브의 유일한 무기인 듯. 숏츠로 모아서 롱폼으로 태우는 구조가 정답 같다." data-group="플랫폼" data-q="YouTube monthly active users 2026" data-since="2005.02 서비스 시작" data-traffic="MAU 25.8억 (집계에 따라 28.5억)">
+          <h3>플랫폼 규모</h3>
+          <p>영상 쪽 절대 강자. 숏폼과 롱폼을 동시에 들고 있는 유일한 플랫폼이다.</p>
+          <div class="meta"><span class="tag">Google</span></div>
+        </li>
+      </ul>
+      <p class="src">출처 · <a href="https://trendtube.world/insights/weekly-report">TrendTube 주간 리포트</a> · <a href="https://vidiq.com/youtube-trending/">vidIQ</a> · <a href="https://sendshort.ai/guides/shorts-creators/">SendShort</a> · <a href="https://www.zebracat.ai/post/what-is-the-most-viewed-youtube-shorts">Zebracat</a></p>
+    </section>
+
+    <!-- ================= 음악 순위 ================= -->
+    <section class="cat" data-cat="music" data-plat="spotify">
+      <div class="cat-head"><h2>음악 순위</h2><span class="en">Music</span></div>
+      <ul class="items">
+        <li class="item" data-sum="20주 연속 1위, 컨트리가 차트를 잡았다" data-take="20주 1위는 곡이 좋아서라기보단 미국 차트가 컨트리를 밀고 있다는 구조적 신호인 듯. 팝 기준으로만 보면 이 흐름을 놓친다." data-group="빌보드 핫100" data-q="Ella Langley Choosin Texas Billboard Hot 100" data-since="2026.04경 1위 진입 (20주 전)" data-traffic="핫100 1위 20주 연속">
+          <span class="rank">01</span>
+          <h3>Choosin' Texas — Ella Langley</h3>
+          <p>20주 연속 1위. 컨트리가 미국 팝 차트를 반년 가까이 붙잡고 있다.</p>
+          <div class="meta"><span class="tag">US</span></div>
+        </li>
+        <li class="item" data-sum="20주째 1위를 노리는 2위 곡" data-take="20주째 1위를 못 뚫었다는 건 2위가 약해서가 아니라 1위가 비정상적으로 센 것 같다." data-group="빌보드 핫100" data-q="Boston song Billboard Hot 100 2026" data-since="확인 안 됨" data-traffic="핫100 2위">
+          <span class="rank">02</span>
+          <h3>Boston</h3>
+          <p>1위 자리를 가장 오래 노리고 있는 곡.</p>
+          <div class="meta"><span class="tag">US</span></div>
+        </li>
+        <li class="item" data-sum="톱3 유지가 기본값인 아티스트" data-take="톱3 유지가 기본값이 된 아티스트라, 차트 볼 때는 그냥 상수로 두고 나머지를 보는 게 나은 듯." data-group="빌보드 핫100" data-q="Taylor Swift Billboard Hot 100 September 2026" data-since="확인 안 됨" data-traffic="핫100 3위">
+          <span class="rank">03</span>
+          <h3>Taylor Swift</h3>
+          <p>발매 후 상위권을 계속 유지 중.</p>
+          <div class="meta"><span class="tag">US</span></div>
+        </li>
+        <li class="item" data-sum="라디오·숏폼에 흔들리는 톱5 구간" data-take="톱5 언저리는 스트리밍보다 라디오랑 숏폼 노출에 따라 흔들리는 구간인 듯." data-group="빌보드 핫100" data-q="Been By Now song Billboard Hot 100" data-since="확인 안 됨" data-traffic="핫100 4위">
+          <span class="rank">04</span>
+          <h3>Been By Now</h3>
+          <p>9월 5일자 차트 4위.</p>
+          <div class="meta"><span class="tag">US</span></div>
+        </li>
+        <li class="item" data-sum="컨트리 천하에서 팝 보컬 최고 순위" data-take="컨트리가 상단을 덮은 차트에서 팝 보컬이 지켜낸 자리. 장르 다양성의 마지노선쯤 되는 듯." data-group="빌보드 핫100" data-q="Ariana Grande Billboard Hot 100 September 2026" data-since="확인 안 됨" data-traffic="핫100 5위">
+          <span class="rank">05</span>
+          <h3>Ariana Grande</h3>
+          <p>톱10 안에서 팝 보컬 계열로는 가장 높다.</p>
+          <div class="meta"><span class="tag">US</span></div>
+        </li>
+        <li class="item" data-sum="핼러윈 시즌 곡이 벌써 올라왔다" data-take="9월 차트에 이 제목이 올라온 게 우연은 아닌 듯. 핼러윈 시즌 곡은 원래 8월 말부터 미리 올라온다." data-group="빌보드 핫100" data-q="Dracula song Billboard Hot 100 2026" data-since="확인 안 됨" data-traffic="핫100 6위">
+          <span class="rank">06</span>
+          <h3>Dracula</h3>
+          <p>9월 5일자 차트 6위.</p>
+          <div class="meta"><span class="tag">US</span></div>
+        </li>
+        <li class="item" data-sum="다음 주 이탈 확률이 제일 높은 자리" data-take="중위권은 다음 주에 빠질 확률이 제일 높은 구간인 듯. 여기 곡으로 콘텐츠 만들면 수명이 짧다." data-group="빌보드 핫100" data-q="So Easy song Billboard Hot 100 2026" data-since="확인 안 됨" data-traffic="핫100 7위">
+          <span class="rank">07</span>
+          <h3>So Easy</h3>
+          <p>9월 5일자 차트 7위.</p>
+          <div class="meta"><span class="tag">US</span></div>
+        </li>
+        <li class="item" data-sum="톱10에 컨트리가 둘 이상인 게 진짜 뉴스" data-take="톱10에 컨트리가 둘 이상이라는 게 이 차트의 진짜 뉴스인 듯." data-group="빌보드 핫100" data-q="Ella and Morgan song Billboard Hot 100" data-since="확인 안 됨" data-traffic="핫100 8위">
+          <span class="rank">08</span>
+          <h3>Ella and Morgan</h3>
+          <p>컨트리 계열이 톱10에 두 곡 이상 들어와 있다.</p>
+          <div class="meta"><span class="tag">US</span></div>
+        </li>
+        <li class="item" data-sum="신곡 진입과 구곡 하락이 교차하는 구간" data-take="9~10위는 신곡 들어오고 구곡 빠지는 자리라, 다음 주 예측할 땐 여기를 보는 게 제일 쓸모 있는 듯." data-group="빌보드 핫100" data-q="Man I Need song Billboard Hot 100 2026" data-since="확인 안 됨" data-traffic="핫100 9위">
+          <span class="rank">09</span>
+          <h3>Man I Need</h3>
+          <p>9월 5일자 차트 9위.</p>
+          <div class="meta"><span class="tag">US</span></div>
+        </li>
+        <li class="item" data-sum="톱10 막차, 다음 주 관전 포인트" data-take="톱10 막차 자리. 이걸 지키느냐가 다음 주 관전 포인트일 듯." data-group="빌보드 핫100" data-q="Be Her song Billboard Hot 100 2026" data-since="확인 안 됨" data-traffic="핫100 10위">
+          <span class="rank">10</span>
+          <h3>Be Her.</h3>
+          <p>9월 5일자 차트 10위.</p>
+          <div class="meta"><span class="tag">US</span></div>
+        </li>
+        <li class="item" data-sum="차트보다 포맷이 먼저 뜬 곡" data-take="차트보다 포맷이 먼저 뜬 케이스인 듯. 순위만 들여다보고 있으면 이런 곡은 그냥 놓친다." data-group="숏폼 급상승" data-q="Jessie Murph I Like How I Look TikTok trend" data-new="1" data-since="2026.09 급상승" data-traffic="9월 틱톡 급상승 사운드 (차트 외)">
+          <h3>Jessie Murph — "I Like How I Look"</h3>
+          <p>차트 밖에서 더 센 곡. 솔로컷 2장 + 최애와 찍은 컷 1장, 3슬라이드 포맷이 이 곡을 타고 돈다.</p>
+          <div class="meta"><span class="tag">TikTok</span></div>
+        </li>
+        <li class="item" data-sum="숏폼 사운드가 한 번 더 크게 도는 날" data-take="시상식 전주에 후보곡 사운드가 미리 도는 패턴이 매년 반복되는 듯. 콘텐츠는 27일 말고 그 전에 올리는 게 맞다." data-group="예정된 일정" data-q="MTV VMAs 2026 September 27" data-since="1984 첫 개최" data-traffic="1984년 첫 개최 · 연 1회 최대 음악 이벤트">
+          <h3>9월 27일 — MTV VMAs</h3>
+          <p>이달 음악판 최대 이벤트. 전후로 후보곡 사운드가 숏폼에서 한 번 더 크게 돈다.</p>
+          <div class="meta"><span class="tag">Global</span><span class="tag">09.27</span></div>
+        </li>
+      </ul>
+      <p class="src">출처 · <a href="https://www.billboard.com/charts/hot-100/">Billboard Hot 100</a> · <a href="https://newengen.com/insights/september-tiktok-trends/">New Engen</a></p>
+    </section>
+
+    <!-- ================= 영화 순위 ================= -->
+    <section class="cat" data-cat="movie" data-plat="movie">
+      <div class="cat-head"><h2>영화 순위</h2><span class="en">Movies</span></div>
+      <ul class="items">
+        <li class="item" data-sum="게임 원작이 올해 흥행 1위, $1B 돌파" data-take="게임 원작 영화가 연간 1위 먹는 게 이제 이변이 아닌 듯. IP 팬덤이 극장을 떠받치는 구조로 굳었다." data-group="글로벌 흥행" data-q="Super Mario Galaxy Movie box office 2026" data-since="2026 연초 개봉" data-traffic="월드와이드 $1B 돌파">
+          <span class="rank">01</span>
+          <h3>The Super Mario Galaxy Movie</h3>
+          <p>2026년 할리우드 최고 흥행작이자 게임 원작 영화의 최고 기록.</p>
+          <div class="meta"><span class="tag">Worldwide</span></div>
+        </li>
+        <li class="item" data-sum="해외 매출이 북미의 두 배" data-take="해외 매출이 북미의 두 배. 애니메이션은 자막·더빙 장벽이 낮아서 처음부터 글로벌로 설계되는 듯." data-group="글로벌 흥행" data-q="Minions and Monsters movie box office 2026" data-since="확인 안 됨" data-traffic="$505.8M (북미 182.3 / 해외 323.4)">
+          <span class="rank">02</span>
+          <h3>Minions &amp; Monsters</h3>
+          <p>해외 매출이 북미의 두 배 가까이. 애니메이션 IP의 전형적인 흥행 구조.</p>
+          <div class="meta"><span class="tag">Worldwide</span></div>
+        </li>
+        <li class="item" data-sum="북미에 몰린 흥행, 해외에선 반토막" data-take="북미 편중형인 듯. 문화 맥락 센 작품이 해외에서 반토막 나는 걸 그대로 보여준다." data-group="글로벌 흥행" data-q="Obsession movie 2026 box office" data-since="2026.05.15 개봉" data-traffic="$501.6M (북미 263.4 / 해외 238.2)">
+          <span class="rank">03</span>
+          <h3>Obsession</h3>
+          <p>북미 성적만 놓고 보면 이쪽이 더 좋다. 미국 취향에 더 맞은 작품.</p>
+          <div class="meta"><span class="tag">Worldwide</span></div>
+        </li>
+        <li class="item" data-sum="일본 1위, 매년 같은 규모로 터진다" data-take="매년 같은 시기에 같은 규모로 터진다. 일본 극장가는 유행이 아니라 연례행사로 굴러가는 듯." data-group="일본" data-q="Detective Conan Fallen Angel of the Highway box office Japan" data-since="확인 안 됨" data-traffic="¥137억 (약 $85.8M) · 일본 1위">
+          <h3>명탐정 코난: 하이웨이의 타천사</h3>
+          <p>일본 박스오피스 1위. 극장판 시리즈가 매년 상위권을 가져간다.</p>
+          <div class="meta"><span class="tag">JP #1</span></div>
+        </li>
+        <li class="item" data-sum="서사보다 캐릭터가 센 시장의 증거" data-take="서사보다 캐릭터가 센 시장인 듯. 한국 굿즈나 팝업 업계가 제일 먼저 반응할 지점 같다." data-group="일본" data-q="Chiikawa the Movie box office Japan 2026" data-since="확인 안 됨" data-traffic="¥122.3억 (약 $76.6M) · 일본 2위">
+          <h3>치이카와 더 무비</h3>
+          <p>캐릭터 IP가 일본 극장가 상위를 그대로 가져갔다.</p>
+          <div class="meta"><span class="tag">JP #2</span></div>
+        </li>
+        <li class="item" data-sum="한국 1위, 내수만으로 1억 달러" data-take="한국 1위가 1억 달러를 넘긴 건 내수만으로 만든 숫자. 아직 한국 관객이 극장에 오긴 온다는 증거인 듯." data-group="한국" data-q="The King's Warden 2026 Korean box office" data-since="확인 안 됨" data-traffic="$115,075,699 · 한국 1위">
+          <h3>The King's Warden</h3>
+          <p>한국 박스오피스 1위.</p>
+          <div class="meta"><span class="tag">KR #1</span></div>
+        </li>
+        <li class="item" data-sum="1위와 4천만 달러 차이 나는 2위" data-take="1위랑 격차가 4천만 달러다. 한국 극장가는 1위 쏠림이 유독 심한 듯." data-group="한국" data-q="The Odyssey movie 2026 box office" data-since="확인 안 됨" data-traffic="$71,471,882 · 한국 2위">
+          <h3>The Odyssey</h3>
+          <p>한국 박스오피스 2위.</p>
+          <div class="meta"><span class="tag">KR #2</span></div>
+        </li>
+        <li class="item" data-sum="마블이 한국 3위, 히어로물 피로" data-take="마블이 한국에서 3위면 예전 기준으론 부진인 듯. 히어로물 피로가 숫자로 드러난 자리 같다." data-group="한국" data-q="Spider-Man Brand New Day 2026 box office" data-since="확인 안 됨" data-traffic="$64,789,457 · 한국 3위">
+          <h3>Spider-Man: Brand New Day</h3>
+          <p>마블이 다시 극장에서 먹히는지 보는 지표.</p>
+          <div class="meta"><span class="tag">KR #3</span></div>
+        </li>
+        <li class="item" data-sum="본편 끝나기 전에 붙인 스핀오프" data-take="본편 끝나기도 전에 스핀오프를 붙이는 전략. 넷플릭스가 IP 늘리는 방식이 바뀐 듯하다." data-group="스트리밍 · 일정" data-q="Stranger Things Tales From 85 Netflix" data-new="1" data-since="2026.09 공개" data-traffic="9월 넷플릭스 톱10 (일별 수치 비공개)">
+          <h3>〈Stranger Things: Tales From '85〉</h3>
+          <p>상반기 최다 시청작에 본편도 올라 있어 IP가 아직 안 식었다.</p>
+          <div class="meta"><span class="tag">Netflix</span><span class="tag">TV</span></div>
+        </li>
+        <li class="item" data-sum="이 주 지나면 스트리밍 순위가 뒤집힌다" data-take="시상식 다음 주에 스트리밍 순위가 한 번 뒤집힌다. 콘텐츠 기획은 14일 이후 일주일이 기회일 듯." data-group="스트리밍 · 일정" data-q="Emmy Awards 2026 September 14" data-since="1949 첫 개최" data-traffic="1949년 첫 개최 · 미국 TV 최대 시상식">
+          <h3>9월 14일 — 에미상</h3>
+          <p>시상식 시즌 개막. 다음 몇 주 드라마 화제작 순위가 여기서 정리된다.</p>
+          <div class="meta"><span class="tag">US</span><span class="tag">09.14</span></div>
+        </li>
+      </ul>
+      <p class="src">출처 · <a href="https://screenrant.com/highest-grossing-movies-2026-box-office/">Screen Rant</a> · <a href="https://en.wikipedia.org/wiki/List_of_Japanese_films_of_2026">Wikipedia</a> · <a href="https://flixpatrol.com/top10/netflix/">FlixPatrol</a></p>
+    </section>
+
+    <!-- ================= 게임 순위 ================= -->
+    <section class="cat" data-cat="game" data-plat="steam">
+      <div class="cat-head"><h2>게임 순위</h2><span class="en">Games</span></div>
+      <ul class="items">
+        <li class="item" data-sum="동시접속 119만, 12년 된 IP가 아직 1위" data-take="12년 넘은 IP가 아직 1위. PC방·이스포츠 기반 장르는 유행이 아니라 습관으로 유지되는 듯." data-group="스팀 동시접속" data-q="Counter-Strike 2 concurrent players Steam charts" data-since="2023.09 출시" data-traffic="동시접속 1,196,672명">
+          <span class="rank">01</span>
+          <h3>Counter-Strike 2</h3>
+          <p>스팀 최다 접속 1위. 단일 게임으로 120만 명에 가깝다.</p>
+          <div class="meta"><span class="tag">Steam</span></div>
+        </li>
+        <li class="item" data-sum="신규 유입 없이도 2위를 지킨다" data-take="신규 유입 거의 없는데도 2위다. 코어 유저가 안 빠진다는 뜻이고, 그래서 이 판은 새로 뚫기 어려운 듯." data-group="스팀 동시접속" data-q="Dota 2 Steam most played 2026" data-since="2013.07 출시" data-traffic="스팀 접속 2위">
+          <span class="rank">02</span>
+          <h3>Dota 2</h3>
+          <p>상위 3위는 몇 달째 순위 변동이 없다.</p>
+          <div class="meta"><span class="tag">Steam</span></div>
+        </li>
+        <li class="item" data-sum="한국산 게임의 글로벌 최고 성적" data-take="한국에서 만든 게임이 아직 글로벌 3위. 국내 게임사 최대 성공 사례로 계속 인용될 자리인 듯." data-group="스팀 동시접속" data-q="PUBG Battlegrounds Steam most played 2026" data-since="2017.12 정식 출시" data-traffic="스팀 접속 3위">
+          <span class="rank">03</span>
+          <h3>PUBG: BATTLEGROUNDS</h3>
+          <p>상위권 고정 3인방의 마지막 자리.</p>
+          <div class="meta"><span class="tag">Steam</span></div>
+        </li>
+        <li class="item" data-sum="스트리머 생태계가 만든 순위" data-take="게임이 아니라 스트리머 생태계가 만든 순위인 듯. 콘텐츠가 게임을 먹여 살리는 역전 구조." data-group="스팀 동시접속" data-q="FiveM GTA roleplay Steam player count" data-since="확인 안 됨" data-traffic="스팀 접속 4위">
+          <span class="rank">04</span>
+          <h3>FiveM</h3>
+          <p>GTA 롤플레이 서버. 스트리머 생태계가 그대로 접속자 수로 잡힌다.</p>
+          <div class="meta"><span class="tag">Steam</span></div>
+        </li>
+        <li class="item" data-sum="밈이 앱이 되어 톱5에 올랐다" data-take="밈이 앱이 되고 앱이 차트에 오른다. 지금 인터넷에서 제일 짧은 수익화 경로인 듯." data-group="스팀 동시접속" data-q="Bongo Cat Steam game player count" data-since="확인 안 됨" data-traffic="스팀 접속 5위">
+          <span class="rank">05</span>
+          <h3>Bongo Cat</h3>
+          <p>밈에서 출발한 무료 앱이 톱5에 있다. 올해 스팀 차트에서 가장 이상한 자리.</p>
+          <div class="meta"><span class="tag">Steam</span><span class="tag">밈 출신</span></div>
+        </li>
+        <li class="item" data-sum="시즌 초기화가 곧 재유행 장치" data-take="시즌 초기화가 곧 재유행 장치. 주기적으로 뉴스 만드는 운영 설계의 교과서 같음." data-group="스팀 동시접속" data-q="Rust game Steam player count 2026" data-since="2013.12 얼리액세스" data-traffic="스팀 접속 6위">
+          <span class="rank">06</span>
+          <h3>Rust</h3>
+          <p>시즌 초기화 때마다 접속자가 튄다.</p>
+          <div class="meta"><span class="tag">Steam</span></div>
+        </li>
+        <li class="item" data-sum="신작이 얼마나 버티는지 보는 지표" data-take="신작이 톱10에 얼마나 버티는지가 다음 달 순위표 예고편인 듯." data-group="스팀 동시접속" data-q="ARC Raiders player count Steam" data-since="확인 안 됨" data-traffic="스팀 접속 7위">
+          <span class="rank">07</span>
+          <h3>ARC Raiders</h3>
+          <p>신작·업데이트가 순위를 흔드는 구간의 대표 주자.</p>
+          <div class="meta"><span class="tag">Steam</span></div>
+        </li>
+        <li class="item" data-sum="줄어드는 배틀로얄 장르의 생존자" data-take="배틀로얄이 줄어드는 와중의 생존자. 장르보다 운영이 수명을 정하는 것 같다." data-group="스팀 동시접속" data-q="Apex Legends Steam player count 2026" data-since="2019.02 출시" data-traffic="스팀 접속 8위">
+          <span class="rank">08</span>
+          <h3>Apex Legends</h3>
+          <p>배틀로얄 장르의 생존자.</p>
+          <div class="meta"><span class="tag">Steam</span></div>
+        </li>
+        <li class="item" data-sum="히어로 슈터가 자리를 잡았다" data-take="히어로 슈터가 자리를 잡은 듯. 영화 쪽 마블 피로랑 정반대로 가는 게 재밌는 지점." data-group="스팀 동시접속" data-q="Marvel Rivals Steam player count 2026" data-since="2024.12 출시" data-traffic="스팀 접속 9위">
+          <span class="rank">09</span>
+          <h3>Marvel Rivals</h3>
+          <p>히어로 슈터가 톱10에 자리를 잡았다.</p>
+          <div class="meta"><span class="tag">Steam</span></div>
+        </li>
+        <li class="item" data-sum="10년 된 비대칭 호러의 저력" data-take="10년 된 비대칭 호러가 아직 톱10. 니치도 독점하면 오래 가는 듯." data-group="스팀 동시접속" data-q="Dead by Daylight Steam player count 2026" data-since="2016.06 출시" data-traffic="스팀 접속 10위 · 톱20 합계 560만">
+          <span class="rank">10</span>
+          <h3>Dead by Daylight</h3>
+          <p>상위 20개 게임에 동시에 560만 명이 접속해 있다.</p>
+          <div class="meta"><span class="tag">Steam</span></div>
+        </li>
+        <li class="item" data-sum="3주 만에 1,300만 장, 올해 판매 1위" data-take="3주 만에 1,300만 장. '친구랑 같이 하는 싸고 웃긴 게임'이 지금 제일 확실한 공식인 듯." data-group="판매 · 매출" data-q="Meccha Chameleon game copies sold 2026" data-since="2026.08경 출시 (3주 전)" data-traffic="약 1,300만 장 판매">
+          <h3>Meccha Chameleon</h3>
+          <p>판매량 기준 올해 1위. 출시 3주 만의 기록이다. 친구랑 하는 가벼운 협동 게임 계열.</p>
+          <div class="meta"><span class="tag">판매량 #1</span></div>
+        </li>
+        <li class="item" data-sum="매출 기준 올해 베스트셀러" data-take="판매량 1위랑 매출 1위가 다르다는 게 핵심인 듯. 싸게 많이 파는 쪽이랑 비싸게 파는 쪽이 갈렸다." data-group="판매 · 매출" data-q="Resident Evil Requiem best selling game 2026" data-since="2026 출시" data-traffic="매출 기준 올해 1위">
+          <h3>Resident Evil Requiem</h3>
+          <p>Crimson Desert, 007 First Light, Forza Horizon 6이 뒤를 잇는다.</p>
+          <div class="meta"><span class="tag">매출 #1</span></div>
+        </li>
+        <li class="item" data-sum="PC 게임 시장 자체가 커지는 중" data-take="콘솔이 아니라 PC가 커지는 중인 듯. 국내 인디 입장에선 스팀 말고 다른 데 볼 이유가 줄었다." data-group="플랫폼" data-q="Steam 42 million concurrent players record" data-since="2026 신기록" data-traffic="플랫폼 동시접속 4,200만">
+          <h3>스팀 동시접속 4,200만 신기록</h3>
+          <p>플랫폼 전체 기준 역대 최고치를 다시 썼다. PC 게임 시장 자체가 커지는 중.</p>
+          <div class="meta"><span class="tag">Platform</span></div>
+        </li>
+      </ul>
+      <p class="src">출처 · <a href="https://www.steamdb.com/en/tools/steam-charts">SteamDB</a> · <a href="https://alineaanalytics.substack.com/p/2026s-top-games-by-copies-sold-so">Alinea Analytics</a> · <a href="https://www.dsogaming.com/news/steam-sets-new-record-with-over-42-million-concurrent-players/">DSOGaming</a></p>
+    </section>
+
+    <!-- ================= 패션 ================= -->
+    <section class="cat" data-cat="fashion" data-plat="pinterest">
+      <div class="cat-head"><h2>패션</h2><span class="en">Fashion</span></div>
+      <ul class="items">
+        <li class="item" data-sum="감싸는 실루엣과 함께 크게 돌아왔다" data-take="윤리 논쟁은 정리 안 됐는데 유행만 돌아온 듯. 국내 브랜드는 에코퍼로 받아 갈 것 같다." data-group="실루엣" data-q="fur trend fall 2026 runway" data-since="2026 F/W 컬렉션" data-traffic="2026 F/W 컬렉션 다수 등장">
+          <h3>퍼(fur)의 귀환</h3>
+          <p>컬렉션 전반에 퍼와 감싸는 실루엣이 크게 돌아왔다. 이번 가을 가장 크게 바뀐 지점.</p>
+          <div class="meta"><span class="tag">Runway</span></div>
+        </li>
+        <li class="item" data-sum="오피스룩의 귀환, 재택 축소와 함께" data-take="오피스룩 귀환은 재택 축소랑 같이 오는 듯. 결국 옷이 근무 형태를 따라간다." data-group="실루엣" data-q="skirt suit ladylike trend fall 2026" data-since="2026 F/W 컬렉션" data-traffic="2026 F/W 주요 실루엣">
+          <h3>스커트 수트 · 레이디라이크</h3>
+          <p>어퍼이스트사이드식 '파워우먼' 차림. 재킷은 한 치수 작아 보이는 크롭·피티드 실루엣.</p>
+          <div class="meta"><span class="tag">US/EU</span></div>
+        </li>
+        <li class="item" data-sum="벌목꾼 대신 '폴리시드 아카데미아'" data-take="매년 오는 가을 패턴인데 올해는 각도가 '학구적'으로 바뀐 듯. 로고 대신 원단으로 티 내는 흐름." data-group="패턴 · 컬러" data-q="plaid tartan gingham trend fall 2026" data-since="2026 F/W 컬렉션" data-traffic="수많은 컬렉션에 등장 (Coveteur)">
+          <h3>체크 · 타탄 · 깅엄</h3>
+          <p>플래드가 벌목꾼 무드 대신 '폴리시드 아카데미아'로. 플래드 슬랙스, 미디 스커트, 테일러드 재킷.</p>
+          <div class="meta"><span class="tag">Pattern</span></div>
+        </li>
+        <li class="item" data-sum="검정의 자리를 짙은 갈색이 가져갔다" data-take="검정 대체재가 바뀌는 건 몇 년에 한 번인 듯. 시즌 재고 기획이 여기서 갈린다." data-group="패턴 · 컬러" data-q="espresso brown cherry red cobalt blue color trend 2026" data-since="2026 전반" data-traffic="2026 기본색 · 포인트는 체리 레드 / 코발트">
+          <h3>에스프레소 브라운 = 새 블랙</h3>
+          <p>짙은 갈색이 기본색 자리를 차지했다. 포인트는 체리 레드, 그리고 코발트 블루. (이 페이지 색도 여기서 가져왔다)</p>
+          <div class="meta"><span class="tag">Color</span></div>
+        </li>
+        <li class="item" data-sum="여름을 넘겨 가을까지 살아남은 신발" data-take="발레코어가 3년째. 이쯤 되면 유행이 아니라 카테고리로 정착한 듯." data-group="슈즈" data-q="satin ballet flats trend fall 2026" data-since="2026 여름부터" data-traffic="여름 → 가을 연속 유지 아이템">
+          <h3>새틴 발레 플랫</h3>
+          <p>여름을 넘겨 가을까지 살아남은 신발. 새틴·레이스·시스루·러플이 가죽 아우터와 섞인다.</p>
+          <div class="meta"><span class="tag">Shoes</span></div>
+        </li>
+        <li class="item" data-sum="US 오픈 언급이 NYFW보다 690% 많았다" data-take="패션이 런웨이에서 경기장으로 옮겨간 듯. 브랜드 예산도 그쪽 따라가는 중." data-group="현상" data-q="US Open fashion coverage vs New York Fashion Week 2026" data-since="2026 US 오픈 기간" data-traffic="NYFW 대비 온라인 언급 +690%">
+          <h3>테니스가 패션위크를 이겼다</h3>
+          <p>US 오픈 관련 언급이 뉴욕패션위크보다 690% 많았다. 스포츠가 패션 무대 역할을 하는 중.</p>
+          <div class="meta"><span class="tag">US</span><span class="tag up">+690%</span></div>
+        </li>
+      </ul>
+      <p class="src">출처 · <a href="https://coveteur.com/fall-fashion-trends-2026">Coveteur</a> · <a href="https://www.whowhatwear.com/fashion/shopping/fall-2026-fashion-trends">Who What Wear</a> · <a href="https://www.spate.nyc/reports/2026-global-culture-shifts-report">Spate</a></p>
+    </section>
+
+    <!-- ================= 음식 ================= -->
+    <section class="cat" data-cat="food" data-plat="tiktok">
+      <div class="cat-head"><h2>음식</h2><span class="en">Food</span></div>
+      <ul class="items">
+        <li class="item" data-sum="달고 매운 조합이 서양 메뉴판으로" data-take="한국이 원조인 조합이 서양에서 이름 얻어 역수입되는 중인 듯. 고추장이랑 불닭이 이미 길을 깔아놨다." data-group="맛 · 재료" data-q="swicy sweet and spicy food trend 2026" data-since="확인 안 됨" data-traffic="핫허니 피자 · 칠리 망고 · 스파이시 메이플로 확산">
+          <h3>스와이시(Swicy) — 달고 매운</h3>
+          <p>핫허니 피자, 칠리 망고 디저트, 스파이시 메이플 소스. 불닭류 매운 라면 수요가 같은 흐름 위에 있다.</p>
+          <div class="meta"><span class="tag">Global</span></div>
+        </li>
+        <li class="item" data-sum="전년비 28% 성장, 과일이 사치재가 됐다" data-take="과일이 사치재로 소비되는 흐름인 듯. 국내 프리미엄 딸기나 샤인머스캣이 그대로 올라탈 수 있을 것 같다." data-group="맛 · 재료" data-q="Japanese strawberries food trend 2026 growth" data-since="확인 안 됨" data-traffic="게시물 2,300만 · 요리 8,700만 · +28.14% YoY">
+          <h3>일본 딸기</h3>
+          <p>이 파트에서 유일하게 규모가 숫자로 잡히는 항목. 성장률과 게시물 수가 같이 오른다.</p>
+          <div class="meta"><span class="tag">JP→Global</span><span class="tag up">+28.1% YoY</span></div>
+        </li>
+        <li class="item" data-sum="김치·비빔밥 다음 순번은 떡볶이" data-take="김치·비빔밥이랑 달리 떡볶이엔 '건강식' 이미지가 없는 듯. 근데 오히려 그래서 젊은 층에 먹히는 것 같다." data-group="맛 · 재료" data-q="tteokbokki international food trend 2026" data-since="확인 안 됨" data-traffic="해외로 넘어간 최신 한식 (Nat Geo)">
+          <h3>떡볶이</h3>
+          <p>해외로 넘어간 최신 한식 아이템. 김치·비빔밥 다음 순번을 떡볶이가 받았다.</p>
+          <div class="meta"><span class="tag">KR→Global</span></div>
+        </li>
+        <li class="item" data-sum="바삭함이 빠지고 부드러움이 왔다" data-take="바삭함이 지겨워진 게 아니라 소리로 승부하는 콘텐츠가 지겨워진 듯. ASMR 피로랑 같이 봐야 할 것 같다." data-group="질감 · 음료" data-q="creamy velvety texture food trend 2026" data-since="확인 안 됨" data-traffic="질감 선호 역전 · 다수 매체 공통 관측">
+          <h3>크런치 아웃, 크리미 인</h3>
+          <p>바삭함 대신 부드럽고 벨벳 같은 질감. 고단백 컴포트 푸드와 함께 간다.</p>
+          <div class="meta"><span class="tag">Texture</span></div>
+        </li>
+        <li class="item" data-sum="술 대신 '효능'을 마시는 흐름" data-take="술 대신 기능인 듯. 국내 무알콜 시장도 '맛'이 아니라 '효능'으로 팔아야 하는 이유가 여기 있다." data-group="질감 · 음료" data-q="Sleepy Girl Mocktail functional drinks tart cherry juice trend" data-since="확인 안 됨" data-traffic="타트체리 주스 +13.51% YoY">
+          <h3>슬리피 걸 목테일 · 기능성 음료</h3>
+          <p>술이 빠진 자리를 기능성 음료가 채우는 중.</p>
+          <div class="meta"><span class="tag">US</span><span class="tag up">+13.5% YoY</span></div>
+        </li>
+      </ul>
+      <p class="src">출처 · <a href="https://tastewise.io/blog/viral-food-trends">Tastewise</a> · <a href="https://www.nationalgeographic.com/travel/article/the-biggest-food-trends-for-2026">National Geographic</a></p>
+    </section>
+
+    <!-- ================= 뷰티 ================= -->
+    <section class="cat" data-cat="beauty" data-plat="tiktok">
+      <div class="cat-head"><h2>뷰티</h2><span class="en">Beauty</span></div>
+      <ul class="items">
+        <li class="item" data-sum="광도 매트도 아닌 중간, 올해 대표 기법" data-take="광 아니면 매트라는 이분법이 깨진 듯. 한국 쿠션 제품군이 제일 유리한 지점 같다." data-group="메이크업" data-q="cloud skin makeup trend 2026" data-term="cloud skin" data-since="2026 대표 기법" data-traffic="2026 대표 기법 · 다수 매체 1순위">
+          <span class="rank">01</span>
+          <h3>클라우드 스킨</h3>
+          <p>올해 가장 크게 퍼진 기법. 번쩍이는 광도, 완전 매트도 아닌 중간 지점 — 뿌옇게 부드러운 피부 표현이다.</p>
+          <div class="meta"><span class="tag">Makeup</span></div>
+        </li>
+        <li class="item" data-sum="납작한 매트가 지고 벨벳 질감이 왔다" data-take="음식 쪽 '크리미'랑 같은 주에 나온 흐름인 듯. 촉감 선호가 카테고리를 넘어서 움직이는 게 흥미롭다." data-group="메이크업" data-q="matte finish out velvety hydrated finish makeup 2026" data-term="velvet skin makeup" data-since="2026 전환" data-traffic="매트 → 벨벳 전환 · 2026 공통 관측">
+          <h3>매트는 끝, 벨벳이 왔다</h3>
+          <p>납작한 매트 마무리가 빠지고 촉촉하고 벨벳 같은 질감으로. 음식 파트의 '크리미 인'과 정확히 같은 흐름.</p>
+          <div class="meta"><span class="tag">Texture</span></div>
+        </li>
+        <li class="item" data-sum="경계를 뭉갠 립과 선이 살아있는 아이라인" data-take="경계를 지우는 게 핵심이라 기술 난도가 낮은 듯. 그래서 퍼지는 속도도 빠르다." data-group="메이크업" data-q="soft lived in makeup dewy wet look blurred lips structured eyeliner 2026" data-term="blurred lips makeup" data-since="2026 전반" data-traffic="2026 메이크업 예측 목록 공통 등장">
+          <h3>블러드 립 · 구조적 아이라이너</h3>
+          <p>소프트한 리브드인 룩, 물기 있는 듀이 피부, 경계를 뭉갠 볼드 립, 선이 살아 있는 아이라이너, 모노크롬 조합.</p>
+          <div class="meta"><span class="tag">Makeup</span></div>
+        </li>
+        <li class="item" data-sum="K뷰티가 만든 기준이 10년째 유효" data-take="K뷰티가 만든 기준어가 10년째 유효하다. 이쯤 되면 유행이 아니라 표준이 된 듯." data-group="스킨케어" data-q="glass skin K-beauty trend 2026" data-term="glass skin" data-since="K뷰티발 · 수년째" data-traffic="#glassskin 게시물 190만">
+          <span class="rank">02</span>
+          <h3>글래스 스킨</h3>
+          <p>한국식 미감이 만든 기준이 2026년에도 유효. 매끈하고 빛을 반사하는 피부가 여전히 목표점이다.</p>
+          <div class="meta"><span class="tag">KR→Global</span></div>
+        </li>
+        <li class="item" data-sum="피부 온도·환경에 반응하는 포뮬러" data-take="기후 변화가 화장품 스펙 안까지 들어온 듯. 사계절 온도차 큰 한국이 실증 시장으론 괜찮을 것 같다." data-group="스킨케어" data-q="climate adaptive beauty smart formulas 2026" data-term="climate adaptive skincare" data-since="2026 주류화" data-traffic="니치 → 주류 전환 (2026)">
+          <h3>클라이밋 어댑티브 뷰티</h3>
+          <p>피부 온도나 주변 환경에 반응하는 포뮬러. 니치 개념이던 게 올해 필수 카테고리로 넘어왔다.</p>
+          <div class="meta"><span class="tag">Skincare</span><span class="tag">니치→주류</span></div>
+        </li>
+        <li class="item" data-sum="즉효보다 오래 가는 피부로" data-take="즉효 대신 지속인 듯. 시술보다 루틴을 파는 쪽이 유리해지는 흐름." data-group="스킨케어" data-q="skin longevity intentional spending beauty trend 2026" data-term="skin longevity" data-since="2026 전반" data-traffic="즉효형 대비 소비 이동">
+          <h3>스킨 롱제비티</h3>
+          <p>빠른 효과 대신 오래 가는 피부. 아무거나 많이 사는 대신 의도적으로 골라 쓰는 소비로 옮겨가는 중.</p>
+          <div class="meta"><span class="tag">Skincare</span></div>
+        </li>
+        <li class="item" data-sum="액티브를 요일별로 돌려 쓴다" data-take="성분을 덜 쓰라는 방법론이 팔린다. 과잉 루틴에 대한 피로가 정점인 듯." data-group="스킨케어" data-q="skin cycling routine rotating actives trend" data-term="skin cycling" data-since="확인 안 됨" data-traffic="#skincycling 게시물 4.16만">
+          <h3>스킨 사이클링</h3>
+          <p>액티브 성분을 매일 몰아 쓰지 않고 요일별로 돌려 쓰는 방식. 온라인에서 가장 많이 논의된 스킨케어 방법론.</p>
+          <div class="meta"><span class="tag">Routine</span></div>
+        </li>
+        <li class="item" data-sum="Gen Z 65%가 사기 전에 틱톡을 켠다" data-take="뷰티 브랜드는 이제 웹 SEO보다 틱톡 검색 대응이 먼저인 듯. 제품명이 실제로 말로 불리는지부터 봐야 한다." data-group="소비 행동" data-q="TikTok primary search engine beauty shoppers Gen Z 65 percent 2026" data-term="tiktok beauty search" data-since="2026 집계" data-traffic="Gen Z 65% · 밀레니얼 55%가 구매 전 검색">
+          <h3>틱톡이 뷰티 검색엔진이 됐다</h3>
+          <p>Gen Z의 65%, 밀레니얼의 55%가 사기 전에 틱톡에서 제품을 찾아본다. 뷰티에선 구글보다 틱톡이 먼저다.</p>
+          <div class="meta"><span class="tag">TikTok</span><span class="tag up">65% / 55%</span></div>
+        </li>
+      </ul>
+      <p class="src">출처 · <a href="https://www.qogita.com/blog/tiktok-beauty-trends-2026/">Qogita</a> · <a href="https://chiyolife.com/tiktok-beauty-trends-that-actually-work-in-2026/">Chiyo Life</a> · <a href="https://www.thatlovepodcast.com/post/12-viral-tiktok-makeup-trends-everyone-will-try-in-2026">That Love Podcast</a></p>
+    </section>
+
+    <!-- ================= 밈 ================= -->
+    <section class="cat" data-cat="meme" data-plat="meme">
+      <div class="cat-head"><h2>지금 도는 밈</h2><span class="en">Memes</span></div>
+      <ul class="items">
+        <li class="item" data-sum="올림픽 이후 피드를 가장 크게 점령한 서사" data-take="스포츠 이벤트 뒤에 서사형 밈이 뜨는 건 다 같이 본 원본이 생겨서인 듯. 올림픽이나 월드컵 끝나면 매번 반복된다." data-group="이번 시즌" data-q="Villain Turned Hero meme 2026" data-since="2026 올림픽 직후" data-traffic="올림픽 이후 피드 점유 최상위 (NapoleonCat)">
+          <h3>Villain Turned Hero</h3>
+          <p>올림픽 끝나고 피드를 가장 크게 점령한 포맷. 악당처럼 굴던 인물이 결정적 순간에 편을 바꾸는 서사에 아무거나 갖다 붙인다.</p>
+          <div class="meta"><span class="tag">Post-Olympics</span></div>
+        </li>
+        <li class="item" data-sum="짧은 시간에 다 해치운 상황을 담담히 요약" data-take="담담한 요약이 웃음이 되는 건 결국 과장에 지쳐서인 듯." data-group="이번 시즌" data-q="Covered A Lot Of Ground meme 2026" data-since="2026 올림픽 직후" data-traffic="올림픽 이후 동반 확산">
+          <h3>Covered A Lot Of Ground</h3>
+          <p>같은 시기에 터진 짝꿍 밈. 짧은 시간에 말도 안 되게 많은 걸 해치운 상황을 담담하게 요약할 때 쓴다.</p>
+          <div class="meta"><span class="tag">Post-Olympics</span></div>
+        </li>
+        <li class="item" data-sum="인생 선택 캐묻는 사람 입 막는 용도" data-take="해명 안 할 권리를 밈으로 만든 것 같음. 지금 인터넷 정서의 핵심에 제일 가까운 듯." data-group="이번 시즌" data-q="No Further Questions meme guardian angel 2026" data-since="2026 (수호천사 밈 파생)" data-traffic="수호천사 밈 파생형 (2026)">
+          <h3>No Further Questions</h3>
+          <p>수호천사 밈이 진화한 2026년 버전. 내 인생 선택을 누가 캐물으면 이걸로 대화를 끊는다.</p>
+          <div class="meta"><span class="tag">Reaction</span></div>
+        </li>
+        <li class="item" data-sum="이상하게 구체적인 클립 모음" data-take="향수를 파는 게 아니라 '아주 구체적인 기억'을 파는 듯. 두루뭉술한 레트로는 이제 안 먹힌다." data-group="이번 시즌" data-q="rare aesthetic meme trend TikTok" data-since="확인 안 됨" data-traffic="향수 자극 콘텐츠 대표 포맷">
+          <h3>Rare Aesthetic</h3>
+          <p>이상하게 구체적이고 묘하게 만족스러운 클립을 모아 붙이는 시리즈. 향수 자극형 콘텐츠의 대표 포맷.</p>
+          <div class="meta"><span class="tag">Compilation</span></div>
+        </li>
+        <li class="item" data-sum="콧수염 하나가 며칠짜리 논쟁이 됐다" data-take="스타의 사소한 변화가 며칠짜리 콘텐츠가 된다. 시상식 시즌마다 반복되는 패턴인 듯." data-group="이번 시즌" data-q="Leonardo DiCaprio Oscars moustache meme Is This The Statement" data-since="2026 오스카 시상식" data-traffic="2026 오스카 · 레딧/X 최다 화제">
+          <h3>레오의 오스카 콧수염</h3>
+          <p>"배역용이냐 그냥 취향이냐" 논쟁이 레딧·트위터를 뒤덮었고, 여기서 "Is This The Statement" 포맷이 파생됐다.</p>
+          <div class="meta"><span class="tag">Reddit/X</span></div>
+        </li>
+        <li class="item" data-sum="3년 묵은 클립이 음정만 바꿔 부활" data-take="3년 묵은 클립이 음정만 바꿔서 부활했다. 요즘은 원본보다 편집본이 유행을 만드는 듯." data-group="돌아온 밈" data-q="Say Wallahi Bro meme IShowSpeed origin" data-since="원본 2023.05 · 재유행 2026.03" data-traffic="원본 클립 로블록스 1,800만 로벅스 (약 $225,000)">
+          <h3>Say Wallahi Bro</h3>
+          <p>IShowSpeed가 1,800만 로벅스(당시 약 22.5만 달러)짜리 로블록스 티셔츠를 사고 울먹인 클립. 3년 뒤 음정을 올린 버전으로 되살아났다.</p>
+          <div class="meta"><span class="tag">2023 원본</span><span class="tag up">2026 재유행</span></div>
+        </li>
+        <li class="item" data-sum="2019·2022·2026, 세 번째 유행" data-take="2019, 2022, 2026. 벌써 세 번째다. 밈이 3~4년 주기로 재활용된다는 걸 보여주는 표본인 듯." data-group="돌아온 밈" data-q="City Boy meme Gravity Falls TikTok 2026" data-since="2019.06 시작 · 2022.06 밈화 · 2026.01 재유행" data-traffic="2019 · 2022 · 2026 세 차례 유행">
+          <h3>City Boy</h3>
+          <p>2019년 "City Boy Summer" 트윗에서 시작해 2022년 〈그래비티 폴즈〉 클립과 붙었고, 2026년 1월 틱톡에서 대규모로 부활했다.</p>
+          <div class="meta"><span class="tag">3번째 유행</span></div>
+        </li>
+        <li class="item" data-sum="직장 유머는 밈 중 수명이 제일 길다" data-take="직장 유머는 밈 중에 제일 오래 가는 듯. 상황 자체가 안 바뀌니까 그런 것 같다." data-group="돌아온 밈" data-q="Job Invincible meme Homer dropped his donut trend" data-since="Homer 사운드 2026.05" data-traffic="5월 사운드 트렌드 · 직장 유머 계열">
+          <h3>Job (Invincible) · Homer dropped his donut</h3>
+          <p>전자는 직장 공감형 짤, 후자는 5월에 터진 사운드 트렌드. 밀레니얼·Z세대가 가장 많이 돌리는 계열.</p>
+          <div class="meta"><span class="tag">Sound</span></div>
+        </li>
+        <li class="item" data-sum="자는 사람 옆에서 방 뒤집는 포맷" data-take="이번 달 것. 지금 안 쓰면 다음 달엔 촌스러워질 듯." data-group="돌아온 밈" data-q="Right Round Hangover TikTok trend September 2026" data-new="1" data-since="2026.09" data-traffic="9월 틱톡 대표 사운드">
+          <h3>Right Round Hangover</h3>
+          <p>자려는 사람 옆에서 방을 뒤집어 놓는 포맷. 이번 달 틱톡 대표 사운드 중 하나.</p>
+          <div class="meta"><span class="tag">TikTok</span><span class="tag">Sep</span></div>
+        </li>
+        <li class="item" data-sum="어릴 적 인형 소개를 어른 버전으로" data-take="유년기 홈비디오를 소재로 쓰는 게 표준이 된 듯. 90년대생 아카이브가 콘텐츠 자원이 됐다." data-group="돌아온 밈" data-q="American Girl doll introduction TikTok trend 2026" data-since="원본은 유년기 홈비디오 · 재유행 2026" data-traffic="유년기 홈비디오 리메이크 포맷">
+          <h3>American Girl 인형 소개 챌린지</h3>
+          <p>어린 시절 인형 소개 영상을 그 텐션 그대로 가져와, 어른이 된 지금의 '최애 소유물'을 소개한다.</p>
+          <div class="meta"><span class="tag">TikTok</span></div>
+        </li>
+        <li class="item" data-sum="진짜인지 판별하는 게 콘텐츠가 됐다" data-take="이제 판별하는 행위 자체가 콘텐츠가 되는 단계인 듯. 팩트체크 계정이 크는 이유도 여기 있는 것 같다." data-group="흐름" data-q="AI hyperreal video memes indistinguishable from reality 2026" data-since="2026 본격화" data-traffic="2026 인터넷 문화 핵심 변화">
+          <h3>밈과 현실이 구분 안 되는 단계</h3>
+          <p>하이퍼리얼 AI 영상, 기괴한 지정학 농담, 초고속 리액션 문화가 타임라인을 지배 중. 진짜인지 판별하는 것 자체가 콘텐츠가 됐다.</p>
+          <div class="meta"><span class="tag">AI</span></div>
+        </li>
+        <li class="item" data-sum="5분 만에 만든 것 같은 게 더 기억된다" data-take="돈 쓸수록 광고처럼 보인다. 브랜드가 제일 받아들이기 힘들어하는 조언인 듯." data-group="흐름" data-q="deliberately low quality graphics meme aesthetic 2026" data-since="2026 전반" data-traffic="저품질 미감 회귀 (2026 관측)">
+          <h3>일부러 못 만든 그래픽</h3>
+          <p>5분 만에 만든 것 같은 이미지가 잘 만든 디자인보다 오래 기억된다. 저화질·비전문가 미감이 다시 무기가 되는 중.</p>
+          <div class="meta"><span class="tag">Aesthetic</span></div>
+        </li>
+        <li class="item" data-sum="같은 밈이 세대별로 안 통한다" data-take="하나의 밈으로 전 연령 잡으려는 기획이 제일 위험한 듯. 타깃부터 정하고 시작하는 게 맞다." data-group="흐름" data-q="Gen Alpha chaos humor vs Gen Z relatable memes generational" data-since="해당 없음" data-traffic="Gen Alpha · Z · X 선호 분화">
+          <h3>세대별로 웃는 지점이 갈렸다</h3>
+          <p>Gen Alpha는 말이 안 되는 카오스, Z·밀레니얼은 워라밸 공감, X는 노스탤지어. 같은 밈이 세대별로 안 통한다.</p>
+          <div class="meta"><span class="tag">Insight</span></div>
+        </li>
+      </ul>
+      <p class="src">출처 · <a href="https://knowyourmeme.com/memes/say-wallahi-bro">Know Your Meme</a> · <a href="https://napoleoncat.com/blog/trending-memes/">NapoleonCat</a> · <a href="https://www.ranker.com/list/funny-memes-2026/alby-thompson">Ranker</a></p>
+    </section>
+
+    <!-- ================= 전자기기 ================= -->
+    <section class="cat" data-cat="tech" data-plat="review">
+      <div class="cat-head"><h2>전자기기</h2><span class="en">Tech</span></div>
+      <ul class="items">
+        <li class="item" data-sum="애플의 첫 폴더블, 크리스를 없앴다" data-take="애플이 늦게 들어와서 기준 가져가는 패턴이 또 반복되는 듯. 국내 제조사엔 시장이 커지는 기회이자 위기 같다." data-group="이달 신제품" data-q="foldable iPhone Ultra September 2026 crease" data-since="2026.09.09 공개" data-traffic="가격 약 $2,000">
+          <h3>폴더블 iPhone Ultra</h3>
+          <p>접히는 자국(크리스)을 없앤 게 이번 달 최대 화제. 애플의 첫 폴더블.</p>
+          <div class="meta"><span class="tag">Apple</span><span class="tag">09.09</span></div>
+        </li>
+        <li class="item" data-sum="브러시 헤드 안에 카메라가 들어갔다" data-take="카메라 넣는 게 목적이 아니라 데이터를 넣는 것 같음. 구강 데이터가 다음 헬스케어 시장이 될 듯." data-group="이달 신제품" data-q="Dyson toothbrush with camera 2026" data-new="1" data-since="2026.09 공개" data-traffic="2026.09 공개 · 가격 미정">
+          <h3>카메라 달린 다이슨 칫솔</h3>
+          <p>브러시 헤드 안에 카메라가 들어갔다. 이번 달 가장 이상한 가젯.</p>
+          <div class="meta"><span class="tag">Gadget</span></div>
+        </li>
+        <li class="item" data-sum="기내 반입 되는 크기로 접히는 천체망원경" data-take="취미 장비 소형화는 여행 콘텐츠 수요랑 붙어 있는 듯. 캠핑 다음 아이템 후보 같다." data-group="이달 신제품" data-q="portable travel telescope 2026 carry on" data-new="1" data-since="2026.09 공개" data-traffic="기내 반입 크기 · 2026.09 공개">
+          <h3>가방에 들어가는 망원경</h3>
+          <p>기내 반입 가능한 크기까지 접히는 천체망원경. 취미 장비의 소형화 흐름.</p>
+          <div class="meta"><span class="tag">Gadget</span></div>
+        </li>
+        <li class="item" data-sum="1인 촬영 수요가 만든 이달 최고 평점" data-take="360 카메라가 리뷰 상위권인 걸 보면 1인 촬영 수요가 계속 큰 듯." data-group="크리에이터 장비" data-q="Insta360 X6 review 2026" data-since="2026 출시" data-traffic="TechRadar 9월 최고 평가 기기">
+          <h3>Insta360 X6</h3>
+          <p>튼튼한 마감, 긴 배터리, 어떤 조명에서도 선명한 결과물로 리뷰어들을 설득했다.</p>
+          <div class="meta"><span class="tag">Creator</span></div>
+        </li>
+        <li class="item" data-sum="플래그십 기능 절반값 무선 마이크" data-take="소리가 화질보다 먼저인 듯. 장비 하나만 산다면 마이크가 맞는 것 같다." data-group="크리에이터 장비" data-q="DJI Mic Mini 2S review price" data-since="2026 출시" data-traffic="플래그십 Mic 3의 약 절반 가격">
+          <h3>DJI Mic Mini 2S</h3>
+          <p>내장 녹음, AI 노이즈 캔슬 등 상위 모델 기능 상당수를 절반값에 넣었다.</p>
+          <div class="meta"><span class="tag">Creator</span></div>
+        </li>
+        <li class="item" data-sum="화제성과 판매량 간극이 제일 큰 카테고리" data-take="화제성이랑 판매량 간극이 제일 큰 카테고리인 듯. 기사만 보고 시장 크기 판단하면 크게 틀린다." data-group="카테고리" data-q="AI smart glasses 2026 market hype" data-since="2026 본격화" data-traffic="판매·점유율은 폰·워치가 여전히 우위">
+          <h3>AI 글래스 / 스마트 글래스</h3>
+          <p>올해 가장 말이 많은 카테고리. 화제성과 실제 판매량의 간극이 가장 큰 제품군이기도 하다.</p>
+          <div class="meta"><span class="tag">Category</span></div>
+        </li>
+      </ul>
+      <p class="src">출처 · <a href="https://www.yankodesign.com/2026/09/03/the-8-best-gadgets-of-september-2026/">Yanko Design</a> · <a href="https://www.techradar.com/tech/top-tech-of-the-month-the-best-new-gadgets-weve-tested-for-september-2026">TechRadar</a></p>
+    </section>
+
+    <!-- ================= 여행 ================= -->
+    <section class="cat" data-cat="travel" data-plat="travel">
+      <div class="cat-head"><h2>여행</h2><span class="en">Travel</span></div>
+      <ul class="items">
+        <li class="item" data-sum="트립어드바이저 급상승 세계 1위" data-take="오버투어리즘 피한 대안 섬이 1위. 유명 도시를 피하는 게 올해 여행 기준이 된 듯." data-group="어워드 1위" data-q="Madeira Tripadvisor top trending destination 2026" data-since="2026 어워드 발표" data-traffic="트립어드바이저 급상승 세계 1위">
+          <h3>마데이라, 포르투갈</h3>
+          <p>트래블러스 초이스 2026 1위. 가족 단위 액티비티 목적지로 밀고 있다.</p>
+          <div class="meta"><span class="tag">Tripadvisor</span></div>
+        </li>
+        <li class="item" data-sum="검색 +92%, 미국 산악 리조트의 급등" data-take="미국 안에서 산악 리조트가 급등했다. 팬데믹 때 생긴 '넓은 곳' 선호가 아직 안 꺼진 듯." data-group="검색 급상승" data-q="Big Sky Montana Expedia trending destination 2026" data-since="2026 실시간 검색" data-traffic="검색 관심도 +92%">
+          <h3>빅 스카이, 미국</h3>
+          <p>익스피디아 실시간 검색량 1위. 증가폭이 가장 크다.</p>
+          <div class="meta"><span class="tag">Expedia</span><span class="tag up">+92%</span></div>
+        </li>
+        <li class="item" data-sum="검색 +71%, 일본에서 도시 아닌 섬으로" data-take="일본에서도 도쿄·오사카가 아니라 섬. 한국인 여행 패턴이랑 정확히 겹쳐서 항공권부터 오를 듯." data-group="검색 급상승" data-q="Okinawa trending travel destination 2026" data-since="2026 실시간 검색" data-traffic="검색 관심도 +71%">
+          <h3>오키나와</h3>
+          <p>급상승 2위. 일본 안에서도 도시 아닌 섬 쪽으로 관심이 옮겨간다.</p>
+          <div class="meta"><span class="tag">JP</span><span class="tag up">+71%</span></div>
+        </li>
+        <li class="item" data-sum="검색 +63%, 이탈리아 본토를 건너뛴다" data-take="이탈리아 본토를 건너뛰는 흐름인 듯. 유럽 두 번째 이상 가는 사람들이 만든 순위 같다." data-group="검색 급상승" data-q="Sardinia trending destination 2026 Expedia" data-since="2026 실시간 검색" data-traffic="검색 관심도 +63%">
+          <h3>사르데냐, 이탈리아</h3>
+          <p>급상승 3위. 유럽 섬 휴양지 수요가 본토보다 빠르게 는다.</p>
+          <div class="meta"><span class="tag">IT</span><span class="tag up">+63%</span></div>
+        </li>
+        <li class="item" data-sum="검색·예약 모두 1위, 당분간 안 바뀐다" data-take="검색이랑 예약 둘 다 1위. 물가랑 항공편이 만든 결과라 당분간 안 바뀔 듯." data-group="예약 기준" data-q="Bangkok most booked city 2026 eDreams" data-since="2026 예약 데이터" data-traffic="전 세계 검색·예약 1위 도시">
+          <h3>방콕</h3>
+          <p>eDreams 기준 가장 많이 검색되고 가장 많이 예약된 도시. 2위는 파리.</p>
+          <div class="meta"><span class="tag">Booking #1</span></div>
+        </li>
+        <li class="item" data-sum="카니발 한 번에 1년 예약이 몰린다" data-take="카니발 한 번에 1년 예약이 몰린다. 이벤트가 도시 수요를 만드는 대표 사례인 듯." data-group="예약 기준" data-q="Rio de Janeiro Carnival bookings 2026" data-since="2026 예약 데이터" data-traffic="향후 1년 예약 3위">
+          <h3>리우데자네이루</h3>
+          <p>카니발 시즌에 방문이 몰린다.</p>
+          <div class="meta"><span class="tag">BR</span></div>
+        </li>
+      </ul>
+      <p class="src">출처 · <a href="https://www.timeout.com/news/the-top-trending-destinations-for-2026-travel-revealed-by-expedia-102325">Time Out</a> · <a href="https://www.expedia.com/unpack26/destinations-of-the-year">Expedia</a></p>
+    </section>
+
+    <!-- ================= 라이프스타일 ================= -->
+    <section class="cat" data-cat="life" data-plat="web">
+      <div class="cat-head"><h2>라이프스타일</h2><span class="en">Lifestyle</span></div>
+      <ul class="items">
+        <li class="item" data-sum="신경계를 수치로 관리하는 웰니스" data-take="스트레스 관리가 '수치로 관리하는 것'이 된 듯. 웨어러블 시장이랑 바로 붙는 흐름." data-group="웰니스" data-q="nervous system maxxing wellness trend 2026" data-since="2026 리포트 등재" data-traffic="Spate 2026 6대 글로벌 테마">
+          <h3>Nervous System Maxxing</h3>
+          <p>신경계를 관리 대상으로 보는 웰니스. 바르고 입는 웰니스, 최적화 강박이 같은 묶음으로 움직인다.</p>
+          <div class="meta"><span class="tag">Wellness</span></div>
+        </li>
+        <li class="item" data-sum="불확실할수록 커지는 점성술·타로 소비" data-take="불확실성 커지면 점 보러 간다. 경기 지표의 정서적 대체재로 읽어야 할 듯." data-group="웰니스" data-q="Mystic Momentum astrology spirituality trend 2026" data-since="2026 리포트 등재" data-traffic="Spate 2026 6대 글로벌 테마">
+          <h3>Mystic Momentum</h3>
+          <p>점성술·타로·영성 소비가 웰니스 옆자리로 들어왔다. 불확실성이 클수록 커지는 카테고리.</p>
+          <div class="meta"><span class="tag">Wellness</span></div>
+        </li>
+        <li class="item" data-sum="AI가 빨라질수록 아날로그가 팔린다" data-take="AI가 빨라질수록 손으로 만지는 게 팔리는 듯. 필름, LP, 종이 다이어리가 같이 움직인다." data-group="정서" data-q="nostalgia mania analog obsession trend 2026" data-since="2026 리포트 등재" data-traffic="Spate 2026 6대 글로벌 테마">
+          <h3>Nostalgia Mania · Analog Obsession</h3>
+          <p>필름, 종이, 옛 물건. AI가 빨라질수록 손에 잡히는 아날로그로 돌아가는 반작용.</p>
+          <div class="meta"><span class="tag">Global</span></div>
+        </li>
+        <li class="item" data-sum="낯선 기술일수록 익숙한 외피를 입는다" data-take="신제품에 옛날 디자인 코드 붙이는 건 일종의 안전장치인 듯. 낯선 기술일수록 익숙한 외피가 필요한 것 같다." data-group="정서" data-q="return to tradition heritage design trend 2026" data-since="2026 전반" data-traffic="미국·인도·유럽·중동 공통 관측">
+          <h3>전통으로의 회귀</h3>
+          <p>기술이 미래로 갈수록 톤은 오래된 쪽으로. 옛 디자인 코드를 입은 신제품이 늘고 있다.</p>
+          <div class="meta"><span class="tag">Cross-region</span></div>
+        </li>
+        <li class="item" data-sum="매끈하지만 특징 없는 콘텐츠의 끝" data-take="브랜드가 제일 늦게 받아들이는 변화인 듯. 잘 만든 광고가 손해 보는 시기다." data-group="소비 · 콘텐츠" data-q="authenticity over perfection content trend 2026" data-since="2026 전반" data-traffic="Weber Shandwick 2026 10대 트렌드">
+          <h3>완벽함보다 진짜</h3>
+          <p>매끈하지만 특징 없는 콘텐츠의 시대가 끝나가는 중. 사람이 끌고 가는 이야기가 다시 먹힌다.</p>
+          <div class="meta"><span class="tag">Content</span></div>
+        </li>
+        <li class="item" data-sum="술이 비운 자리를 카페인과 단백질이" data-take="술이 비운 자리를 카페인이랑 단백질이 가져갔다. 주류 회사가 무알콜 말고 기능성으로 가야 하는 이유인 듯." data-group="소비 · 콘텐츠" data-q="sober curious caffeine protein zyn trend 2026" data-since="확인 안 됨" data-traffic="Spate 2026 관측 · 무알콜 대체 수요">
+          <h3>술 대신 다른 각성</h3>
+          <p>음주는 줄고 카페인·니코틴 파우치·단백질로 대체. 커피 버킷, 몬스터 라떼가 그 증상.</p>
+          <div class="meta"><span class="tag">US/EU</span></div>
+        </li>
+      </ul>
+      <p class="src">출처 · <a href="https://www.spate.nyc/reports/2026-global-culture-shifts-report">Spate 2026 Global Culture Shifts</a> · <a href="https://webershandwick.com/news-insights/predicting-the-unpredictable-the-top-10-cultural-trends-and-moments-of-2026">Weber Shandwick</a></p>
+    </section>
+
+  </div>
+
+  <section class="diary" aria-labelledby="d1">
+    <h2 id="d1">9월에 남은 날짜</h2>
+    <p class="sub">해외 피드가 한 번씩 크게 출렁이는 날. 여기 맞춰 올리면 흐름을 탄다.</p>
+    <ul class="days">
+      <li class="day"><span class="dt">09.09</span><span class="ev">애플 이벤트 &amp; NFL 개막<small>폴더블 iPhone Ultra 공개일이자 미식축구 시즌 첫날 — 미국 타임라인이 하루 종일 이 둘로 찬다.</small></span></li>
+      <li class="day"><span class="dt">09.14</span><span class="ev">에미상<small>드라마 화제작 순위가 이날 정리된다.</small></span></li>
+      <li class="day"><span class="dt">~09.15</span><span class="ev">뉴욕 패션위크<small>15일까지 For You 피드를 점령. 다만 언급량은 US 오픈에 밀렸다.</small></span></li>
+      <li class="day"><span class="dt">09.27</span><span class="ev">MTV VMAs<small>음악 숏폼이 한 번 더 크게 도는 날.</small></span></li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p><b>이 보드는 매주 월요일에 다시 뽑는다.</b> 지금 보고 있는 건 WEEK 36(8월 31일~9월 6일) 스냅샷이고, 기준 시각은 2026년 9월 5일이다. 시작일과 트래픽은 출처에 실린 값만 옮겼고, 공개된 수치가 없는 항목은 숫자를 지어내는 대신 <b>어느 매체가 어떤 지위로 지목했는지</b>를 적었다. 틱톡 해시태그 조회수는 모두 <b>누적치</b>이며 단일 연도 수치가 아니다.</p>
+    <div class="imprint">
+      <p>「지금 이슈 있나요?」 &nbsp;|&nbsp; 운영 · 피유글로벌 &nbsp;|&nbsp; 문의 · 도메인 개설 후 등록 예정</p>
+      <p>개인정보처리방침 · 이 페이지는 방문자 정보를 수집·저장하지 않으며 쿠키를 사용하지 않는다. 광고나 분석 도구를 붙이는 시점에 이 문구를 갱신해야 한다.</p>
+      <p>인용한 수치의 저작권은 각 매체에 있으며, 본문의 <b>왜?</b> 해설과 <b>총평</b>은 이 보드가 직접 작성한 것이다.</p>
+    </div>
+    <div class="links">
+      <a href="https://www.billboard.com/charts/hot-100/">Billboard</a>
+      <a href="https://www.steamdb.com/en/tools/steam-charts">SteamDB</a>
+      <a href="https://screenrant.com/highest-grossing-movies-2026-box-office/">Screen Rant</a>
+      <a href="https://knowyourmeme.com/">Know Your Meme</a>
+      <a href="https://sqmagazine.co.uk/social-media-statistics/">SQ Magazine</a>
+      <a href="https://businesstats.com/tiktok-top-hashtags-by-post-views/">BusinessTats</a>
+      <a href="https://www.spate.nyc/reports/2026-global-culture-shifts-report">Spate</a>
+      <a href="https://tastewise.io/blog/viral-food-trends">Tastewise</a>
+      <a href="https://coveteur.com/fall-fashion-trends-2026">Coveteur</a>
+      <a href="https://www.timeout.com/news/the-top-trending-destinations-for-2026-travel-revealed-by-expedia-102325">Time Out</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // 세계 시계
+  var clocks = [].slice.call(document.querySelectorAll('#clocks time'));
+  function tick(){
+    var now = new Date();
+    clocks.forEach(function(el){
+      el.textContent = new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:el.dataset.tz}).format(now);
+    });
+  }
+  tick();
+  setInterval(tick, 10000);
+
+  var MAX = 50; // 한 파트당 표시 상한
+
+  // 수치·비율은 자동으로 굵게 — 작은 글씨에서 포인트가 먼저 읽히게 한다
+  function emphasize(text){
+    return text.replace(/(\+?\$?\d[\d,\.]*\s?(?:조|억|만|%|배|위|주|개|초|명|장|달러|엔|년|건|회))/g,
+                        '<strong>$1</strong>');
+  }
+
+  // 항목 → 실제로 그게 살아 있는 플랫폼으로 보낸다
+  var PLATFORMS = {
+    instagram: {label:'인스타그램에서 보기', base:'https://www.instagram.com/explore/search/keyword/?q='},
+    youtube:   {label:'유튜브에서 보기',    base:'https://www.youtube.com/results?search_query='},
+    shorts:    {label:'쇼츠에서 보기',      base:'https://www.youtube.com/results?search_query=', suffix:' #shorts'},
+    tiktok:    {label:'틱톡에서 보기',      base:'https://www.tiktok.com/search?q='},
+    spotify:   {label:'스포티파이에서 듣기', base:'https://open.spotify.com/search/'},
+    steam:     {label:'스팀에서 보기',      base:'https://store.steampowered.com/search/?term='},
+    movie:     {label:'박스오피스에서 보기', base:'https://www.boxofficemojo.com/search/?q='},
+    meme:      {label:'Know Your Meme에서 보기', base:'https://knowyourmeme.com/search?q='},
+    pinterest: {label:'핀터레스트에서 보기', base:'https://www.pinterest.com/search/pins/?q='},
+    review:    {label:'유튜브 리뷰 보기',   base:'https://www.youtube.com/results?search_query=', suffix:' review'},
+    travel:    {label:'트립어드바이저에서 보기', base:'https://www.tripadvisor.com/Search?q='},
+    web:       {label:'자세히 보기',        base:'https://www.google.com/search?q='}
+  };
+
+  // 카드 제목에서 검색어를 뽑는다 (data-term이 있으면 그걸 우선)
+  function searchTerm(item){
+    if (item.dataset.term) return item.dataset.term;
+    var t = item.querySelector('h3').textContent.trim().replace(/[〈〉「」]/g, '');
+    var quoted = t.match(/"([^"]+)"/);
+    if (quoted){
+      var artist = t.split('—')[0].replace(/"[^"]*"/g, '').trim();
+      return (quoted[1] + ' ' + artist).trim();
+    }
+    return t.split('—')[0].split('·')[0].trim();
+  }
+
+  function destination(plat, term){
+    var conf = PLATFORMS[plat] || PLATFORMS.web;
+    return conf.base + encodeURIComponent(term + (conf.suffix || ''));
+  }
+
+  function factRow(label, value, isTraffic){
+    var na = !value || /확인 안 됨|공개 수치 없음|해당 없음/.test(value);
+    // ' · '로 묶인 지표는 한 줄에 하나씩 끊어서 보여준다
+    var lines = (value || '확인 안 됨').split(' · ');
+    return lines.map(function(line, i){
+      var soft = isTraffic && !/\d/.test(line);
+      return '<div class="fact' + (isTraffic ? ' t' : '') + (i ? ' cont' : '') + '">' +
+               '<span class="lbl">' + (i ? '' : label) + '</span>' +
+               '<span class="val' + (na ? ' na' : '') + (soft ? ' soft' : '') + '">' + line + '</span>' +
+             '</div>';
+    }).join('');
+  }
+
+  document.querySelectorAll('.cat').forEach(function(sec){
+    var track = sec.querySelector('.items');
+    var plat = sec.dataset.plat || 'web';
+    var items = [].slice.call(track.children);
+
+    items.slice(MAX).forEach(function(el){ el.remove(); });   // 상한 초과분 제거
+    items = items.slice(0, MAX);
+
+    // 그룹별 순위 매기고, 그룹이 바뀌는 자리에 헤더를 끼운다
+    var lastGroup = null, groupRank = 0, groupCounts = {};
+    items.forEach(function(item){
+      var g = item.dataset.group || '';
+      groupCounts[g] = (groupCounts[g] || 0) + 1;
+    });
+    items.forEach(function(item, n){
+      var g = item.dataset.group || '';
+      if (g !== lastGroup){
+        var head = document.createElement('li');
+        head.className = 'group-head';
+        head.innerHTML = g + '<i>' + groupCounts[g] + '개</i>';
+        track.insertBefore(head, item);
+        lastGroup = g;
+        groupRank = 0;
+      }
+      groupRank++;
+      var r = item.querySelector('.rank');
+      if (!r){
+        r = document.createElement('span');
+        r.className = 'rank';
+        item.insertBefore(r, item.firstChild);
+      }
+      r.textContent = (groupRank < 10 ? '0' : '') + groupRank;
+      if (n >= 9) item.classList.add('over');   // 카드에는 상위 9개만
+    });
+
+    items.forEach(function(item){
+      // 시작일 · 트래픽
+      var facts = document.createElement('div');
+      facts.className = 'facts';
+      facts.innerHTML = factRow('시작', item.dataset.since, false) +
+                        factRow('트래픽', item.dataset.traffic, true);
+      var h3 = item.querySelector('h3');
+      var desc = item.querySelector('p');
+      if (desc) desc.innerHTML = emphasize(desc.textContent);
+      var meta = item.querySelector('.meta');
+
+      // 제목 → 한줄요약 → 왜? → 지표 → 키워드 순
+      var sum = null;
+      if (item.dataset.sum){
+        sum = document.createElement('div');
+        sum.className = 'summary';
+        sum.textContent = item.dataset.sum;
+        h3.after(sum);
+      }
+
+      var panel = document.createElement('details');
+      panel.className = 'take';
+      panel.innerHTML = '<summary>왜?</summary><div class="take-panel"></div>';
+      var panelBody = panel.querySelector('.take-panel');
+      if (desc) panelBody.appendChild(desc);
+      if (item.dataset.take){
+        var tb = document.createElement('div');
+        tb.className = 'take-body';
+        tb.innerHTML = emphasize(item.dataset.take);
+        panelBody.appendChild(tb);
+      }
+      (sum || h3).after(panel);
+      panel.after(facts);
+      facts.after(meta);
+
+      // 이번 주 신규
+      if (item.dataset.new === '1'){
+        var nb = document.createElement('span');
+        nb.className = 'badge-new';
+        nb.textContent = 'NEW';
+        meta.insertBefore(nb, meta.firstChild);
+      }
+
+      // 관련 플랫폼으로 이동
+      var a = document.createElement('a');
+      a.className = 'more';
+      var iplat = item.dataset.plat || plat;
+      a.href = item.dataset.link || destination(iplat, searchTerm(item));
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.textContent = (PLATFORMS[iplat] || PLATFORMS.web).label + ' ↗';
+      item.appendChild(a);
+    });
+
+    // 컨트롤
+    var nav = document.createElement('div');
+    nav.className = 'nav';
+    nav.innerHTML =
+      '<span class="cnt">' + items.length + '개</span>' +
+      '<button type="button" class="expand">전체 보기 →</button>' +
+      '<button type="button" class="arrow" data-nav="prev" aria-label="이전">‹</button>' +
+      '<button type="button" class="arrow" data-nav="next" aria-label="다음">›</button>';
+    sec.querySelector('.cat-head').appendChild(nav);
+
+    var prev = nav.querySelector('[data-nav="prev"]');
+    var next = nav.querySelector('[data-nav="next"]');
+    var expand = nav.querySelector('.expand');
+
+    prev.addEventListener('click', function(){ track.scrollBy({left:-track.clientWidth, behavior:'smooth'}); });
+    next.addEventListener('click', function(){ track.scrollBy({left: track.clientWidth, behavior:'smooth'}); });
+
+    function sync(){
+      if (track.classList.contains('open')) return;
+      prev.disabled = track.scrollLeft < 8;
+      next.disabled = track.scrollLeft > track.scrollWidth - track.clientWidth - 8;
+    }
+    track.addEventListener('scroll', sync, {passive:true});
+    window.addEventListener('resize', sync);
+    sync();
+
+    expand.addEventListener('click', function(){
+      location.hash = '#/' + sec.dataset.cat;   // 해당 파트 전용 페이지로 이동
+    });
+  });
+
+  // 이번 주 신규 건수
+  document.getElementById('newCount').textContent =
+    document.querySelectorAll('.item[data-new="1"]').length + '건';
+
+  // 분야 필터
+  var chips = document.getElementById('chips');
+  var cats = [].slice.call(document.querySelectorAll('.cat'));
+
+  function currentPick(){
+    var on = chips.querySelector('[aria-pressed="true"]');
+    return on ? on.dataset.cat : 'all';
+  }
+  function applyFilter(){
+    var pick = currentPick();
+    cats.forEach(function(s){ s.hidden = pick !== 'all' && s.dataset.cat !== pick; });
+  }
+  chips.addEventListener('click', function(e){
+    var btn = e.target.closest('.chip');
+    if(!btn) return;
+    [].forEach.call(chips.children, function(c){ c.setAttribute('aria-pressed', String(c === btn)); });
+    applyFilter();
+  });
+
+  // 파트별 전용 페이지 (해시 라우팅 — 뒤로가기로 돌아온다)
+  var backbar = document.getElementById('backbar');
+  var dTitle = document.getElementById('dTitle');
+  var dCnt = document.getElementById('dCnt');
+
+  function route(){
+    var key = location.hash.replace(/^#\/?/, '');
+    var targets = cats.filter(function(s){ return s.dataset.cat === key; });
+
+    if(targets.length){
+      document.body.classList.add('detail');
+      var count = 0;
+      cats.forEach(function(s){
+        var on = targets.indexOf(s) !== -1;
+        s.hidden = false;                                  // [hidden] 해제 후 CSS로 제어
+        s.classList.toggle('active', on);
+        s.querySelector('.items').classList.toggle('open', on);
+        [].forEach.call(s.querySelectorAll('details.take'), function(d){ d.open = on; });
+        if(on) count += s.querySelectorAll('.item').length;
+      });
+      var chipEl = chips.querySelector('[data-cat="' + key + '"]');
+      dTitle.textContent = chipEl ? chipEl.textContent : targets[0].querySelector('.cat-head h2').textContent;
+      dCnt.textContent = count + '개 전체';
+      window.scrollTo(0, 0);
+    } else {
+      document.body.classList.remove('detail');
+      cats.forEach(function(s){
+        s.classList.remove('active');
+        var t = s.querySelector('.items');
+        t.classList.remove('open');
+        t.scrollLeft = 0;
+      });
+      applyFilter();
+    }
+  }
+  window.addEventListener('hashchange', route);
+  route();
+</script>
+</body>
+</html>
