@@ -238,29 +238,30 @@
     line-height:1;color:var(--hot);font-variant-numeric:tabular-nums;
   }
 
-  /* 수치가 없는 항목 — 이름을 크게 세운 텍스트 비주얼 */
+  /* 수치가 없는 항목 — 이름을 가운데 세운 텍스트 비주얼 */
   .viz-word{
     background:var(--ink);border-color:var(--ink);
-    align-content:start;justify-items:start;text-align:left;padding:18px;gap:0;
+    place-content:center;justify-items:center;align-content:center;
+    text-align:center;padding:26px 20px;gap:0;
   }
   .viz-word .viz-kicker{
-    font-family:var(--f-mono);font-size:9.5px;font-weight:600;letter-spacing:.18em;
-    text-transform:uppercase;color:var(--hot);margin-bottom:10px;
+    font-family:var(--f-mono);font-size:9px;font-weight:600;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--hot);margin-bottom:14px;
   }
   .viz-word .viz-word-big{
     font-family:var(--f-display);font-weight:900;letter-spacing:-.045em;
-    font-size:clamp(20px,9cqw,34px);line-height:1.12;color:var(--paper);
-    display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;
-    word-break:keep-all;
+    font-size:clamp(22px,11.5cqw,42px);line-height:1.04;color:var(--paper);
+    text-wrap:balance;word-break:keep-all;
+    display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
   }
   .viz-word::after{
-    content:"";position:absolute;left:18px;right:18px;bottom:16px;height:2px;
-    background:var(--hot);opacity:.85;
+    content:"";position:absolute;left:50%;transform:translateX(-50%);
+    bottom:24px;width:30px;height:2px;background:var(--hot);
   }
-  .items.open .item .viz-word{padding:11px}
-  .items.open .item .viz-word .viz-kicker{font-size:8px;margin-bottom:6px;letter-spacing:.12em}
+  .items.open .item .viz-word{padding:12px 10px}
+  .items.open .item .viz-word .viz-kicker{font-size:7.5px;margin-bottom:7px;letter-spacing:.14em}
   .items.open .item .viz-word .viz-word-big{font-size:14px;-webkit-line-clamp:4}
-  .items.open .item .viz-word::after{left:11px;right:11px;bottom:10px}
+  .items.open .item .viz-word::after{bottom:10px;width:20px}
   .viz-credit{
     position:absolute;left:0;right:0;bottom:0;padding:5px 8px;
     font-size:8.5px;line-height:1.2;color:#fff;text-align:left;
