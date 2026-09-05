@@ -522,6 +522,21 @@
     .rank{font-size:10px}
     .src{font-size:9.5px}
 
+
+    /* 모바일 카드 = 왼쪽 썸네일 + 오른쪽 본문 */
+    .items:not(.open) .item.has-photo{
+      display:grid;grid-template-columns:88px minmax(0,1fr);
+      column-gap:12px;row-gap:5px;align-items:start;
+    }
+    .items:not(.open) .item.has-photo > *{grid-column:2;min-width:0}
+    .items:not(.open) .item.has-photo .viz{
+      grid-column:1;grid-row:1 / span 5;width:88px;aspect-ratio:1/1;margin:2px 0 0;border-radius:8px;
+    }
+    .items:not(.open) .item.has-photo .more{margin-top:4px}
+    /* 수치 타이포 비주얼은 모바일에서 생략 — 같은 숫자가 트래픽 줄에 이미 있다 */
+    .items:not(.open) .viz-type{display:none}
+    .viz-credit{font-size:7.5px;padding:3px 5px}
+
     /* 전체 보기 = 줄 형태 */
     .backbar{padding:14px 0 3px;gap:8px}
     .backbar h2{font-size:19px}
@@ -2820,8 +2835,9 @@
         im.src = item.dataset.img;
         im.alt = h3.textContent;
         im.loading = 'lazy';
-        im.onerror = typeViz;                       // 못 불러오면 수치 비주얼로 되돌린다
+        im.onerror = function(){ item.classList.remove('has-photo'); typeViz(); };  // 못 불러오면 수치 비주얼로
         viz.appendChild(im);
+        item.classList.add('has-photo');
         if (item.dataset.credit){
           var cr = document.createElement('span');
           cr.className = 'viz-credit';
