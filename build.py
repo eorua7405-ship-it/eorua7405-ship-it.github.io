@@ -3,7 +3,7 @@
 import io, os, re, glob, datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SITE = 'https://eorua7405-ship-it.github.io'
+SITE = 'https://issueitnow.com'
 src = io.open(os.path.join(HERE, 'board.html'), encoding='utf-8').read()
 
 TITLE = re.search(r'<title>(.*?)</title>', src).group(1)
@@ -189,7 +189,7 @@ privacy = ('<!doctype html>\n<html lang="ko">\n<head>\n<meta charset="utf-8">\n'
 
            '<h2>8. 문의</h2>\n'
            '<p>본 방침에 대한 문의, 저작권 관련 요청, 정정 요구는 운영자에게 연락하실 수 있습니다.<br>'
-           '운영 · <b>피유글로벌</b> &nbsp;|&nbsp; 문의 · <b>도메인 개설 후 등록 예정</b></p>\n'
+           '운영 · <b>피유글로벌</b> &nbsp;|&nbsp; 문의 · <b>contact@issueitnow.com</b></p>\n'
 
            '<h2>9. 방침 변경</h2>\n'
            '<p>본 방침이 변경되는 경우 이 페이지에 갱신하여 게시하며, 시행일을 함께 표기합니다.</p>\n'
