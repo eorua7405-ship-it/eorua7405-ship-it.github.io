@@ -136,6 +136,156 @@ def page(canonical, title, desc, head, body, edition, top='', pub=None):
             '</head>\n<body>\n' + NAV + '\n' + toggle(edition) + '\n' + top + body + '\n</body>\n</html>\n')
 
 
+SECTION_URLS = []
+
+SEC_CSS = """
+  :root{--bg:#F0EDE7;--card:#fff;--ink:#2A211B;--dim:#7E6F64;--line:#DBD2C7;--red:#C8102E}
+  :root:not([data-theme="light"]){}
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#1A1512;--card:#241D18;--ink:#F0EDE7;--dim:#A9998C;--line:#3A2F27}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font:15px/1.65 'Noto Sans KR',system-ui,sans-serif}
+  .wrap{max-width:820px;margin:0 auto;padding:0 18px 64px}
+  .top{background:#2A211B;color:#F0EDE7;padding:9px 16px;font:600 12px/1.4 inherit;text-align:center}
+  .top a{color:#F0EDE7;text-decoration:none}
+  h1{font-size:26px;line-height:1.3;margin:26px 0 6px}
+  .sub{color:var(--dim);font-size:13px;margin:0 0 26px}
+  h2.grp{font-size:14px;letter-spacing:.04em;color:var(--red);
+         margin:34px 0 12px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+  ol{list-style:none;margin:0;padding:0}
+  li{display:grid;grid-template-columns:38px minmax(0,1fr);gap:12px;
+     background:var(--card);border:1px solid var(--line);border-radius:10px;
+     padding:13px 15px;margin-bottom:9px}
+  li.noimg{grid-template-columns:minmax(0,1fr)}
+  .num{font:800 14px/1.4 inherit;color:var(--red)}
+  .thumb{width:38px;height:38px;border-radius:7px;object-fit:cover;background:var(--line)}
+  h3{font-size:15.5px;margin:0 0 4px}
+  h3 a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+  p{margin:0 0 7px;font-size:13.5px;color:var(--ink)}
+  .facts{font-size:12px;color:var(--dim)}
+  .facts b{color:var(--ink);font-weight:600}
+  .src{font-size:12px;color:var(--dim);margin-top:30px}
+  .src a{color:var(--dim)}
+  .more{margin-top:34px;font-size:13px;line-height:2}
+  .more a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);margin-right:4px}
+  .back{display:inline-block;margin:24px 0 0;font-weight:700;color:var(--red);text-decoration:none}
+"""
+
+
+def esc(t):
+    return (t.replace('&', '&amp;').replace('<', '&lt;')
+            .replace('>', '&gt;').replace('"', '&quot;'))
+
+
+def parse_section(sec):
+    """섹션 HTML -> (그룹명, 항목들). 항목은 화면에 보이던 값 그대로 쓴다."""
+    groups, order = {}, []
+    for blk in re.findall(r'<li class="item"[^>]*>.*?</li>', sec, re.S):
+        tag = blk.split('>', 1)[0]
+
+        def at(k):
+            m = re.search(r'data-%s="([^"]*)"' % k, tag)
+            return m.group(1) if m else ''
+        h3 = re.search(r'<h3>(.*?)</h3>', blk, re.S)
+        p = re.search(r'<p>(.*?)</p>', blk, re.S)
+        g = at('group') or '항목'
+        if g not in groups:
+            groups[g] = []
+            order.append(g)
+        groups[g].append({
+            'name': re.sub('<[^>]+>', '', h3.group(1)).strip() if h3 else '',
+            'desc': re.sub('<[^>]+>', '', p.group(1)).strip() if p else at('sum'),
+            'since': at('since'), 'traffic': at('traffic'),
+            'link': at('link'), 'img': at('img'), 'credit': at('credit')})
+    return [(g, groups[g]) for g in order]
+
+
+def section_pages(body, sub, lab, head):
+    """파트마다 검색엔진이 읽을 수 있는 실제 주소의 페이지를 뽑는다."""
+    made = []
+    for m in re.finditer(r'<section class="cat" data-cat="(\w+)".*?</section>', body, re.S):
+        cat, sec = m.group(1), m.group(0)
+        h2 = re.search(r'<h2>(.*?)</h2>', sec)
+        en = re.search(r'<span class="en">(.*?)</span>', sec)
+        if not h2:
+            continue
+        part = h2.group(1)
+        ko = ''
+        if en and ' · ' in en.group(1):
+            ko = en.group(1).split(' · ', 1)[1]
+        topic = part if (not ko or ko in part or part in ko) else '%s %s' % (part, ko)
+        groups = parse_section(sec)
+        total = sum(len(v) for _, v in groups)
+        if total < 3:
+            continue
+
+        url = '%s/%s%s/' % (SITE, sub, cat)
+        title = '%s %s %d년 %d주차 — %s' % (lab, topic, YEAR, WEEK, BRAND)
+        desc = '%s %s. %d개를 시작일과 트래픽 수치로 정리했습니다.' % (lab, topic, total)
+
+        rows = []
+        for g, items in groups:
+            rows.append('<h2 class="grp">%s</h2>' % esc(g))
+            rows.append('<ol>')
+            for i, it in enumerate(items):
+                nm = esc(it['name'])
+                nm = ('<a href="%s" rel="nofollow noopener" target="_blank">%s</a>'
+                      % (esc(it['link']), nm)) if it['link'] else nm
+                facts = ' · '.join(
+                    filter(None, [('시작 <b>%s</b>' % esc(it['since'])) if it['since'] else '',
+                                  ('트래픽 <b>%s</b>' % esc(it['traffic'])) if it['traffic'] else '']))
+                thumb = ('<img class="thumb" src="%s" alt="%s" loading="lazy">'
+                         % (esc(it['img']), esc(it['name']))) if it['img'] else ''
+                rows.append('<li class="%s">%s<div><h3>%s</h3><p>%s</p>'
+                            '<div class="facts">%s</div></div></li>'
+                            % ('' if thumb else 'noimg', thumb or '<span class="num">%02d</span>' % (i + 1),
+                               nm, esc(it['desc']), facts))
+            rows.append('</ol>')
+
+        src = re.search(r'<p class="src">(.*?)</p>', sec, re.S)
+        ld = json.dumps({'@context': 'https://schema.org', '@type': 'ItemList',
+                         'name': topic, 'numberOfItems': total, 'url': url,
+                         'itemListElement': [
+                             {'@type': 'ListItem', 'position': i + 1, 'name': it['name']}
+                             for i, it in enumerate(
+                                 [x for _, v in groups for x in v][:30])]},
+                        ensure_ascii=False, separators=(',', ':'))
+
+        html = ('<!doctype html>REPLACEn<html lang="ko">REPLACEn<head>REPLACEn'
+                '<meta charset="utf-8">REPLACEn'
+                '<meta name="viewport" content="width=device-width, initial-scale=1">REPLACEn'
+                '<title>' + esc(title) + '</title>REPLACEn'
+                '<meta name="description" content="' + esc(desc) + '">REPLACEn'
+                '<link rel="canonical" href="' + url + '">REPLACEn'
+                '<meta property="og:type" content="article">REPLACEn'
+                '<meta property="og:title" content="' + esc(title) + '">REPLACEn'
+                '<meta property="og:description" content="' + esc(desc) + '">REPLACEn'
+                '<meta property="og:url" content="' + url + '">REPLACEn'
+                '<meta property="og:image" content="' + SITE + '/og.png">REPLACEn'
+                '<meta property="og:locale" content="ko_KR">REPLACEn'
+                '<link rel="icon" href="' + ICON + '">REPLACEn'
+                '<script type="application/ld+json">' + ld + '</script>REPLACEn'
+                '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>REPLACEn'
+                '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
+                'family=Noto+Sans+KR:wght@400;600;700;800&display=swap">REPLACEn'
+                '<style>' + SEC_CSS + '</style>REPLACEn</head>REPLACEn<body>REPLACEn'
+                '<div class="top"><a href="/' + sub + '">← ' + lab + ' 이번 주 전체 보기</a></div>REPLACEn'
+                '<div class="wrap">REPLACEn'
+                '<h1>' + esc(topic) + '</h1>REPLACEn'
+                '<p class="sub">' + lab + ' · ' + str(YEAR) + '년 ' + str(WEEK) + '주차 ('
+                + PERIOD + ') · 총 ' + str(total) + '개</p>REPLACEn'
+                + 'REPLACEn'.join(rows) +
+                'REPLACEn<p class="src">' + (src.group(1) if src else '') + '</p>REPLACEn'
+                '<a class="back" href="/' + sub + '">← ' + lab + ' 이번 주 전체 보기</a>REPLACEn'
+                '</div>REPLACEn</body>REPLACEn</html>REPLACEn').replace('REPLACEn', chr(10))
+
+        write(os.path.join(HERE, sub, cat, 'index.html'), html)
+        SECTION_URLS.append(url)
+        made.append((cat, topic))
+    return made
+
+
 def banner(prefix):
     return ('<div style="background:#C8102E;color:#fff;padding:9px 16px;font:600 13px/1.4 '
             "'Noto Sans KR',sans-serif;text-align:center\">WEEK %d(%s) 보관본입니다. "
@@ -158,8 +308,13 @@ for ed, sub, title, desc, head, body in EDITIONS:
 
     # 제목은 브랜드명만 두면 아무도 검색하지 않는 말이 된다. 무엇을 다루는지 앞에 쓴다.
     lab = '해외' if ed == 'global' else '국내'
+    made = section_pages(body, sub, lab, head)
+    links = ('<div style="max-width:1180px;margin:0 auto;padding:26px 18px 40px;'
+             "font:13px/2 'Noto Sans KR',sans-serif;color:#7E6F64\">파트별 전체 목록 · "
+             + ' · '.join('<a href="/%s%s/" style="color:#7E6F64">%s</a>' % (sub, c, t)
+                          for c, t in made) + '</div>')
     write(os.path.join(HERE, sub, 'index.html'),
-          page(base, '이번 주 %s 유행 총정리 — %s' % (lab, BRAND), desc, head, body, ed))
+          page(base, '이번 주 %s 유행 총정리 — %s' % (lab, BRAND), desc, head, body + links, ed))
     wdir = os.path.join(HERE, sub, 'week', str(WEEK))
     write(os.path.join(wdir, 'index.html'),
           page('%sweek/%d/' % (base, WEEK),
@@ -277,6 +432,7 @@ if HAS_KR:
     urls.insert(1, (SITE + '/kr/', '1.0', 'weekly'))
 for ed, sub, *_ in EDITIONS:
     urls += [('%s/%sweek/%d/' % (SITE, sub, w), '0.5', 'never') for w in weeks_of(sub)]
+urls += [(u, '0.8', 'weekly') for u in SECTION_URLS]
 write(os.path.join(HERE, 'sitemap.xml'),
       '<?xml version="1.0" encoding="UTF-8"?>\n'
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
