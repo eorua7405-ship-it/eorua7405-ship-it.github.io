@@ -8,6 +8,7 @@ import io, os, re, glob, datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SITE = 'https://issueitnow.com'
+BRAND = '지금 이슈 있나요?'
 
 DESC_G = ('매주 월요일 갱신되는 해외 유행 보드. '
           '릴스·유튜브·음악·영화·게임·패션·음식·뷰티·밈·여행을 수치와 해석으로 정리합니다.')
@@ -128,11 +129,14 @@ if HAS_KR:
 for ed, sub, title, desc, head, body in EDITIONS:
     base = SITE + '/' + sub
 
+    # 제목은 브랜드명만 두면 아무도 검색하지 않는 말이 된다. 무엇을 다루는지 앞에 쓴다.
+    lab = '해외' if ed == 'global' else '국내'
     write(os.path.join(HERE, sub, 'index.html'),
-          page(base, title, desc, head, body, ed))
+          page(base, '이번 주 %s 유행 총정리 — %s' % (lab, BRAND), desc, head, body, ed))
     wdir = os.path.join(HERE, sub, 'week', str(WEEK))
     write(os.path.join(wdir, 'index.html'),
-          page('%sweek/%d/' % (base, WEEK), '%s · %d년 %d주차 (%s)' % (title, YEAR, WEEK, PERIOD),
+          page('%sweek/%d/' % (base, WEEK),
+               '%d년 %d주차 %s 유행 총정리 (%s) — %s' % (YEAR, WEEK, lab, PERIOD, BRAND),
                '%d년 %d주차(%s) 보관본. %s에서 그 주에 뜨던 것을 그대로 남긴 기록입니다.'
                % (YEAR, WEEK, PERIOD, '해외' if ed == 'global' else '국내'), head, body, ed,
                banner('/' + sub), TODAY))

@@ -625,36 +625,36 @@ sections = [
      '<a href="https://preply.com/ko/blog/korea-slang-words/">Preply 신조어 조사</a>'),
  sec('music', 'spotify', '음악 순위', 'Music · 스포티파이 한국', [],
      '<a href="https://kworb.net/spotify/country/kr_daily.html">Spotify 한국 일간 (kworb)</a>'),
- sec('movie', 'movie', '영화 순위', 'Box Office · 일별', movie_items,
+ sec('movie', 'movie', '영화 순위', 'Box Office · 국내 일별 관객수', movie_items,
      '<a href="https://www.moviechart.co.kr/rank/boxoffice">무비차트</a> · 영화진흥위원회 발권데이터'),
- sec('game', 'web', '게임 순위', 'Games · 종합', game_items,
+ sec('game', 'web', '게임 순위', 'Games · 국내 게임 순위', game_items,
      '<a href="https://www.gamemeca.com/ranking.php">게임메카 인기 게임 순위</a>'),
- sec('food', 'web', '음식', 'Food', food_items,
+ sec('food', 'web', '음식', 'Food · 편의점·외식 신상', food_items,
      '<a href="https://www.ddolmang.com/1353/">트래블앤테이스트</a> · '
      '<a href="https://cooknchefnews.com/news/view/1065600801213223">쿡앤셰프뉴스</a> · '
      '<a href="https://visit.seoul.kr/ko/articles/seoul-convenience-store-food-guide-2026">서울관광재단</a>'),
- sec('beauty', 'web', '뷰티', 'Beauty', beauty_items,
+ sec('beauty', 'web', '뷰티', 'Beauty · 올리브영 인기 제품', beauty_items,
      '<a href="https://corp.oliveyoung.com/ko/news/88">올리브영 뉴스룸</a> · '
      '<a href="https://www.hwahae.co.kr/rankings">화해 랭킹</a> · '
      '<a href="https://shopee.kr/blog/detail.php?seq=809">쇼피 K뷰티 리포트</a> · '
      '<a href="https://www.harpersbazaar.co.kr/article/1894073">하퍼스 바자 코리아</a> · '
      '<a href="https://www.dtoday.co.kr/news/articleView.html?idxno=789438">일간투데이 브랜드평판</a>'),
- sec('fashion', 'web', '패션', 'Fashion', fashion_items,
+ sec('fashion', 'web', '패션', 'Fashion · 무신사·패션 트렌드', fashion_items,
      '<a href="https://www.joongangenews.com/news/articleView.html?idxno=527306">중앙이코노미뉴스</a> · '
      '<a href="https://www.ktnews.com/news/articleView.html?idxno=145447">한국섬유신문</a>'),
- sec('meme', 'web', '밈 · 신조어', 'Memes &amp; Slang', meme_items,
+ sec('meme', 'web', '밈 · 신조어', 'Memes · 신조어·유행어', meme_items,
      '<a href="https://www.harpersbazaar.co.kr/article/1892657">하퍼스 바자 코리아</a> · '
      '<a href="https://gogumafarm.kr/">고구마팜</a> · '
      '<a href="https://preply.com/ko/blog/korea-slang-words/">Preply 신조어 조사</a>'),
- sec('travel', 'travel', '여행', 'Travel', travel_items,
+ sec('travel', 'travel', '여행', 'Travel · 국내 여행 트렌드', travel_items,
      '<a href="https://news.booking.com/ko-ko/">부킹닷컴 2026 한국 여행 트렌드</a> · '
      '<a href="https://kr.trip.com/guide/info/mz-generation-travel-trends.html">트립닷컴</a> · '
      '<a href="https://www.telltrip.com/news/korea-2026-summer-vacation-trends-revealed/">텔트립</a>'),
- sec('tech', 'review', '전자기기', 'Tech', tech_items,
+ sec('tech', 'review', '전자기기', 'Tech · 갤럭시·가전 신제품', tech_items,
      '<a href="https://dpg.danawa.com/news/view?boardSeq=63&amp;listSeq=6032265">다나와 DPG</a> · '
      '<a href="https://www.etnews.com/20260519000226">전자신문</a> · '
      '<a href="https://news.samsung.com/kr/">삼성전자 뉴스룸</a>'),
- sec('life', 'web', '라이프스타일', 'Lifestyle', life_items,
+ sec('life', 'web', '라이프스타일', 'Lifestyle · 소비 트렌드', life_items,
      '<a href="https://kbthink.com/life/card/mz-consumption-trends.html">KB의 생각</a> · '
      '<a href="https://www.20slab.org/Archives/38670">대학내일20대연구소</a>'),
 ]
