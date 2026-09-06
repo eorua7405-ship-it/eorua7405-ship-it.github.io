@@ -59,6 +59,7 @@ def load(fn):
 SRC_G, HEAD_G, BODY_G = load('board.html')
 TITLE_G = re.search(r'<title>(.*?)</title>', SRC_G).group(1)
 WEEK = int(re.search(r'<b>WEEK (\d+)</b>', SRC_G).group(1))
+YEAR = datetime.date.today().year
 PERIOD = re.search(r'<span>집계 기간</span><b>(.*?)</b>', SRC_G).group(1).strip()
 
 HAS_KR = os.path.exists(os.path.join(HERE, 'board-kr.html'))
@@ -67,12 +68,19 @@ if HAS_KR:
     TITLE_K = re.search(r'<title>(.*?)</title>', SRC_K).group(1)
 
 
-def page(canonical, title, desc, head, body, edition, top=''):
+TODAY = datetime.date.today().isoformat()
+
+
+def page(canonical, title, desc, head, body, edition, top='', pub=None):
     ld = ('{"@context":"https://schema.org","@type":"CollectionPage","name":"%s",'
           '"description":"%s","url":"%s","inLanguage":"ko",'
+          '%s'
           '"isPartOf":{"@type":"WebSite","name":"지금 이슈 있나요?","url":"%s"},'
           '"publisher":{"@type":"Organization","name":"피유글로벌"}}'
-          % (title, desc, canonical, SITE))
+          % (title, desc, canonical,
+             ('"datePublished":"%s","dateModified":"%s",' % (pub, pub)) if pub else '',
+             SITE))
+    # 글로벌 · 국내는 같은 내용의 다른 판본이라 서로 대체 버전임을 알린다
     return ('<!doctype html>\n<html lang="ko">\n<head>\n'
             '<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
@@ -94,7 +102,7 @@ def page(canonical, title, desc, head, body, edition, top=''):
             '<meta name="twitter:image" content="' + SITE + '/og.png">\n'
             '<link rel="icon" href="' + ICON + '">\n'
             '<script type="application/ld+json">' + ld + '</script>\n'
-            + head[0] + '\n' + '\n'.join(head[1:-1]) + '\n'
+            + '<title>' + title + '</title>' + '\n' + '\n'.join(head[1:-1]) + '\n'
             + '<style>\n' + RESET + '\n</style>\n' + head[-1] + '\n'
             '</head>\n<body>\n' + NAV + '\n' + toggle(edition) + '\n' + top + body + '\n</body>\n</html>\n')
 
@@ -118,11 +126,14 @@ if HAS_KR:
 
 for ed, sub, title, desc, head, body in EDITIONS:
     base = SITE + '/' + sub
-    write(os.path.join(HERE, sub, 'index.html'), page(base, title, desc, head, body, ed))
+
+    write(os.path.join(HERE, sub, 'index.html'),
+          page(base, title, desc, head, body, ed))
     wdir = os.path.join(HERE, sub, 'week', str(WEEK))
     write(os.path.join(wdir, 'index.html'),
-          page('%sweek/%d/' % (base, WEEK), '%s — WEEK %d' % (title, WEEK),
-               'WEEK %d(%s) 스냅샷. %s' % (WEEK, PERIOD, desc), head, body, ed, banner('/' + sub)))
+          page('%sweek/%d/' % (base, WEEK), '%s · %d년 %d주차 (%s)' % (title, YEAR, WEEK, PERIOD),
+               'WEEK %d(%s) 스냅샷. %s' % (WEEK, PERIOD, desc), head, body, ed,
+               banner('/' + sub), TODAY))
 
 # ---------- 아카이브 ----------
 def weeks_of(sub):
@@ -226,7 +237,7 @@ privacy = ('<!doctype html>\n<html lang="ko">\n<head>\n<meta charset="utf-8">\n'
 write(os.path.join(HERE, 'privacy', 'index.html'), privacy)
 
 # ---------- sitemap · robots ----------
-today = datetime.date.today().isoformat()
+today = TODAY
 urls = [(SITE + '/', '1.0', 'weekly'), (SITE + '/archive/', '0.6', 'weekly'),
         (SITE + '/privacy/', '0.3', 'yearly')]
 if HAS_KR:
