@@ -4,7 +4,7 @@
 만들어지는 것: /, /kr/, /week/<주차>/, /kr/week/<주차>/, /archive/, /privacy/,
 sitemap.xml, robots.txt, og.png
 """
-import io, os, re, glob, datetime
+import io, os, re, glob, json, datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SITE = 'https://issueitnow.com'
@@ -72,6 +72,29 @@ if HAS_KR:
 TODAY = datetime.date.today().isoformat()
 
 
+def itemlists(body, canonical):
+    """각 파트를 순위 목록으로 선언한다. 답변형 AI가 인용할 때 필요한 최소 단위."""
+    out = []
+    for m in re.finditer(r'<section class="cat" data-cat="(\w+)".*?</section>', body, re.S):
+        sec = m.group(0)
+        h2 = re.search(r'<h2>(.*?)</h2>', sec)
+        en = re.search(r'<span class="en">(.*?)</span>', sec)
+        if not h2:
+            continue
+        names = [re.sub('<[^>]+>', '', t).strip()
+                 for t in re.findall(r'<h3>(.*?)</h3>', sec, re.S)]
+        if len(names) < 3:
+            continue
+        out.append({'@type': 'ItemList',
+                    'name': '%s - %s' % (h2.group(1), en.group(1) if en else ''),
+                    'numberOfItems': len(names),
+                    'itemListOrder': 'https://schema.org/ItemListOrderDescending',
+                    'url': canonical + '#/' + m.group(1),
+                    'itemListElement': [{'@type': 'ListItem', 'position': i + 1, 'name': n}
+                                        for i, n in enumerate(names[:20])]})
+    return out
+
+
 def page(canonical, title, desc, head, body, edition, top='', pub=None):
     ld = ('{"@context":"https://schema.org","@type":"CollectionPage","name":"%s",'
           '"description":"%s","url":"%s","inLanguage":"ko",'
@@ -81,6 +104,9 @@ def page(canonical, title, desc, head, body, edition, top='', pub=None):
           % (title, desc, canonical,
              ('"datePublished":"%s","dateModified":"%s",' % (pub, pub)) if pub else '',
              SITE))
+    lists = json.dumps({'@context': 'https://schema.org',
+                        '@graph': itemlists(body, canonical)},
+                       ensure_ascii=False, separators=(',', ':'))
     # 글로벌 · 국내는 같은 내용의 다른 판본이라 서로 대체 버전임을 알린다
     return ('<!doctype html>\n<html lang="ko">\n<head>\n'
             '<meta charset="utf-8">\n'
@@ -104,6 +130,7 @@ def page(canonical, title, desc, head, body, edition, top='', pub=None):
             '<meta name="twitter:image" content="' + SITE + '/og.png">\n'
             '<link rel="icon" href="' + ICON + '">\n'
             '<script type="application/ld+json">' + ld + '</script>\n'
+            '<script type="application/ld+json">' + lists + '</script>\n'
             + '<title>' + title + '</title>' + '\n' + '\n'.join(head[1:-1]) + '\n'
             + '<style>\n' + RESET + '\n</style>\n' + head[-1] + '\n'
             '</head>\n<body>\n' + NAV + '\n' + toggle(edition) + '\n' + top + body + '\n</body>\n</html>\n')
@@ -256,8 +283,14 @@ write(os.path.join(HERE, 'sitemap.xml'),
       + '\n'.join('  <url><loc>%s</loc><lastmod>%s</lastmod><changefreq>%s</changefreq>'
                   '<priority>%s</priority></url>' % (u, today, c, pr) for u, pr, c in urls)
       + '\n</urlset>\n')
+# 답변형 AI는 대부분 검색 인덱스를 거쳐 출처를 고른다. 막을 이유가 없으니 이름으로 허용해 둔다.
+AI_BOTS = ('GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-User',
+           'Claude-SearchBot', 'PerplexityBot', 'Perplexity-User', 'Google-Extended',
+           'Applebot-Extended', 'CCBot', 'Bingbot', 'Amazonbot', 'meta-externalagent')
 write(os.path.join(HERE, 'robots.txt'),
-      'User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n' % SITE)
+      'User-agent: *\nAllow: /\n\n'
+      + ''.join('User-agent: %s\nAllow: /\n\n' % b for b in AI_BOTS)
+      + 'Sitemap: %s/sitemap.xml\n' % SITE)
 
 # ---------- OG 이미지 ----------
 try:
