@@ -86,6 +86,7 @@ def page(canonical, title, desc, head, body, edition, top='', pub=None):
             '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
             '<meta name="description" content="' + desc + '">\n'
             '<meta name="author" content="피유글로벌">\n'
+            '<meta name="naver-site-verification" content="87fd336dbe76ffba397115874449d9c49ffa1bc2">\n'
             '<link rel="canonical" href="' + canonical + '">\n'
             '<meta property="og:type" content="website">\n'
             '<meta property="og:site_name" content="지금 이슈 있나요?">\n'
