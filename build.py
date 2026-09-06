@@ -448,6 +448,22 @@ write(os.path.join(HERE, 'robots.txt'),
       + ''.join('User-agent: %s\nAllow: /\n\n' % b for b in AI_BOTS)
       + 'Sitemap: %s/sitemap.xml\n' % SITE)
 
+# ---------- IndexNow ----------
+# 바뀐 주소를 검색엔진에 즉시 통보한다. 빙·네이버·얀덱스가 같은 규약을 받는다.
+INDEXNOW_KEY = 'a7f3c91e42b84d6685c0f27ab31d95e4'
+write(os.path.join(HERE, INDEXNOW_KEY + '.txt'), INDEXNOW_KEY)
+try:
+    import urllib.request
+    payload = json.dumps({'host': 'issueitnow.com', 'key': INDEXNOW_KEY,
+                          'keyLocation': '%s/%s.txt' % (SITE, INDEXNOW_KEY),
+                          'urlList': [u for u, _, _ in urls]}).encode()
+    req = urllib.request.Request('https://api.indexnow.org/indexnow', data=payload,
+                                 headers={'Content-Type': 'application/json; charset=utf-8'})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        print('IndexNow 통보 · %d URL · 응답 %d' % (len(urls), r.status))
+except Exception as e:
+    print('IndexNow 통보 실패(무시하고 진행):', e)
+
 # ---------- OG 이미지 ----------
 try:
     from PIL import Image, ImageDraw, ImageFont
