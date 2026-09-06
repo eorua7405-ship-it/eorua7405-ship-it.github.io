@@ -9,10 +9,10 @@ import io, os, re, glob, datetime
 HERE = os.path.dirname(os.path.abspath(__file__))
 SITE = 'https://issueitnow.com'
 
-DESC_G = ('매주 월요일 갱신되는 해외 유행 보드. 인스타 릴스·유튜브·음악·영화·게임·패션·음식·뷰티·밈·여행 '
-          '트렌드를 시작일과 트래픽 수치, 그리고 왜 지금 뜨는지에 대한 해석과 함께 정리합니다.')
-DESC_K = ('매주 월요일 갱신되는 국내 유행 보드. 박스오피스·게임·음악 차트와 편의점·패션·뷰티·밈·여행 '
-          '트렌드를 수치와 해석을 붙여 정리합니다.')
+DESC_G = ('매주 월요일 갱신되는 해외 유행 보드. '
+          '릴스·유튜브·음악·영화·게임·패션·음식·뷰티·밈·여행을 수치와 해석으로 정리합니다.')
+DESC_K = ('매주 월요일 갱신되는 국내 유행 보드. '
+          '릴스·유튜브·음악·영화·게임·패션·음식·뷰티·밈·여행을 수치와 해석으로 정리합니다.')
 
 RESET = """  :root{color-scheme:light dark}
   html{-webkit-text-size-adjust:100%}
@@ -133,7 +133,8 @@ for ed, sub, title, desc, head, body in EDITIONS:
     wdir = os.path.join(HERE, sub, 'week', str(WEEK))
     write(os.path.join(wdir, 'index.html'),
           page('%sweek/%d/' % (base, WEEK), '%s · %d년 %d주차 (%s)' % (title, YEAR, WEEK, PERIOD),
-               'WEEK %d(%s) 스냅샷. %s' % (WEEK, PERIOD, desc), head, body, ed,
+               '%d년 %d주차(%s) 보관본. %s에서 그 주에 뜨던 것을 그대로 남긴 기록입니다.'
+               % (YEAR, WEEK, PERIOD, '해외' if ed == 'global' else '국내'), head, body, ed,
                banner('/' + sub), TODAY))
 
 # ---------- 아카이브 ----------
