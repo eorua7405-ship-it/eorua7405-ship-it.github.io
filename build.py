@@ -463,7 +463,7 @@ write(os.path.join(HERE, 'robots.txt'),
 
 # ---------- IndexNow ----------
 # 바뀐 주소를 검색엔진에 즉시 통보한다. 빙·네이버·얀덱스가 같은 규약을 받는다.
-INDEXNOW_KEY = 'a7f3c91e42b84d6685c0f27ab31d95e4'
+INDEXNOW_KEY = 'ed7453a8e73d4c6691f01c9c2bbb1c97'   # 빙 웹마스터 도구가 발급한 키
 write(os.path.join(HERE, INDEXNOW_KEY + '.txt'), INDEXNOW_KEY)
 try:
     import urllib.request
