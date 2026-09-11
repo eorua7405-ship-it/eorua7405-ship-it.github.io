@@ -8,10 +8,11 @@
 키워드가 항목의 실체를 가리키지 못하는 것(신조어·밈 등)은 일부러 비워 둔다.
 비어 있으면 카드가 타이포그래피 비주얼로 대체되므로 그쪽이 정확하다.
 """
-import io, os, re, json, time, urllib.parse, urllib.request
+import io, os, re, sys, json, time, urllib.parse, urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-P = os.path.join(HERE, 'board-kr.html')
+# 기본은 국내판. 인자를 주면 그 파일을 처리한다 (글로벌판도 같은 규칙이 통한다)
+P = os.path.join(HERE, sys.argv[1] if len(sys.argv) > 1 else 'board-kr.html')
 CACHE = os.path.join(HERE, '_kr_images.json')
 UA = {'User-Agent': 'issue-now/1.0'}
 
@@ -22,6 +23,13 @@ STEAM = {
  '이터널 리턴': 1049590,
  '오버워치 2': 2357570,
  '메이플스토리': 216150,
+ '배틀그라운드': 578080,
+ '카운터 스트라이크 2': 730,
+ '팰월드': 1623730,
+ '발더스 게이트 3': 1086940,
+ '엘든 링': 1245620,
+ '몬스터 헌터 와일즈': 2246340,
+ '데이브 더 다이버': 1868140,
 }
 
 # h3 앞부분 -> Openverse 검색어
@@ -74,6 +82,16 @@ KW = {
  '나노 커뮤니티': 'small group meeting',
  '쇼퍼테인먼트': 'live streaming shopping',
  'AI와 상의하며': 'person using chatbot phone',
+ # 영화 — 포스터는 저작권이라 못 쓴다. 극장이라는 장소로 대신한다
+ '오디세이': 'movie theater seats',
+ # 밈·신조어는 타이포 비주얼이 정확해서 비워 둔다
+ # 틱톡 태그
+ '#불꽃축제': 'fireworks festival night',
+ '#fireworks': 'fireworks sky',
+ '#한강': 'han river seoul',
+ '#광복절': 'korean flag',
+ '#가을코디': 'autumn outfit fashion',
+ '#올영세일': 'cosmetics shopping bag',
 }
 
 cache = json.load(io.open(CACHE, encoding='utf-8')) if os.path.exists(CACHE) else {}
@@ -97,8 +115,9 @@ def openverse(q):
 
 
 def itunes(term):
+    # country=KR 을 붙이면 결과가 0으로 돌아온다. 붙이지 말 것.
     u = ('https://itunes.apple.com/search?term=' + urllib.parse.quote(term) +
-         '&entity=song&limit=1&country=KR')
+         '&entity=song&limit=1')
     for it in json.loads(get(u, 25)).get('results', []):
         a = it.get('artworkUrl100')
         if a:
@@ -127,6 +146,9 @@ def add(tag, img, credit):
     return tag[:-1] + ' data-img="%s" data-credit="%s">' % (img, credit.replace('"', ''))
 
 
+CUR = ['']          # 지금 처리 중인 파트
+
+
 def fix(m):
     tag, inner = m.group(1), m.group(2)
     if 'data-img=' in tag:
@@ -150,18 +172,34 @@ def fix(m):
         return (add(tag, 'https://cdn.cloudflare.steamstatic.com/steam/apps/%d/header.jpg'
                     % STEAM[title], 'Steam') + inner + '</li>')
 
-    # 3) 그 외 -> Openverse
-    for k, q in KW.items():
+    # 3) 그 외 -> Openverse. 손으로 적어둔 키워드가 우선이고,
+    #    없으면 항목이 이미 들고 있는 영문 검색어(data-q)를 그대로 쓴다.
+    q = ''
+    for k, v in KW.items():
         if title.startswith(k):
-            r = cached('ov:' + q, openverse, q)
-            if r:
-                filled['openverse'] += 1
-                return add(tag, r['url'], r['credit']) + inner + '</li>'
+            q = v
             break
+    if not q:
+        mq = re.search(r'data-q="([^"]*)"', tag)
+        # 사진이 말이 되는 파트에서만 자동 검색을 쓴다.
+        # 영화 포스터·밈·음원은 사진으로 대체하면 오히려 틀린 그림이 된다.
+        if mq and CUR[0] in ('beauty', 'food', 'fashion', 'travel', 'tech', 'life'):
+            q = mq.group(1)
+    if q:
+        r = cached('ov:' + q, openverse, q)
+        if r:
+            filled['openverse'] += 1
+            return add(tag, r['url'], r['credit']) + inner + '</li>'
     return m.group(0)
 
 
-s = re.sub(r'(<li class="item"[^>]*>)(.*?)</li>', fix, s, flags=re.S)
+# 파트 단위로 돌려서 어느 파트의 항목인지 알 수 있게 한다
+def run_section(m):
+    CUR[0] = m.group(1)
+    return re.sub(r'(<li class="item"[^>]*>)(.*?)</li>', fix, m.group(0), flags=re.S)
+
+
+s = re.sub(r'<section class="cat" data-cat="(\w+)".*?</section>', run_section, s, flags=re.S)
 json.dump(cache, io.open(CACHE, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 io.open(P, 'w', encoding='utf-8').write(s)
 print('추가 · 아트워크 %(itunes)d · 스팀 %(steam)d · Openverse %(openverse)d' % filled,
