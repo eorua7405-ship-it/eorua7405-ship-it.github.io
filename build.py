@@ -205,7 +205,7 @@ def parse_section(sec):
     return [(g, groups[g]) for g in order]
 
 
-def section_pages(body, sub, lab, head):
+def section_pages(body, sub, lab, head, siblings=None):
     """파트마다 검색엔진이 읽을 수 있는 실제 주소의 페이지를 뽑는다."""
     made = []
     for m in re.finditer(r'<section class="cat" data-cat="(\w+)".*?</section>', body, re.S):
@@ -247,6 +247,11 @@ def section_pages(body, sub, lab, head):
                                nm, esc(it['desc']), facts))
             rows.append('</ol>')
 
+        sib = ''
+        if siblings:
+            sib = ('<div class="more">다른 파트 · ' +
+                   ' · '.join('<a href="/%s%s/">%s</a>' % (sub, c, t)
+                              for c, t in siblings if c != cat) + '</div>')
         src = re.search(r'<p class="src">(.*?)</p>', sec, re.S)
         ld = json.dumps({'@context': 'https://schema.org', '@type': 'ItemList',
                          'name': topic, 'numberOfItems': total, 'url': url,
@@ -282,6 +287,7 @@ def section_pages(body, sub, lab, head):
                 + PERIOD + ') · 총 ' + str(total) + '개</p>REPLACEn'
                 + 'REPLACEn'.join(rows) +
                 'REPLACEn<p class="src">' + (src.group(1) if src else '') + '</p>REPLACEn'
+                + sib + 'REPLACEn'
                 '<a class="back" href="/' + sub + '">← ' + lab + ' 이번 주 전체 보기</a>REPLACEn'
                 '</div>REPLACEn</body>REPLACEn</html>REPLACEn').replace('REPLACEn', chr(10))
 
@@ -289,6 +295,24 @@ def section_pages(body, sub, lab, head):
         SECTION_URLS.append(url)
         made.append((cat, topic))
     return made
+
+
+
+def inject_part_links(body, sub, made):
+    """각 파트 끝의 출처 줄 위에 그 파트 전용 페이지로 가는 실제 링크를 넣는다."""
+    for cat, topic in made:
+        pat = '<section class="cat" data-cat="%s"' % cat
+        i = body.find(pat)
+        if i < 0:
+            continue
+        j = body.find('<p class="src">', i)
+        if j < 0:
+            continue
+        a = ('<p style="margin:14px 0 0;font-size:12.5px"><a href="/%s%s/" '
+             'style="color:#C8102E;font-weight:700;text-decoration:none">'
+             '%s 전체 목록 보기 &rarr;</a></p>' % (sub, cat, topic))
+        body = body[:j] + a + body[j:]
+    return body
 
 
 def banner(prefix):
@@ -313,11 +337,14 @@ for ed, sub, title, desc, head, body in EDITIONS:
 
     # 제목은 브랜드명만 두면 아무도 검색하지 않는 말이 된다. 무엇을 다루는지 앞에 쓴다.
     lab = '해외' if ed == 'global' else '국내'
-    made = section_pages(body, sub, lab, head)
+    made = section_pages(body, sub, lab, head)          # 1차 — 파트 목록 수집
+    SECTION_URLS[:] = SECTION_URLS[:len(SECTION_URLS) - len(made)]
+    made = section_pages(body, sub, lab, head, made)    # 2차 — 서로 링크해서 다시 쓴다
     links = ('<div style="max-width:1180px;margin:0 auto;padding:26px 18px 40px;'
              "font:13px/2 'Noto Sans KR',sans-serif;color:#7E6F64\">파트별 전체 목록 · "
              + ' · '.join('<a href="/%s%s/" style="color:#7E6F64">%s</a>' % (sub, c, t)
                           for c, t in made) + '</div>')
+    body = inject_part_links(body, sub, made)
     write(os.path.join(HERE, sub, 'index.html'),
           page(base, '이번 주 %s 유행 총정리 — %s' % (lab, BRAND), desc, head, body + links, ed))
     wdir = os.path.join(HERE, sub, 'week', str(WEEK))
