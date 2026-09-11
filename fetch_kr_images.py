@@ -107,7 +107,10 @@ def openverse(q):
          '&license=cc0,pdm,by&page_size=5&mature=false')
     for it in json.loads(get(u, 40)).get('results', []):
         url = it.get('url') or ''
-        if url.startswith('https://') and re.search(r'\.(jpe?g|png|webp)$', url.split('?')[0], re.I):
+        # 확장자가 주소에 안 붙는 제공처가 많다. filetype 필드도 같이 본다.
+        ok = (re.search(r'\.(jpe?g|png|webp)$', url.split('?')[0], re.I)
+              or (it.get('filetype') or '').lower() in ('jpg', 'jpeg', 'png', 'webp'))
+        if url.startswith('https://') and ok:
             by = (it.get('creator') or '').strip()[:40]
             lic = (it.get('license') or '').upper()
             return {'url': url, 'credit': (by + ' · ' + lic) if by else lic}
@@ -144,6 +147,28 @@ filled = {'itunes': 0, 'steam': 0, 'openverse': 0}
 
 def add(tag, img, credit):
     return tag[:-1] + ' data-img="%s" data-credit="%s">' % (img, credit.replace('"', ''))
+
+
+STOP = {'trend', 'trends', 'trending', 'consumers', 'gen', 'z', 'the', 'of', 'and',
+        'over', 'daily', 'year', 'challenge', 'content', 'design', 'style'}
+
+
+def candidates(q):
+    """전체 -> 앞 3단어 -> 앞 2단어 순으로 좁혀 본다. 중복은 걸러낸다."""
+    if not q:
+        return []
+    words = [w for w in re.findall(r"[A-Za-z가-힣]+", q)
+             if len(w) > 1 and w.lower() not in STOP]
+    out = [q]
+    for n in (3, 2):
+        if len(words) >= n:
+            out.append(' '.join(words[:n]))
+    seen, uniq = set(), []
+    for c in out:
+        if c and c not in seen:
+            seen.add(c)
+            uniq.append(c)
+    return uniq
 
 
 CUR = ['']          # 지금 처리 중인 파트
@@ -185,8 +210,10 @@ def fix(m):
         # 영화 포스터·밈·음원은 사진으로 대체하면 오히려 틀린 그림이 된다.
         if mq and CUR[0] in ('beauty', 'food', 'fashion', 'travel', 'tech', 'life'):
             q = mq.group(1)
-    if q:
-        r = cached('ov:' + q, openverse, q)
+    # data-q 는 문장에 가까워 그대로는 안 걸린다.
+    # 연도·숫자·흔한 말을 걷어내고 앞 단어 몇 개로 줄여 가며 다시 찾는다.
+    for cand in candidates(q):
+        r = cached('ov:' + cand, openverse, cand)
         if r:
             filled['openverse'] += 1
             return add(tag, r['url'], r['credit']) + inner + '</li>'
