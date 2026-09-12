@@ -152,6 +152,7 @@ def page(canonical, title, desc, head, body, edition, top='', pub=None, alt_path
             '<meta name="twitter:description" content="' + desc + '">\n'
             '<meta name="twitter:image" content="' + SITE + '/og.png">\n'
             '<link rel="icon" href="' + ICON + '">\n'
+            '<link rel="alternate" type="application/rss+xml" title="지금 이슈 있나요?" href="' + SITE + '/rss.xml">\n'
             + GA_TAG + '\n'
             '<script type="application/ld+json">' + ld + '</script>\n'
             '<script type="application/ld+json">' + lists + '</script>\n'
@@ -430,6 +431,65 @@ def rebuild_chips(body, edition):
     return body[:m.start()] + m.group(1) + '\n    ' + '\n    '.join(out) + '\n  ' + m.group(3) + body[m.end():]
 
 
+
+def annotate_prev_week(body, sub):
+    """지난주 보관본의 순위와 대조해 변화 배지를 붙인다. 보관본이 없으면 그냥 둔다."""
+    past = [w for w in weeks_of(sub) if w < WEEK]
+    if not past:
+        return body
+    src = os.path.join(HERE, sub, 'week', str(max(past)), 'index.html')
+    if not os.path.exists(src):
+        return body
+    old = io.open(src, encoding='utf-8').read()
+
+    def rank_map(t):
+        out = {}
+        for blk in re.findall(r'<li class="item".*?</li>', t, re.S):
+            r = re.search(r'<span class="rank">(\d+)</span>', blk)
+            h = re.search(r'<h3>(.*?)</h3>', blk, re.S)
+            if r and h:
+                key = re.sub(r'\s+', ' ', re.sub('<[^>]+>', '', h.group(1))).strip()
+                out.setdefault(key, int(r.group(1)))
+        return out
+
+    prev = rank_map(old)
+    if not prev:
+        return body
+    hit = [0]
+
+    def mark(m):
+        blk = m.group(0)
+        r = re.search(r'<span class="rank">(\d+)</span>', blk)
+        h = re.search(r'<h3>(.*?)</h3>', blk, re.S)
+        if not (r and h):
+            return blk
+        if '지난주' in blk:          # kworb 발 태그가 이미 있으면 건드리지 않는다
+            return blk
+        key = re.sub(r'\s+', ' ', re.sub('<[^>]+>', '', h.group(1))).strip()
+        if key not in prev:
+            return blk
+        d = prev[key] - int(r.group(1))       # 양수면 순위가 올라갔다
+        if d > 0:
+            txt = '지난주 %d위 ▲%d' % (prev[key], d)
+        elif d < 0:
+            txt = '지난주 %d위 ▼%d' % (prev[key], -d)
+        else:
+            return blk               # 그대로면 배지를 붙이지 않는다 — 변화만 보여준다
+        hit[0] += 1
+        return blk.replace('<div class="meta">',
+                           '<div class="meta"><span class="tag">%s</span>' % txt, 1)
+
+    body = re.sub(r'<li class="item".*?</li>', mark, body, flags=re.S)
+    if hit[0]:
+        print('   %s지난주 대비 %d개' % (sub or './', hit[0]))
+    return body
+
+
+def weeks_of(sub):
+    return sorted((int(os.path.basename(d)) for d in glob.glob(os.path.join(HERE, sub, 'week', '*'))
+                   if os.path.basename(d).isdigit()), reverse=True)
+
+
 def banner(prefix):
     return ('<div style="background:#C8102E;color:#fff;padding:9px 16px;font:600 13px/1.4 '
             "'Noto Sans KR',sans-serif;text-align:center\">WEEK %d(%s) 보관본입니다. "
@@ -454,6 +514,10 @@ for ed, sub, title, desc, head, body in EDITIONS:
 
     # 제목은 브랜드명만 두면 아무도 검색하지 않는 말이 된다. 무엇을 다루는지 앞에 쓴다.
     lab = {'global': '해외', 'kr': '국내', 'en': 'Korea'}[ed]
+    # kworb 는 지난주 차트에 없던 곡을 -1 · 99 · 161 로 적어 보낸다. 숫자로 두면 거짓말이 된다.
+    body = re.sub(r'<span class="tag">지난주 (?:-?\d{3,}|-\d+|9[5-9])위</span>',
+                  '<span class="tag">지난주 차트 밖</span>', body)
+    body = annotate_prev_week(body, sub)   # 지난주 순위와 대조
     body = order_by_affiliate(body)   # 제휴 링크가 붙은 그룹을 앞으로
     body = order_sections(body)      # 상품이 걸린 파트를 위로
     body = rebuild_chips(body, ed)   # 필터 칩을 파트 차례에 맞춘다
@@ -480,10 +544,6 @@ for ed, sub, title, desc, head, body in EDITIONS:
                banner('/' + sub), TODAY, 'week/%d/' % WEEK))
 
 # ---------- 아카이브 ----------
-def weeks_of(sub):
-    return sorted((int(os.path.basename(d)) for d in glob.glob(os.path.join(HERE, sub, 'week', '*'))
-                   if os.path.basename(d).isdigit()), reverse=True)
-
 
 blocks = []
 for ed, sub, title, desc, head, body in EDITIONS:
@@ -607,6 +667,52 @@ write(os.path.join(HERE, 'sitemap.xml'),
 AI_BOTS = ('GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-User',
            'Claude-SearchBot', 'PerplexityBot', 'Perplexity-User', 'Google-Extended',
            'Applebot-Extended', 'CCBot', 'Bingbot', 'Amazonbot', 'meta-externalagent')
+# ---------- RSS ----------
+# 주차 보관본이 이 사이트의 발행 단위다. 보드는 계속 덮어써지므로 피드에 넣지 않는다.
+def rss():
+    import email.utils
+    items = []
+    for ed, sub, *_ in EDITIONS:
+        lab = {'global': '해외', 'kr': '국내', 'en': 'Korea'}[ed]
+        for w in weeks_of(sub):
+            url = '%s/%sweek/%d/' % (SITE, sub, w)
+            if ed == 'en':
+                title = 'Trending in Korea — %d week %d' % (YEAR, w)
+                desc = 'What Korea is into in week %d of %d.' % (w, YEAR)
+            else:
+                title = '%d년 %d주차 %s 유행 총정리' % (YEAR, w, lab)
+                desc = '%d년 %d주차 %s에서 유행한 것들. 항목마다 시작일과 트래픽 수치.' % (YEAR, w, lab)
+            items.append((w, ed, url, title, desc))
+    items.sort(key=lambda x: (-x[0], x[1]))
+    now = email.utils.formatdate(usegmt=True)
+
+    def esc(t):
+        return (t.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;'))
+
+    body = '\n'.join(
+        '  <item>\n'
+        '    <title>%s</title>\n'
+        '    <link>%s</link>\n'
+        '    <guid isPermaLink="true">%s</guid>\n'
+        '    <description>%s</description>\n'
+        '    <pubDate>%s</pubDate>\n'
+        '  </item>' % (esc(t), u, u, esc(d), now)
+        for _, _, u, t, d in items)
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n'
+            '<channel>\n'
+            '  <title>지금 이슈 있나요?</title>\n'
+            '  <link>%s/</link>\n'
+            '  <atom:link href="%s/rss.xml" rel="self" type="application/rss+xml"/>\n'
+            '  <description>매주 월요일 갱신되는 해외·국내 유행 보드.</description>\n'
+            '  <language>ko</language>\n'
+            '  <lastBuildDate>%s</lastBuildDate>\n'
+            '%s\n'
+            '</channel>\n</rss>\n' % (SITE, SITE, now, body))
+
+
+write(os.path.join(HERE, 'rss.xml'), rss())
+
 write(os.path.join(HERE, 'robots.txt'),
       'User-agent: *\nAllow: /\n\n'
       + ''.join('User-agent: %s\nAllow: /\n\n' % b for b in AI_BOTS)
@@ -614,19 +720,32 @@ write(os.path.join(HERE, 'robots.txt'),
 
 # ---------- IndexNow ----------
 # 바뀐 주소를 검색엔진에 즉시 통보한다. 빙·네이버·얀덱스가 같은 규약을 받는다.
-INDEXNOW_KEY = 'ed7453a8e73d4c6691f01c9c2bbb1c97'   # 빙 웹마스터 도구가 발급한 키
+INDEXNOW_KEY = 'c26981028fc3472ea6f3db0401e26506'   # 빙 웹마스터 도구가 발급한 키
 write(os.path.join(HERE, INDEXNOW_KEY + '.txt'), INDEXNOW_KEY)
-try:
-    import urllib.request
-    payload = json.dumps({'host': 'issueitnow.com', 'key': INDEXNOW_KEY,
-                          'keyLocation': '%s/%s.txt' % (SITE, INDEXNOW_KEY),
-                          'urlList': [u for u, _, _ in urls]}).encode()
-    req = urllib.request.Request('https://api.indexnow.org/indexnow', data=payload,
-                                 headers={'Content-Type': 'application/json; charset=utf-8'})
-    with urllib.request.urlopen(req, timeout=20) as r:
-        print('IndexNow 통보 · %d URL · 응답 %d' % (len(urls), r.status))
-except Exception as e:
-    print('IndexNow 통보 실패(무시하고 진행):', e)
+_stamp = os.path.join(HERE, '.indexnow-last')
+_last = 0.0
+if os.path.exists(_stamp):
+    try:
+        _last = float(io.open(_stamp, encoding='utf-8').read().strip())
+    except ValueError:
+        _last = 0.0
+_now = __import__('time').time()
+
+if _now - _last < 1800:
+    print('IndexNow 건너뜀 · 마지막 통보 %d분 전' % ((_now - _last) / 60))
+else:
+  try:
+      import urllib.request
+      payload = json.dumps({'host': 'issueitnow.com', 'key': INDEXNOW_KEY,
+                            'keyLocation': '%s/%s.txt' % (SITE, INDEXNOW_KEY),
+                            'urlList': [u for u, _, _ in urls]}).encode()
+      req = urllib.request.Request('https://api.indexnow.org/indexnow', data=payload,
+                                   headers={'Content-Type': 'application/json; charset=utf-8'})
+      with urllib.request.urlopen(req, timeout=20) as r:
+          print('IndexNow 통보 · %d URL · 응답 %d' % (len(urls), r.status))
+          io.open(_stamp, 'w', encoding='utf-8').write(str(_now))
+  except Exception as e:
+      print('IndexNow 통보 실패(무시하고 진행):', e)
 
 # ---------- OG 이미지 ----------
 try:
