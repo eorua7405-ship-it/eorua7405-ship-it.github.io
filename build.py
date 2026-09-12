@@ -734,18 +734,26 @@ _now = __import__('time').time()
 if _now - _last < 1800:
     print('IndexNow 건너뜀 · 마지막 통보 %d분 전' % ((_now - _last) / 60))
 else:
-  try:
-      import urllib.request
-      payload = json.dumps({'host': 'issueitnow.com', 'key': INDEXNOW_KEY,
-                            'keyLocation': '%s/%s.txt' % (SITE, INDEXNOW_KEY),
-                            'urlList': [u for u, _, _ in urls]}).encode()
-      req = urllib.request.Request('https://api.indexnow.org/indexnow', data=payload,
-                                   headers={'Content-Type': 'application/json; charset=utf-8'})
-      with urllib.request.urlopen(req, timeout=20) as r:
-          print('IndexNow 통보 · %d URL · 응답 %d' % (len(urls), r.status))
-          io.open(_stamp, 'w', encoding='utf-8').write(str(_now))
-  except Exception as e:
-      print('IndexNow 통보 실패(무시하고 진행):', e)
+  import urllib.request
+  # 빙은 403(UserForbiddedToAccessSite)으로 막는다. 같은 키를 네이버는 200, 얀덱스는 202로 받는다.
+  # 키 파일이 규격에 맞다는 뜻이라 빙 계정 쪽 문제다. 고쳐지면 목록에 되돌린다.
+  ENDPOINTS = [('naver', 'https://searchadvisor.naver.com/indexnow'),
+               ('yandex', 'https://yandex.com/indexnow')]
+  payload = json.dumps({'host': 'issueitnow.com', 'key': INDEXNOW_KEY,
+                        'keyLocation': '%s/%s.txt' % (SITE, INDEXNOW_KEY),
+                        'urlList': [u for u, _, _ in urls]}).encode()
+  done = []
+  for name, ep in ENDPOINTS:
+      try:
+          req = urllib.request.Request(ep, data=payload,
+                                       headers={'Content-Type': 'application/json; charset=utf-8'})
+          with urllib.request.urlopen(req, timeout=20) as r:
+              done.append('%s %d' % (name, r.status))
+      except Exception as e:
+          done.append('%s 실패(%s)' % (name, getattr(e, 'code', e)))
+  print('IndexNow · %d URL · %s' % (len(urls), ' · '.join(done)))
+  if any('실패' not in x for x in done):
+      io.open(_stamp, 'w', encoding='utf-8').write(str(_now))
 
 # ---------- OG 이미지 ----------
 try:
