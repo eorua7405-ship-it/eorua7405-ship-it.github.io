@@ -160,6 +160,16 @@ def page(canonical, title, desc, head, body, edition, top='', pub=None, alt_path
             '</head>\n<body>\n' + (NAV_EN if edition == 'en' else NAV) + '\n' + toggle(edition) + '\n' + top + body + '\n</body>\n</html>\n')
 
 
+AFF_NOTE_KO = ('<p style="max-width:820px;margin:26px auto 0;padding:10px 13px;'
+               'border:1px dashed #DBD2C7;border-radius:8px;font:500 12px/1.6 '
+               "'Noto Sans KR',sans-serif;color:#7E6F64\">"
+               '이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>')
+AFF_NOTE_EN = ('<p style="max-width:820px;margin:26px auto 0;padding:10px 13px;'
+               'border:1px dashed #DBD2C7;border-radius:8px;font:500 12px/1.6 '
+               "'Noto Sans KR',sans-serif;color:#7E6F64\">"
+               'Some product links are Coupang Partners affiliate links. '
+               'We may earn a commission at no extra cost to you.</p>')
+
 SECTION_URLS = []
 
 SEC_CSS = """
@@ -314,6 +324,7 @@ def section_pages(body, sub, lab, head, siblings=None):
                 + '\n'.join(rows) +
                 '\n<p class="src">' + (src.group(1) if src else '') + '</p>\n'
                 + sib + '\n'
+                + (AFF_NOTE_EN if sub == 'en/' else AFF_NOTE_KO) + '\n'
                 '<a class="back" href="/' + sub + '">←' + (' Back to this week' if sub == 'en/' else lab + ' 이번 주 전체 보기') + '</a>\n'
                 '</div>\n</body>\n</html>\n').replace('\n', chr(10))
 
@@ -343,6 +354,35 @@ def inject_part_links(body, sub, made):
     return body
 
 
+
+def order_by_affiliate(body):
+    """파트너스 링크가 든 그룹을 파트 앞쪽으로. 그룹 안 차례는 그대로 둔다."""
+    def one(m):
+        head, items_html, tail = m.group(1), m.group(2), m.group(3)
+        blocks = re.findall(r'\s*<li class="item".*?</li>', items_html, re.S)
+        if not blocks:
+            return m.group(0)
+        order, groups = [], {}
+        for b in blocks:
+            g = re.search(r'data-group="([^"]*)"', b)
+            g = g.group(1) if g else ''
+            if g not in groups:
+                groups[g] = []
+                order.append(g)
+            groups[g].append(b)
+        # 링크가 많이 달린 그룹부터. 같으면 원래 차례를 지킨다.
+        def score(g):
+            return -sum('data-aff=' in b for b in groups[g])
+        ranked = sorted(order, key=lambda g: (score(g), order.index(g)))
+        # 순서가 그대로여도 다시 조립한다 — 원본에서 같은 그룹이 흩어져 있으면
+        # 여기서 한데 모여야 "관련된 것끼리" 읽힌다.
+        out = ''.join(''.join(groups[g]) for g in ranked)
+        return head + out + tail
+
+    return re.sub(r'(<section class="cat"[^>]*>.*?<ul class="items">)(.*?)(</ul>)',
+                  one, body, flags=re.S)
+
+
 def banner(prefix):
     return ('<div style="background:#C8102E;color:#fff;padding:9px 16px;font:600 13px/1.4 '
             "'Noto Sans KR',sans-serif;text-align:center\">WEEK %d(%s) 보관본입니다. "
@@ -367,6 +407,7 @@ for ed, sub, title, desc, head, body in EDITIONS:
 
     # 제목은 브랜드명만 두면 아무도 검색하지 않는 말이 된다. 무엇을 다루는지 앞에 쓴다.
     lab = {'global': '해외', 'kr': '국내', 'en': 'Korea'}[ed]
+    body = order_by_affiliate(body)   # 제휴 링크가 붙은 그룹을 앞으로
     made = section_pages(body, sub, lab, head)          # 1차 — 파트 목록 수집
     SECTION_URLS[:] = SECTION_URLS[:len(SECTION_URLS) - len(made)]
     made = section_pages(body, sub, lab, head, made)    # 2차 — 서로 링크해서 다시 쓴다
@@ -429,7 +470,7 @@ arch = ('<!doctype html>\n<html lang="ko">\n<head>\n<meta charset="utf-8">\n'
         '</head>\n<body>' + NAV + '<div class="w">\n<h1>지난 주 보관함</h1>\n'
         '<p class="sub">매주 월요일에 새로 뽑고, 지난 주는 여기 그대로 남습니다.</p>\n'
         + '\n'.join(blocks) +
-        '\n<a class="home" href="/">← 이번 주 보드로</a>\n</div></body>\n</html>\n')
+        '\n<a class="home" href="/">← 이번 주 보드로</a>\n' + AFF_NOTE_KO + '\n</div></body>\n</html>\n')
 write(os.path.join(HERE, 'archive', 'index.html'), arch)
 
 # ---------- 개인정보처리방침 ----------
@@ -495,7 +536,7 @@ privacy = ('<!doctype html>\n<html lang="ko">\n<head>\n<meta charset="utf-8">\n'
            '<p>운영 · <b>피유글로벌</b> &nbsp;|&nbsp; 문의 · <b>contact@issueitnow.com</b></p>\n'
            '<h2>9. 방침 변경</h2>\n'
            '<p>변경 시 이 페이지에 갱신하여 게시하며 시행일을 함께 표기합니다.</p>\n'
-           '<a class="home" href="/">← 이번 주 보드로</a>\n</div></body>\n</html>\n')
+           '<a class="home" href="/">← 이번 주 보드로</a>\n' + AFF_NOTE_KO + '\n</div></body>\n</html>\n')
 write(os.path.join(HERE, 'privacy', 'index.html'), privacy)
 
 # ---------- sitemap · robots ----------
