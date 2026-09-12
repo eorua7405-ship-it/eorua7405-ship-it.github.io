@@ -383,6 +383,38 @@ def order_by_affiliate(body):
                   one, body, flags=re.S)
 
 
+
+# 파트 묶음 — 위에서부터 이 차례로 놓는다. 묶음 안은 제휴 항목이 많은 순.
+SECTION_CLUSTERS = [
+    ('beauty', 'fashion', 'food', 'tech', 'life', 'travel'),   # 사는 것
+    ('instagram', 'tiktok', 'youtube'),                        # 숏폼
+    ('music', 'movie', 'game'),                                # 차트
+    ('meme',),                                                 # 말
+]
+
+
+def order_sections(body):
+    """상품이 걸린 파트를 위로. 성격이 같은 파트는 붙여 둔다."""
+    secs = {}
+    for m in re.finditer(r'    <section class="cat" data-cat="(\w+)".*?</section>\n?', body, re.S):
+        secs[m.group(1)] = m.group(0)
+    if not secs:
+        return body
+
+    ordered = []
+    for cluster in SECTION_CLUSTERS:
+        have = [c for c in cluster if c in secs]
+        have.sort(key=lambda c: -secs[c].count('data-aff='))
+        ordered += have
+    ordered += [c for c in secs if c not in ordered]     # 묶음에 없는 새 파트는 뒤로
+
+    first = min(body.index(secs[c]) for c in secs)
+    rest = body
+    for c in secs:
+        rest = rest.replace(secs[c], '', 1)
+    return rest[:first] + ''.join(secs[c] for c in ordered) + rest[first:]
+
+
 def banner(prefix):
     return ('<div style="background:#C8102E;color:#fff;padding:9px 16px;font:600 13px/1.4 '
             "'Noto Sans KR',sans-serif;text-align:center\">WEEK %d(%s) 보관본입니다. "
@@ -408,6 +440,7 @@ for ed, sub, title, desc, head, body in EDITIONS:
     # 제목은 브랜드명만 두면 아무도 검색하지 않는 말이 된다. 무엇을 다루는지 앞에 쓴다.
     lab = {'global': '해외', 'kr': '국내', 'en': 'Korea'}[ed]
     body = order_by_affiliate(body)   # 제휴 링크가 붙은 그룹을 앞으로
+    body = order_sections(body)      # 상품이 걸린 파트를 위로
     made = section_pages(body, sub, lab, head)          # 1차 — 파트 목록 수집
     SECTION_URLS[:] = SECTION_URLS[:len(SECTION_URLS) - len(made)]
     made = section_pages(body, sub, lab, head, made)    # 2차 — 서로 링크해서 다시 쓴다
