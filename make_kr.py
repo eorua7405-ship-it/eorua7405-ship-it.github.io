@@ -863,6 +863,12 @@ board = '''<main class="wrap">
     </div>
   </details>
 
+  <div class="backbar" id="backbar">
+    <a class="back" href="#">← 전체 보기</a>
+    <h2 id="dTitle"></h2>
+    <span class="cnt" id="dCnt"></span>
+  </div>
+
   <div class="cats" id="cats">
 
 ''' + '\n\n'.join(sections) + '''

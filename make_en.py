@@ -275,6 +275,50 @@ CHROME = [
 
 # 고유명사가 영어로 바뀌어야 맞는 규칙이 있고(예: "Riot Games가 서비스하는"),
 # 반대로 낱말 치환 전에 걸려야 하는 규칙도 있다. 그래서 규칙 -> 낱말 -> 규칙 순으로 돌린다.
+# ---------- 스크립트는 치환에서 뺀다 ----------
+# 본문 규칙이 자바스크립트 안까지 들어가면 정규식 리터럴이 깨진다.
+# 실제로 '해당 없음' -> 'n/a' 가 /.../ 안의 슬래시를 건드려 스크립트가 통째로 죽었다.
+# 화면에 보이는 문자열만 따로 옮긴다.
+JS_STRINGS = [
+ ("'인스타그램에서 보기'", "'View on Instagram'"),
+ ("'유튜브에서 보기'", "'Watch on YouTube'"),
+ ("'틱톡에서 보기'", "'View on TikTok'"),
+ ("'스포티파이에서 듣기'", "'Listen on Spotify'"),
+ ("'스팀에서 보기'", "'View on Steam'"),
+ ("'유튜브 리뷰 보기'", "'Watch reviews'"),
+ ("'예매 정보 보기'", "'Showtimes'"),
+ ("'자세히 보기'", "'Details'"),
+ ("'쿠팡에서 보기'", "'View on Coupang'"),
+ ("'전체 보기'", "'View all'"),
+ ("' 전체'", "' total'"),
+ ("'개 전체'", "' total'"),
+ ("'건'", "''"),
+ ("'시작'", "'Started'"),
+ ("'트래픽'", "'Traffic'"),
+ ("'왜?'", "'Why'"),
+ ("'재유행'", "'back again'"),
+ ("'신규'", "'new'"),
+]
+
+
+def protect_scripts(t):
+    keep = []
+
+    def grab(m):
+        keep.append(m.group(0))
+        return '\x00SCRIPT%d\x00' % (len(keep) - 1)
+
+    return re.sub(r'<script[^>]*>.*?</script>', grab, t, flags=re.S), keep
+
+
+def restore_scripts(t, keep):
+    for i, block in enumerate(keep):
+        for a, b in JS_STRINGS:
+            block = block.replace(a, b)
+        t = t.replace('\x00SCRIPT%d\x00' % i, block)
+    return t
+
+
 # ---------- 0) 손으로 옮긴 문장 사전 ----------
 # 규칙으로는 옮길 수 없는 서술형 문장을 여기서 먼저 바꾼다.
 # 키는 board-kr.html 에 들어간 한국어 원문 그대로여야 한다 — 치환 전에 적용되기 때문이다.
@@ -285,7 +329,7 @@ if os.path.exists(DP):
     import json
     DICT = json.load(io.open(DP, encoding='utf-8'))
 
-s = SRC
+s, _scripts = protect_scripts(SRC)
 for k in sorted(DICT, key=len, reverse=True):
     if DICT[k]:
         s = s.replace(k, DICT[k])
@@ -298,6 +342,8 @@ for _ in range(2):
 # 항목 문장 안에서도 바뀌어 규칙이 안 걸린다.
 for a, b in CHROME:
     s = s.replace(a, b)
+
+s = restore_scripts(s, _scripts)
 
 HAN = re.compile(r'[가-힣]')
 
