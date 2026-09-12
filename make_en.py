@@ -280,6 +280,10 @@ CHROME = [
 # 실제로 '해당 없음' -> 'n/a' 가 /.../ 안의 슬래시를 건드려 스크립트가 통째로 죽었다.
 # 화면에 보이는 문자열만 따로 옮긴다.
 JS_STRINGS = [
+ ("items.length + '개</span>'", "items.length + ' items</span>'"),
+ ("'<summary>왜?</summary>", "'<summary>Why</summary>"),
+ ("'개 전체'", "' total'"),
+ ("'개'", "' items'"),
  ('전체 보기 &rarr;', 'View all &rarr;'),
  ('전체 보기 →', 'View all →'),
  ('쿠팡에서 보기 →', 'View on Coupang →'),
