@@ -65,7 +65,7 @@ RULES = [
  (r'스포티파이 한국 일간 차트', 'Spotify Korea daily chart'),
  (r'인스타그램 오디오 인기 상승 #(\d+)\. 길이 ([\d:]+), 사용된 ([\d.,K]+) reels\.',
   r'#\1 on Instagram rising audio. \2 long, \3 reels.'),
- (r'([\d.,K]+) reels\. 순위 (up|down|flat|new entry) 중이라 이번 주 안에 자리가 바뀔 수 있는 구간인 듯\.',
+ (r'([\d.,KMB]+) reels\. 순위 (up|down|flat|new entry|New|no change|Rising) 중이라 이번 주 안에 자리가 바뀔 수 있는 구간인 듯\.',
   r'\1 reels, and \2 — the kind of slot that can move again inside a week.'),
  (r'kworb 아시아 실시간 집계에서 추출한 한국 아티스트 영상 #(\d+)\. 아시아 전체로는 #(\d+)\.',
   r'#\1 among Korean-artist videos on kworb Asia realtime; #\2 across Asia overall.'),
@@ -275,7 +275,20 @@ CHROME = [
 
 # 고유명사가 영어로 바뀌어야 맞는 규칙이 있고(예: "Riot Games가 서비스하는"),
 # 반대로 낱말 치환 전에 걸려야 하는 규칙도 있다. 그래서 규칙 -> 낱말 -> 규칙 순으로 돌린다.
+# ---------- 0) 손으로 옮긴 문장 사전 ----------
+# 규칙으로는 옮길 수 없는 서술형 문장을 여기서 먼저 바꾼다.
+# 키는 board-kr.html 에 들어간 한국어 원문 그대로여야 한다 — 치환 전에 적용되기 때문이다.
+# 주간 갱신 때 국내판 문장을 새로 쓰면 이 파일에 영어를 같이 넣는다.
+DICT = {}
+DP = os.path.join(HERE, '_en.json')
+if os.path.exists(DP):
+    import json
+    DICT = json.load(io.open(DP, encoding='utf-8'))
+
 s = SRC
+for k in sorted(DICT, key=len, reverse=True):
+    if DICT[k]:
+        s = s.replace(k, DICT[k])
 for _ in range(2):
     for pat, rep in RULES:
         s = re.sub(pat, rep, s)
