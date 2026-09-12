@@ -415,6 +415,21 @@ def order_sections(body):
     return rest[:first] + ''.join(secs[c] for c in ordered) + rest[first:]
 
 
+
+def rebuild_chips(body, edition):
+    """분야 필터를 파트 차례에 맞춰 다시 만든다. 파트가 늘면 칩도 자동으로 는다."""
+    m = re.search(r'(<div class="filters-inner" id="chips">)(.*?)(</div>)', body, re.S)
+    if not m:
+        return body
+    cats = re.findall(r'<section class="cat" data-cat="(\w+)"', body)
+    names = dict(re.findall(r'<section class="cat" data-cat="(\w+)".*?<h2>(.*?)</h2>', body, re.S))
+    btn = ('<button class="chip" aria-pressed="%s" data-cat="%s">%s</button>')
+    out = [btn % ('true', 'all', 'All' if edition == 'en' else '전체')]
+    for c in cats:
+        out.append(btn % ('false', c, names.get(c, c)))
+    return body[:m.start()] + m.group(1) + '\n    ' + '\n    '.join(out) + '\n  ' + m.group(3) + body[m.end():]
+
+
 def banner(prefix):
     return ('<div style="background:#C8102E;color:#fff;padding:9px 16px;font:600 13px/1.4 '
             "'Noto Sans KR',sans-serif;text-align:center\">WEEK %d(%s) 보관본입니다. "
@@ -441,6 +456,7 @@ for ed, sub, title, desc, head, body in EDITIONS:
     lab = {'global': '해외', 'kr': '국내', 'en': 'Korea'}[ed]
     body = order_by_affiliate(body)   # 제휴 링크가 붙은 그룹을 앞으로
     body = order_sections(body)      # 상품이 걸린 파트를 위로
+    body = rebuild_chips(body, ed)   # 필터 칩을 파트 차례에 맞춘다
     made = section_pages(body, sub, lab, head)          # 1차 — 파트 목록 수집
     SECTION_URLS[:] = SECTION_URLS[:len(SECTION_URLS) - len(made)]
     made = section_pages(body, sub, lab, head, made)    # 2차 — 서로 링크해서 다시 쓴다
