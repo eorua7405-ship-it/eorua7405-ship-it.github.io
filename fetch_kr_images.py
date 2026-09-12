@@ -171,6 +171,17 @@ def candidates(q):
     return uniq
 
 
+# 제품 이름에 브랜드가 들어간 항목은 자유 이미지로 채우지 않는다.
+# 다른 회사 제품 사진이 그 브랜드 제품처럼 읽히기 때문이다.
+BRANDS = ('달바', 'VT ', '메디큐브', '클리오', '다이브인', '아토베리어', '세라마이드 모찌',
+          '메디힐', '다이소', '노크 아카이브', '티르티르', '러쉬', '이마트24', 'GS25',
+          '갤럭시', '비스포크', '무신사', '에이블리', '올리브영')
+
+
+def is_branded(title):
+    return any(b in title for b in BRANDS)
+
+
 CUR = ['']          # 지금 처리 중인 파트
 
 
@@ -196,6 +207,10 @@ def fix(m):
         filled['steam'] += 1
         return (add(tag, 'https://cdn.cloudflare.steamstatic.com/steam/apps/%d/header.jpg'
                     % STEAM[title], 'Steam') + inner + '</li>')
+
+    # 브랜드 제품에는 남의 사진을 붙이지 않는다
+    if is_branded(title):
+        return m.group(0)
 
     # 3) 그 외 -> Openverse. 손으로 적어둔 키워드가 우선이고,
     #    없으면 항목이 이미 들고 있는 영문 검색어(data-q)를 그대로 쓴다.
