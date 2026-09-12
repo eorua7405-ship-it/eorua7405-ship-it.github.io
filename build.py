@@ -15,6 +15,7 @@ GA_TAG = ('<script async src="https://www.googletagmanager.com/gtag/js?id=' + GA
 
 DESC_G = ('매주 월요일 갱신되는 해외 유행 보드. '
           '릴스·유튜브·음악·영화·게임·패션·음식·뷰티·밈·여행을 수치와 해석으로 정리합니다.')
+DESC_E = ('What Korea is into right now, rebuilt every Monday. Music, reels audio, box office, games, beauty and slang, with the numbers behind each.')
 DESC_K = ('매주 월요일 갱신되는 국내 유행 보드. '
           '릴스·유튜브·음악·영화·게임·패션·음식·뷰티·밈·여행을 수치와 해석으로 정리합니다.')
 
@@ -36,6 +37,15 @@ NAV = ('<div style="background:#2A211B;color:#F0EDE7;padding:7px 16px;font:600 1
        '<a href="/privacy/" style="color:#F0EDE7;text-decoration:none">개인정보처리방침</a></div>')
 
 
+NAV_EN = ('<div style="background:#2A211B;color:#F0EDE7;padding:7px 16px;font:600 12px/1.4 '
+          "'Noto Sans KR',sans-serif;text-align:center\">"
+          '<a href="/en/" style="color:#F0EDE7;text-decoration:none">This week</a>'
+          '<span style="opacity:.4;margin:0 10px">·</span>'
+          '<a href="/archive/" style="color:#F0EDE7;text-decoration:none">Past weeks</a>'
+          '<span style="opacity:.4;margin:0 10px">·</span>'
+          '<a href="/privacy/" style="color:#F0EDE7;text-decoration:none">Privacy</a></div>')
+
+
 def toggle(edition):
     def btn(label, href, on):
         st = 'background:#C8102E;color:#fff' if on else 'background:transparent;color:#7E6F64'
@@ -44,8 +54,9 @@ def toggle(edition):
                 % (href, st, label))
     return ('<div style="background:#F0EDE7;border-bottom:1px solid #DBD2C7;padding:10px 16px;text-align:center">'
             '<span style="display:inline-flex;gap:4px;background:#fff;border:1px solid #DBD2C7;'
-            'border-radius:999px;padding:3px">' + btn('글로벌', '/', edition == 'global')
-            + btn('국내', '/kr/', edition == 'kr') + '</span></div>')
+            'border-radius:999px;padding:3px">' + btn('Global' if edition == 'en' else '글로벌', '/', edition == 'global')
+            + btn('Korea' if edition == 'en' else '국내', '/kr/', edition == 'kr')
+            + btn('EN', '/en/', edition == 'en') + '</span></div>')
 
 
 def load(fn):
@@ -70,6 +81,10 @@ HAS_KR = os.path.exists(os.path.join(HERE, 'board-kr.html'))
 if HAS_KR:
     SRC_K, HEAD_K, BODY_K = load('board-kr.html')
     TITLE_K = re.search(r'<title>(.*?)</title>', SRC_K).group(1)
+
+HAS_EN = os.path.exists(os.path.join(HERE, 'board-en.html'))
+if HAS_EN:
+    SRC_E, HEAD_E, BODY_E = load('board-en.html')
 
 
 TODAY = datetime.date.today().isoformat()
@@ -98,7 +113,7 @@ def itemlists(body, canonical):
     return out
 
 
-def page(canonical, title, desc, head, body, edition, top='', pub=None):
+def page(canonical, title, desc, head, body, edition, top='', pub=None, alt_path=''):
     ld = ('{"@context":"https://schema.org","@type":"CollectionPage","name":"%s",'
           '"description":"%s","url":"%s","inLanguage":"ko",'
           '%s'
@@ -115,11 +130,16 @@ def page(canonical, title, desc, head, body, edition, top='', pub=None):
             '<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
             '<meta name="description" content="' + desc + '">\n'
-            '<meta name="author" content="피유글로벌">\n'
+            '<meta name="author" content="' + ('PUGlobal' if edition == 'en' else '피유글로벌') + '">\n'
             '<meta name="naver-site-verification" content="87fd336dbe76ffba397115874449d9c49ffa1bc2">\n'
             '<link rel="canonical" href="' + canonical + '">\n'
+            + (('<link rel="alternate" hreflang="ko" href="%s/kr/%s">' + chr(10) +
+                '<link rel="alternate" hreflang="en" href="%s/en/%s">' + chr(10) +
+                '<link rel="alternate" hreflang="x-default" href="%s/kr/%s">' + chr(10))
+               % (SITE, alt_path, SITE, alt_path, SITE, alt_path)
+               if edition in ('kr', 'en') and HAS_EN else '') +
             '<meta property="og:type" content="website">\n'
-            '<meta property="og:site_name" content="지금 이슈 있나요?">\n'
+            '<meta property="og:site_name" content="' + ('Trending in Korea' if edition == 'en' else '지금 이슈 있나요?') + '">\n'
             '<meta property="og:title" content="' + title + '">\n'
             '<meta property="og:description" content="' + desc + '">\n'
             '<meta property="og:url" content="' + canonical + '">\n'
@@ -137,7 +157,7 @@ def page(canonical, title, desc, head, body, edition, top='', pub=None):
             '<script type="application/ld+json">' + lists + '</script>\n'
             + '<title>' + title + '</title>' + '\n' + '\n'.join(head[1:-1]) + '\n'
             + '<style>\n' + RESET + '\n</style>\n' + head[-1] + '\n'
-            '</head>\n<body>\n' + NAV + '\n' + toggle(edition) + '\n' + top + body + '\n</body>\n</html>\n')
+            '</head>\n<body>\n' + (NAV_EN if edition == 'en' else NAV) + '\n' + toggle(edition) + '\n' + top + body + '\n</body>\n</html>\n')
 
 
 SECTION_URLS = []
@@ -225,8 +245,13 @@ def section_pages(body, sub, lab, head, siblings=None):
             continue
 
         url = '%s/%s%s/' % (SITE, sub, cat)
-        title = '%s %s %d년 %d주차 — %s' % (lab, topic, YEAR, WEEK, BRAND)
-        desc = '%s %s. %d개를 시작일과 트래픽 수치로 정리했습니다.' % (lab, topic, total)
+        if sub == 'en/':
+            title = '%s in Korea — %d week %d' % (topic, YEAR, WEEK)
+            desc = ('%s in Korea this week: %d entries with start dates and traffic figures.'
+                    % (topic, total))
+        else:
+            title = '%s %s %d년 %d주차 — %s' % (lab, topic, YEAR, WEEK, BRAND)
+            desc = '%s %s. %d개를 시작일과 트래픽 수치로 정리했습니다.' % (lab, topic, total)
 
         rows = []
         for g, items in groups:
@@ -237,8 +262,8 @@ def section_pages(body, sub, lab, head, siblings=None):
                 nm = ('<a href="%s" rel="nofollow noopener" target="_blank">%s</a>'
                       % (esc(it['link']), nm)) if it['link'] else nm
                 facts = ' · '.join(
-                    filter(None, [('시작 <b>%s</b>' % esc(it['since'])) if it['since'] else '',
-                                  ('트래픽 <b>%s</b>' % esc(it['traffic'])) if it['traffic'] else '']))
+                    filter(None, [(('Started <b>%s</b>' if sub == 'en/' else '시작 <b>%s</b>') % esc(it['since'])) if it['since'] else '',
+                                  (('Traffic <b>%s</b>' if sub == 'en/' else '트래픽 <b>%s</b>') % esc(it['traffic'])) if it['traffic'] else '']))
                 thumb = ('<img class="thumb" src="%s" alt="%s" loading="lazy">'
                          % (esc(it['img']), esc(it['name']))) if it['img'] else ''
                 rows.append('<li class="%s">%s<div><h3>%s</h3><p>%s</p>'
@@ -249,7 +274,7 @@ def section_pages(body, sub, lab, head, siblings=None):
 
         sib = ''
         if siblings:
-            sib = ('<div class="more">다른 파트 · ' +
+            sib = ('<div class="more">' + ('Other parts · ' if sub == 'en/' else '다른 파트 · ') +
                    ' · '.join('<a href="/%s%s/">%s</a>' % (sub, c, t)
                               for c, t in siblings if c != cat) + '</div>')
         src = re.search(r'<p class="src">(.*?)</p>', sec, re.S)
@@ -261,35 +286,36 @@ def section_pages(body, sub, lab, head, siblings=None):
                                  [x for _, v in groups for x in v][:30])]},
                         ensure_ascii=False, separators=(',', ':'))
 
-        html = ('<!doctype html>REPLACEn<html lang="ko">REPLACEn<head>REPLACEn'
-                '<meta charset="utf-8">REPLACEn'
-                '<meta name="viewport" content="width=device-width, initial-scale=1">REPLACEn'
-                '<title>' + esc(title) + '</title>REPLACEn'
-                '<meta name="description" content="' + esc(desc) + '">REPLACEn'
-                '<link rel="canonical" href="' + url + '">REPLACEn'
-                '<meta property="og:type" content="article">REPLACEn'
-                '<meta property="og:title" content="' + esc(title) + '">REPLACEn'
-                '<meta property="og:description" content="' + esc(desc) + '">REPLACEn'
-                '<meta property="og:url" content="' + url + '">REPLACEn'
-                '<meta property="og:image" content="' + SITE + '/og.png">REPLACEn'
-                '<meta property="og:locale" content="ko_KR">REPLACEn'
-                '<link rel="icon" href="' + ICON + '">REPLACEn'
-                + GA_TAG + 'REPLACEn'
-                '<script type="application/ld+json">' + ld + '</script>REPLACEn'
-                '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>REPLACEn'
+        html = ('<!doctype html>\n<html lang="ko">\n<head>\n'
+                '<meta charset="utf-8">\n'
+                '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+                '<title>' + esc(title) + '</title>\n'
+                '<meta name="description" content="' + esc(desc) + '">\n'
+                '<link rel="canonical" href="' + url + '">\n'
+                '<meta property="og:type" content="article">\n'
+                '<meta property="og:title" content="' + esc(title) + '">\n'
+                '<meta property="og:description" content="' + esc(desc) + '">\n'
+                '<meta property="og:url" content="' + url + '">\n'
+                '<meta property="og:image" content="' + SITE + '/og.png">\n'
+                '<meta property="og:locale" content="ko_KR">\n'
+                '<link rel="icon" href="' + ICON + '">\n'
+                + GA_TAG + '\n'
+                '<script type="application/ld+json">' + ld + '</script>\n'
+                '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
                 '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
-                'family=Noto+Sans+KR:wght@400;600;700;800&display=swap">REPLACEn'
-                '<style>' + SEC_CSS + '</style>REPLACEn</head>REPLACEn<body>REPLACEn'
-                '<div class="top"><a href="/' + sub + '">← ' + lab + ' 이번 주 전체 보기</a></div>REPLACEn'
-                '<div class="wrap">REPLACEn'
-                '<h1>' + esc(topic) + '</h1>REPLACEn'
-                '<p class="sub">' + lab + ' · ' + str(YEAR) + '년 ' + str(WEEK) + '주차 ('
-                + PERIOD + ') · 총 ' + str(total) + '개</p>REPLACEn'
-                + 'REPLACEn'.join(rows) +
-                'REPLACEn<p class="src">' + (src.group(1) if src else '') + '</p>REPLACEn'
-                + sib + 'REPLACEn'
-                '<a class="back" href="/' + sub + '">← ' + lab + ' 이번 주 전체 보기</a>REPLACEn'
-                '</div>REPLACEn</body>REPLACEn</html>REPLACEn').replace('REPLACEn', chr(10))
+                'family=Noto+Sans+KR:wght@400;600;700;800&display=swap">\n'
+                '<style>' + SEC_CSS + '</style>\n</head>\n<body>\n'
+                '<div class="top"><a href="/' + sub + '">←' + (' Back to this week' if sub == 'en/' else lab + ' 이번 주 전체 보기') + '</a></div>\n'
+                '<div class="wrap">\n'
+                '<h1>' + esc(topic) + '</h1>\n'
+                '<p class="sub">' + lab + ' · ' + (('%d week %d (' % (YEAR, WEEK)) if sub == 'en/'
+                   else str(YEAR) + '년 ' + str(WEEK) + '주차 (')
+                + PERIOD + ') · ' + (str(total) + ' entries' if sub == 'en/' else '총 ' + str(total) + '개') + '</p>\n'
+                + '\n'.join(rows) +
+                '\n<p class="src">' + (src.group(1) if src else '') + '</p>\n'
+                + sib + '\n'
+                '<a class="back" href="/' + sub + '">←' + (' Back to this week' if sub == 'en/' else lab + ' 이번 주 전체 보기') + '</a>\n'
+                '</div>\n</body>\n</html>\n').replace('\n', chr(10))
 
         write(os.path.join(HERE, sub, cat, 'index.html'), html)
         SECTION_URLS.append(url)
@@ -310,7 +336,9 @@ def inject_part_links(body, sub, made):
             continue
         a = ('<p style="margin:14px 0 0;font-size:12.5px"><a href="/%s%s/" '
              'style="color:#C8102E;font-weight:700;text-decoration:none">'
-             '%s 전체 목록 보기 &rarr;</a></p>' % (sub, cat, topic))
+             '%s</a></p>' % (sub, cat,
+                             (topic + ' &mdash; see all &rarr;') if sub == 'en/'
+                             else topic + ' 전체 목록 보기 &rarr;'))
         body = body[:j] + a + body[j:]
     return body
 
@@ -331,29 +359,35 @@ def write(path, text):
 EDITIONS = [('global', '', TITLE_G, DESC_G, HEAD_G, BODY_G)]
 if HAS_KR:
     EDITIONS.append(('kr', 'kr/', TITLE_K, DESC_K, HEAD_K, BODY_K))
+if HAS_EN:
+    EDITIONS.append(('en', 'en/', 'Trending in Korea', DESC_E, HEAD_E, BODY_E))
 
 for ed, sub, title, desc, head, body in EDITIONS:
     base = SITE + '/' + sub
 
     # 제목은 브랜드명만 두면 아무도 검색하지 않는 말이 된다. 무엇을 다루는지 앞에 쓴다.
-    lab = '해외' if ed == 'global' else '국내'
+    lab = {'global': '해외', 'kr': '국내', 'en': 'Korea'}[ed]
     made = section_pages(body, sub, lab, head)          # 1차 — 파트 목록 수집
     SECTION_URLS[:] = SECTION_URLS[:len(SECTION_URLS) - len(made)]
     made = section_pages(body, sub, lab, head, made)    # 2차 — 서로 링크해서 다시 쓴다
     links = ('<div style="max-width:1180px;margin:0 auto;padding:26px 18px 40px;'
-             "font:13px/2 'Noto Sans KR',sans-serif;color:#7E6F64\">파트별 전체 목록 · "
+             "font:13px/2 'Noto Sans KR',sans-serif;color:#7E6F64\">" + ('All parts · ' if sub == 'en/' else '파트별 전체 목록 · ')
              + ' · '.join('<a href="/%s%s/" style="color:#7E6F64">%s</a>' % (sub, c, t)
                           for c, t in made) + '</div>')
     body = inject_part_links(body, sub, made)
     write(os.path.join(HERE, sub, 'index.html'),
-          page(base, '이번 주 %s 유행 총정리 — %s' % (lab, BRAND), desc, head, body + links, ed))
+          page(base,
+               ('Trending in Korea — this week' if ed == 'en'
+                else '이번 주 %s 유행 총정리 — %s' % (lab, BRAND)),
+               desc, head, body + links, ed, alt_path=''))
     wdir = os.path.join(HERE, sub, 'week', str(WEEK))
     write(os.path.join(wdir, 'index.html'),
           page('%sweek/%d/' % (base, WEEK),
-               '%d년 %d주차 %s 유행 총정리 (%s) — %s' % (YEAR, WEEK, lab, PERIOD, BRAND),
+               ('Trending in Korea — %d week %d (%s)' % (YEAR, WEEK, PERIOD) if ed == 'en'
+                else '%d년 %d주차 %s 유행 총정리 (%s) — %s' % (YEAR, WEEK, lab, PERIOD, BRAND)),
                '%d년 %d주차(%s) 보관본. %s에서 그 주에 뜨던 것을 그대로 남긴 기록입니다.'
                % (YEAR, WEEK, PERIOD, '해외' if ed == 'global' else '국내'), head, body, ed,
-               banner('/' + sub), TODAY))
+               banner('/' + sub), TODAY, 'week/%d/' % WEEK))
 
 # ---------- 아카이브 ----------
 def weeks_of(sub):
