@@ -17,6 +17,10 @@ def esc(t):
     return t.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;')
 
 
+import datetime
+TODAY = datetime.date.today().strftime('%Y.%m.%d')
+
+
 def kor(n):
     if n >= 100000000:
         return '%.1f억' % (n / 100000000.0)
@@ -52,7 +56,7 @@ def game_li(r):
     mv = '순위 유지' if last == r['rank'] else ('지난주 %d위' % last if last else '신규 진입')
     return ('        <li class="item" data-group="스팀 최다 플레이 TOP 50"'
             ' data-sum="최고 동시접속 %s명 · %s"'
-            ' data-since="2026.09.05 집계 (주간)"'
+            ' data-since="%s 집계 (주간)"'
             ' data-traffic="주간 최고 동시접속 %s명"'
             ' data-img="https://cdn.cloudflare.steamstatic.com/steam/apps/%s/header.jpg"'
             ' data-credit="Steam"'
@@ -60,7 +64,7 @@ def game_li(r):
             '          <h3>%s</h3>\n'
             '          <p>스팀 공식 집계 기준 주간 최다 플레이 %d위.</p>\n'
             '          <div class="meta"><span class="tag">%02d위</span><span class="tag">%s</span></div>\n'
-            '        </li>' % (kor(peak), mv, '{:,}'.format(peak), a, a, esc(nm), r['rank'], r['rank'], mv))
+            '        </li>' % (kor(peak), mv, TODAY, '{:,}'.format(peak), a, a, esc(nm), r['rank'], r['rank'], mv))
 
 
 m = re.search(r'(<section class="cat" data-cat="game" data-plat="steam">)(.*?)(</section>)', s, re.S)
@@ -126,13 +130,13 @@ def song_li(t):
     imgattr = (' data-img="%s" data-credit="Apple Music · %s"' % (img, esc(t['artist']))) if img else ''
     return ('        <li class="item" data-group="스포티파이 글로벌 TOP 50"'
             ' data-sum="일간 스트리밍 %s회 · %s"'
-            ' data-since="2026.09.05 집계 (일간)"'
+            ' data-since="%s 집계 (일간)"'
             ' data-traffic="일간 스트리밍 %s회"%s'
             ' data-term="%s %s">\n'
             '          <h3>%s — %s</h3>\n'
             '          <p>스포티파이 글로벌 일간 차트 %d위.</p>\n'
             '          <div class="meta"><span class="tag">%02d위</span><span class="tag">%s</span></div>\n'
-            '        </li>' % (kor(n), esc(mv), t['streams'], imgattr,
+            '        </li>' % (kor(n), esc(mv), TODAY, t['streams'], imgattr,
                                esc(t['title']), esc(t['artist']),
                                esc(t['artist']), esc(t['title']), t['rank'], t['rank'], esc(mv)))
 

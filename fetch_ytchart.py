@@ -40,13 +40,14 @@ def esc(t):
 
 
 MOVE = {'=': '순위 유지', 'NEW': '신규 진입'}
+TODAY = __import__('datetime').date.today().strftime('%Y.%m.%d')
 
 
 def li(c):
     mv = MOVE.get(c['move'], ('전일 대비 ' + c['move']) if c['move'] else '')
     return ('        <li class="item" data-group="24시간 조회수 TOP 50"'
             ' data-sum="%s · %s"'
-            ' data-since="2026.09.05 집계 (24시간)"'
+            ' data-since="%s 집계 (24시간)"'
             ' data-traffic="24시간 %s회 · 좋아요 %s"'
             ' data-img="https://i.ytimg.com/vi/%s/hqdefault.jpg"'
             ' data-credit="YouTube"'
@@ -54,7 +55,7 @@ def li(c):
             '          <h3>%s</h3>\n'
             '          <p>kworb 실시간 집계 기준 24시간 최다 조회 %d위.</p>\n'
             '          <div class="meta"><span class="tag">%02d위</span><span class="tag">%s</span></div>\n'
-            '        </li>' % (kor(c['views']), esc(mv), c['views'], c['likes'],
+            '        </li>' % (kor(c['views']), esc(mv), TODAY, c['views'], c['likes'],
                                c['id'], c['id'], esc(c['title']), c['rank'],
                                c['rank'], esc(mv)))
 

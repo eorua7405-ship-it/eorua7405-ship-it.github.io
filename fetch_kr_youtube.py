@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """한국 아티스트 롱폼 영상 24시간 조회수 순위 -> board-kr.html 유튜브 파트"""
-import io, os, re, html, urllib.request
+import io, os, re, html, urllib.request, datetime
+TODAY = datetime.date.today().strftime('%Y.%m.%d')
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 p = os.path.join(HERE, 'board-kr.html')
@@ -45,7 +46,7 @@ def li(x, r):
     n = int(x['views'].replace(',', '')) if x['views'].replace(',', '').isdigit() else 0
     return ('        <li class="item" data-group="24시간 조회수 TOP 30 (롱폼)"'
             ' data-sum="24시간 %s회 · 아시아 전체 %d위"'
-            ' data-since="2026.09.06 집계 (24시간)"'
+            ' data-since="%s 집계 (24시간)"'
             ' data-traffic="24시간 %s회 · 좋아요 %s"'
             ' data-img="https://i.ytimg.com/vi/%s/hqdefault.jpg" data-credit="YouTube"'
             ' data-link="https://www.youtube.com/watch?v=%s">\n'
@@ -54,7 +55,7 @@ def li(x, r):
             '          <p>kworb 아시아 실시간 집계에서 추출한 한국 아티스트 영상 %d위. 아시아 전체로는 %d위.</p>\n'
             '          <div class="meta"><span class="tag">%02d위</span><span class="tag">뮤직비디오</span></div>\n'
             '        </li>'
-            % (kor(n), x['aid'], x['views'], x['likes'], x['id'], x['id'], r, esc(x['t']), r, x['aid'], r))
+            % (kor(n), x['aid'], TODAY, x['views'], x['likes'], x['id'], x['id'], r, esc(x['t']), r, x['aid'], r))
 
 
 new_items = [li(x, i + 1) for i, x in enumerate(rows)]

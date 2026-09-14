@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """스포티파이 한국 일간 TOP 50 -> board-kr.html 음악 파트"""
-import io, os, re, json, time, html, urllib.parse, urllib.request
+import io, os, re, json, time, html, urllib.parse, urllib.request, datetime
+TODAY=datetime.date.today().strftime('%Y.%m.%d')
 HERE=os.path.dirname(os.path.abspath(__file__)); p=os.path.join(HERE,'board-kr.html')
 s=io.open(p,encoding='utf-8').read()
 UA={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131.0'}
@@ -48,7 +49,7 @@ def li(x):
       '          <span class="rank">%02d</span>\n'
       '          <h3>%s — %s</h3>\n          <p>스포티파이 한국 일간 차트 %d위.</p>\n'
       '          <div class="meta"><span class="tag">%02d위</span><span class="tag">%s</span></div>\n        </li>'
-      %(kor(n),esc(mv),'2026.09.06',x['st'],ia,esc(x['t']),esc(x['a']),x['r'],esc(x['a']),esc(x['t']),x['r'],x['r'],esc(mv)))
+      %(kor(n),esc(mv),TODAY,x['st'],ia,esc(x['t']),esc(x['a']),x['r'],esc(x['a']),esc(x['t']),x['r'],x['r'],esc(mv)))
 m=re.search(r'(<section class="cat" data-cat="music" data-plat="spotify">)(.*?)(</section>)',s,re.S)
 body=m.group(2)
 ul=re.search(r'(<ul class="items">)(.*?)(\n      </ul>)',body,re.S)
