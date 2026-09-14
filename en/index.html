@@ -1766,10 +1766,8 @@
 
   // 항목 → 실제로 그게 살아 있는 플랫폼으로 보낸다
   var PLATFORMS = {
-    instagram: {label:'View on Instagram', base:'https://www.instagram.com/explore/search/keyword/?q='},
     youtube:   {label:'Watch on YouTube',    base:'https://www.youtube.com/results?search_query='},
     shorts:    {label:'쇼츠에서 보기',      base:'https://www.youtube.com/results?search_query=', suffix:' #shorts'},
-    tiktok:    {label:'View on TikTok',      base:'https://www.tiktok.com/search?q='},
     spotify:   {label:'Listen on Spotify', base:'https://open.spotify.com/search/'},
     steam:     {label:'View on Steam',      base:'https://store.steampowered.com/search/?term='},
     movie:     {label:'박스오피스에서 보기', base:'https://www.boxofficemojo.com/search/?q='},
@@ -1961,7 +1959,19 @@
       var a = document.createElement('a');
       a.className = 'more';
       var iplat = item.dataset.plat || plat;
-      a.href = item.dataset.link || destination(iplat, searchTerm(item));
+      // 인스타·틱톡은 로그인 벽에 막혀 링크가 잘 안 열린다. 검색어만 빼서 유튜브로 보낸다.
+      if (iplat === 'instagram' || iplat === 'tiktok') iplat = 'youtube';
+      var href = item.dataset.link || destination(iplat, searchTerm(item));
+      var q = href.match(/instagram\.com\S*?[?&]q=([^&]*)/) ||
+              href.match(/tiktok\.com\/tag\/([^\/?]+)/) ||
+              href.match(/tiktok\.com\S*?[?&]q=([^&]*)/);
+      if (q){
+        var t = q[1].replace(/\+/g, ' ');
+        try { t = decodeURIComponent(t); } catch (e) {}
+        iplat = 'youtube';
+        href = destination('youtube', t);
+      }
+      a.href = href;
       a.target = '_blank';
       a.rel = 'noopener noreferrer';
       a.textContent = (PLATFORMS[iplat] || PLATFORMS.web).label + ' ↗';
