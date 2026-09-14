@@ -11,7 +11,8 @@ SITE = 'https://issueitnow.com'
 BRAND = '지금 이슈 있나요?'
 GA = 'G-YSVK0BXCWE'
 GA_TAG = ('<script async src="https://www.googletagmanager.com/gtag/js?id=' + GA + '"></script>'
-          '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag(' + repr('js') + ',new Date());gtag(' + repr('config') + ',' + repr(GA) + ')</script>')
+          '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag(' + repr('js') + ',new Date());gtag(' + repr('config') + ',' + repr(GA) + ')</script>'
+          "<script>(function(){var hit={},P=[25,50,75,100];function part(){var s=document.querySelectorAll('section.cat'),n='';for(var i=0;i<s.length;i++){if(s[i].offsetParent&&s[i].getBoundingClientRect().top<innerHeight/2)n=s[i].getAttribute('data-cat')}return n}function ed(){var p=location.pathname;return p.indexOf('/en/')===0?'en':p.indexOf('/kr/')===0?'kr':'global'}function tick(){var h=document.documentElement.scrollHeight-innerHeight;var pct=h>0?scrollY/h*100:100;for(var i=0;i<P.length;i++){if(pct>=P[i]&&!hit[P[i]]){hit[P[i]]=1;gtag('event','scroll_depth',{percent:P[i],part:part()||'top',edition:ed()})}}}addEventListener('scroll',function(){clearTimeout(tick.t);tick.t=setTimeout(tick,200)},{passive:true});addEventListener('load',tick)})()</script>")
 
 DESC_G = ('매주 월요일 갱신되는 해외 유행 보드. '
           '릴스·유튜브·음악·영화·게임·패션·음식·뷰티·밈·여행을 수치와 해석으로 정리합니다.')
