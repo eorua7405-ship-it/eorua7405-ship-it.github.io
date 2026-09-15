@@ -12,7 +12,7 @@ BRAND = '지금 이슈 있나요?'
 GA = 'G-YSVK0BXCWE'
 GA_TAG = ('<script async src="https://www.googletagmanager.com/gtag/js?id=' + GA + '"></script>'
           '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag(' + repr('js') + ',new Date());gtag(' + repr('config') + ',' + repr(GA) + ')</script>'
-          "<script>(function(){var hit={},P=[25,50,75,100];function part(){var s=document.querySelectorAll('section.cat'),n='';for(var i=0;i<s.length;i++){if(s[i].offsetParent&&s[i].getBoundingClientRect().top<innerHeight/2)n=s[i].getAttribute('data-cat')}return n}function ed(){var p=location.pathname;return p.indexOf('/en/')===0?'en':p.indexOf('/kr/')===0?'kr':'global'}function tick(){var h=document.documentElement.scrollHeight-innerHeight;var pct=h>0?scrollY/h*100:100;for(var i=0;i<P.length;i++){if(pct>=P[i]&&!hit[P[i]]){hit[P[i]]=1;gtag('event','scroll_depth',{percent:P[i],part:part()||'top',edition:ed()})}}}addEventListener('scroll',function(){clearTimeout(tick.t);tick.t=setTimeout(tick,200)},{passive:true});addEventListener('load',tick)})()</script>")
+          "<script>(function(){var hit={},P=[25,50,75,100];function part(){var s=document.querySelectorAll('section.cat'),n='';for(var i=0;i<s.length;i++){if(s[i].offsetParent&&s[i].getBoundingClientRect().top<innerHeight/2)n=s[i].getAttribute('data-cat')}return n}function ed(){var p=location.pathname;return p.indexOf('/en/')===0?'en':p.indexOf('/kr/')===0?'kr':'global'}function tick(){var h=document.documentElement.scrollHeight-innerHeight;var pct=h>0?scrollY/h*100:100;for(var i=0;i<P.length;i++){if(pct>=P[i]&&!hit[P[i]]){hit[P[i]]=1;gtag('event','scroll_depth',{percent:P[i],part:part()||'top',edition:ed()});if(P[i]===75)gtag('event','read_deep',{part:part()||'top',edition:ed()})}}}addEventListener('scroll',function(){clearTimeout(tick.t);tick.t=setTimeout(tick,200)},{passive:true});addEventListener('load',tick);addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(a&&a.href&&a.href.indexOf('coupang')>0)gtag('event','coupang_click',{edition:ed(),shop:((a.closest('.item')||{dataset:{}}).dataset.shop)||''})},{passive:true})})()</script>")
 
 DESC_G = ('매주 월요일 갱신되는 해외 유행 보드. '
           '릴스·유튜브·음악·영화·게임·패션·음식·뷰티·밈·여행을 수치와 해석으로 정리합니다.')
@@ -162,12 +162,12 @@ def page(canonical, title, desc, head, body, edition, top='', pub=None, alt_path
             '</head>\n<body>\n' + (NAV_EN if edition == 'en' else NAV) + '\n' + toggle(edition) + '\n' + top + body + '\n</body>\n</html>\n')
 
 
-AFF_NOTE_KO = ('<p style="max-width:820px;margin:26px auto 0;padding:10px 13px;'
-               'border:1px dashed #DBD2C7;border-radius:8px;font:500 12px/1.6 '
+AFF_NOTE_KO = ('<p style="max-width:820px;margin:14px auto 0;padding:6px 11px;'
+               'border:1px dashed #DBD2C7;border-radius:8px;font:500 11.5px/1.45 '
                "'Noto Sans KR',sans-serif;color:#7E6F64\">"
                '이 페이지는 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>')
-AFF_NOTE_EN = ('<p style="max-width:820px;margin:26px auto 0;padding:10px 13px;'
-               'border:1px dashed #DBD2C7;border-radius:8px;font:500 12px/1.6 '
+AFF_NOTE_EN = ('<p style="max-width:820px;margin:14px auto 0;padding:6px 11px;'
+               'border:1px dashed #DBD2C7;border-radius:8px;font:500 11.5px/1.45 '
                "'Noto Sans KR',sans-serif;color:#7E6F64\">"
                'Some product links are Coupang Partners affiliate links. '
                'We may earn a commission at no extra cost to you.</p>')
@@ -250,7 +250,16 @@ def section_pages(body, sub, lab, head, siblings=None):
         ko = ''
         if en and ' · ' in en.group(1):
             ko = en.group(1).split(' · ', 1)[1]
-        topic = part if (not ko or ko in part or part in ko) else '%s %s' % (part, ko)
+        # 짧은 말이 긴 말 안에 들어 있으면 긴 쪽을 쓴다 —
+        # '뷰티'보다 '지금 뜨는 뷰티 트렌드'가 실제로 검색되는 말이다.
+        # 앞머리의 국내/해외는 뗀다. 안 그러면 '국내 영화 순위 국내 일별 관객수'가 된다.
+        ko = re.sub(r'^(국내|해외)\s*', '', ko)
+        if not ko or ko in part:
+            topic = part
+        elif part in ko:
+            topic = ko
+        else:
+            topic = '%s %s' % (part, ko)
         groups = parse_section(sec)
         total = sum(len(v) for _, v in groups)
         if total < 3:
@@ -344,6 +353,12 @@ def inject_part_links(body, sub, made):
         i = body.find(pat)
         if i < 0:
             continue
+        # '전체 보기' 버튼이 갈 곳. 파트 페이지가 있는 섹션에만 붙는다 —
+        # 주차 스냅샷처럼 파트 페이지가 없는 곳은 지금처럼 그 자리에서 펼친다.
+        if 'data-part-url' not in body[i:i + len(pat) + 80]:
+            body = (body[:i + len(pat)]
+                    + ' data-part-url="/%s%s/"' % (sub, cat)
+                    + body[i + len(pat):])
         j = body.find('<p class="src">', i)
         if j < 0:
             continue
@@ -355,6 +370,29 @@ def inject_part_links(body, sub, made):
         body = body[:j] + a + body[j:]
     return body
 
+
+
+
+def intros_below_first(body):
+    """접혀 있는 소개 블록을 첫 섹션 아래로 내린다.
+
+    모바일에서 첫 항목이 769px 에 있었다. 화면이 812px 이라 아무것도 안 보인 채로
+    시작한다. 이 두 블록이 177px 을 차지하는데 접혀 있어서 어차피 안 읽힌다.
+    """
+    taken = []
+
+    def take(m):
+        taken.append(m.group(0).strip())
+        return ''
+
+    body = re.sub(r'\s*<details class="(?:board|weekly-note)".*?</details>',
+                  take, body, flags=re.S)
+    if not taken:
+        return body
+    m = re.search(r'<section class="cat".*?</section>', body, flags=re.S)
+    if not m:                      # 섹션이 없으면 원래 자리가 낫다
+        return body
+    return body[:m.end()] + '\n' + '\n'.join(taken) + body[m.end():]
 
 
 def order_by_affiliate(body):
@@ -530,6 +568,7 @@ for ed, sub, title, desc, head, body in EDITIONS:
              + ' · '.join('<a href="/%s%s/" style="color:#7E6F64">%s</a>' % (sub, c, t)
                           for c, t in made) + '</div>')
     body = inject_part_links(body, sub, made)
+    body = intros_below_first(body)   # 첫 화면에 항목이 보이게
     write(os.path.join(HERE, sub, 'index.html'),
           page(base,
                ('Trending in Korea — this week' if ed == 'en'

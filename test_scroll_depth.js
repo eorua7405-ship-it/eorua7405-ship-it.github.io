@@ -6,7 +6,7 @@ const html = fs.readFileSync(__dirname + '/index.html', 'utf8');
 const m = html.match(/<script>\(function\(\)\{var hit=[\s\S]*?<\/script>/);
 if (!m) { console.error('스크롤 스크립트를 index.html 에서 못 찾음'); process.exit(1); }
 const src = m[0].slice(8, -9);
-const fired = [], L = {};
+const fired = [], deep = [], L = {};
 let Y = 0;
 const secs = [
   {cat:'beauty', top:  200, offsetParent:{}},
@@ -21,7 +21,7 @@ const ctx = {
       getBoundingClientRect: () => ({top: s.top - Y}),
       getAttribute: () => s.cat}))},
   location: {pathname: '/kr/'},
-  gtag: (ev, name, p) => fired.push([name, p.percent, p.part, p.edition]),
+  gtag: (ev, name, p) => (name === 'read_deep' ? deep : fired).push([name, p.percent, p.part, p.edition]),
   addEventListener: (n, f) => { L[n] = f; },
   clearTimeout: () => {}, setTimeout: f => f(),
 };
@@ -44,4 +44,6 @@ assert.strictEqual(fired[0][2], 'beauty', '26% 에선 beauty 가 보인다');
 assert.strictEqual(fired[3][2], 'music', '바닥에선 music');
 assert.ok(fired.every(f => f[3] === 'kr'), 'edition=kr');
 assert.ok(!fired.some(f => f[2] === 'hidden'), '숨은 섹션은 세지 않는다');
+assert.strictEqual(deep.length, 1, 'read_deep 은 75% 에서 한 번만');
+assert.strictEqual(deep[0][2], 'beauty', 'read_deep 에도 파트가 붙는다');
 console.log('통과');

@@ -612,15 +612,7 @@
       <div><span>집계 기간</span><b>09.14 - 09.20</b></div>
       <div><span>스냅샷</span><b>09.14 (월)</b></div>
       <div><span>다음 갱신</span><b>09.21 (월)</b></div>
-      <div><span>이번 주 신규</span><b id="newCount">-</b></div>
-    </div>
-    <div class="clocks" id="clocks">
-      <div class="clock"><span>Seoul</span><time data-tz="Asia/Seoul">--:--</time></div>
-      <div class="clock"><span>Tokyo</span><time data-tz="Asia/Tokyo">--:--</time></div>
-      <div class="clock"><span>Paris</span><time data-tz="Europe/Paris">--:--</time></div>
-      <div class="clock"><span>London</span><time data-tz="Europe/London">--:--</time></div>
-      <div class="clock"><span>New York</span><time data-tz="America/New_York">--:--</time></div>
-      <div class="clock"><span>Los Angeles</span><time data-tz="America/Los_Angeles">--:--</time></div>
+      <div><span>이번 주 변동</span><b id="newCount">-</b></div>
     </div>
   </div>
 </header>
@@ -2895,16 +2887,6 @@
 </footer>
 
 <script>
-  // 세계 시계
-  var clocks = [].slice.call(document.querySelectorAll('#clocks time'));
-  function tick(){
-    var now = new Date();
-    clocks.forEach(function(el){
-      el.textContent = new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:el.dataset.tz}).format(now);
-    });
-  }
-  tick();
-  setInterval(tick, 10000);
 
   var MAX = 80; // 한 파트당 표시 상한
 
@@ -3155,13 +3137,18 @@
     sync();
 
     expand.addEventListener('click', function(){
-      location.hash = '#/' + sec.dataset.cat;   // 해당 파트 전용 페이지로 이동
+      // 파트 페이지가 있으면 그리로 보낸다. 해시로만 펼치던 동안 파트 페이지는
+      // 7일 조회가 3·2·2·2 였다 — 눈에 띄는 버튼이 거기로 안 보내고 있었다.
+      if (sec.dataset.partUrl){ location.href = sec.dataset.partUrl; return; }
+      location.hash = '#/' + sec.dataset.cat;   // 파트 페이지가 없는 주차 스냅샷용
     });
   });
 
-  // 이번 주 신규 건수
+  // 이번 주 움직인 항목 — 신규 + 지난주 대비 순위 이동
   document.getElementById('newCount').textContent =
-    document.querySelectorAll('.item[data-new="1"]').length + '건';
+    [].filter.call(document.querySelectorAll('.item'), function(it){
+      return it.dataset.new === '1' || /지난주[^<]*[\u25b2\u25bc]/.test(it.textContent);
+    }).length + '건';
 
   // 분야 필터
   var chips = document.getElementById('chips');
