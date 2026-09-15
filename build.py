@@ -183,8 +183,14 @@ AI_CSS = ('<style>'
 '.tip h3 a{color:#C8102E;text-decoration:none}'
 '.en2{font-weight:400;font-size:12.5px;color:#9A8B7E;margin-left:6px}'
 '.tip p{margin:6px 0;font-size:14px;line-height:1.75}'
-'.tip .what{color:#2B2320}'
-'.tip .why,.tip .ex,.tip .trap{color:#5C4F45}'
+'.tip .one{color:#2B2320}'
+'.tip .trap{color:#7E6F64;font-size:13px}'
+'.tip .trap::before{content:"주의 ";color:#C8102E;font-weight:700}'
+# 예시는 읽는 글이 아니라 복사하는 것 — 입력창처럼 보이게 한다
+'pre.ex{margin:12px 0;padding:12px 14px;background:#F7F4EF;border:1px solid #E6DFD6;'
+'border-radius:9px;font:13px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;'
+'white-space:pre-wrap;word-break:break-word;color:#2B2320}'
+'.k-x{opacity:.75}'
 '.tip b{color:#C8102E;font-weight:700;margin-right:4px}'
 '.tip .from{margin-top:10px;font-size:12.5px;color:#9A8B7E}'
 '.kind{display:inline-block;border:1px solid #DBD2C7;border-radius:999px;'
@@ -211,8 +217,9 @@ AI_CSS = ('<style>'
 # DOC_CSS 는 다크 모드를 따라가는데 카드만 안 따라가면 흰 상자가 떠 보인다
 '@media(prefers-color-scheme:dark){'
 '.tip{background:#1E1814;border-color:#382E27}'
-'.tip h3,.tip .what{color:#F2EBE3}'
-'.tip .why,.tip .ex,.tip .trap{color:#D9CEC4}'
+'.tip h3,.tip .one{color:#F2EBE3}'
+'.tip .trap{color:#B7A89C}'
+'pre.ex{background:#141010;border-color:#382E27;color:#E6DDD4}'
 '.tip .from,.kind,.jobs,.note{color:#B7A89C}'
 '.kind{border-color:#382E27}.note{border-left-color:#382E27}'
 '.job{background:#1E1814;border-color:#382E27}'
@@ -757,20 +764,22 @@ def ai_pages():
     made = []
 
     def card(t, job):
-        ex = t['jobs'].get(job)
+        ex = t['ex'].get(job)
         kind, label, link = t['src']
+        # 출처가 없는 건 링크를 만들지 않는다. 없는 걸 있는 척하지 않는다.
+        frm = ('<a href="%s" rel="nofollow noopener" target="_blank">%s</a>' % (esc(link), esc(label))
+               if link else esc(label))
         return (
             '<div class="tip">'
             '<h3>%s <span class="en2">%s</span></h3>'
-            '<p class="what">%s</p>'
-            '<p class="why"><b>왜 듣나</b> %s</p>'
+            '<p class="one">%s</p>'
             '%s'
-            '<p class="trap"><b>흔한 실수</b> %s</p>'
-            '<p class="from"><span class="kind">%s</span> '
-            '<a href="%s" rel="nofollow noopener" target="_blank">%s</a></p>'
-            '</div>' % (esc(t['name']), esc(t['en']), esc(t['what']), esc(t['why']),
-                        ('<p class="ex"><b>이렇게</b> %s</p>' % esc(ex)) if ex else '',
-                        esc(t['trap']), esc(kind), esc(link), esc(label)))
+            '<p class="trap">%s</p>'
+            '<p class="from"><span class="kind k-%s">%s</span> %s</p>'
+            '</div>' % (esc(t['name']), esc(t['en']), esc(t['one']),
+                        ('<pre class="ex">%s</pre>' % esc(ex)) if ex else '',
+                        esc(t['warn']),
+                        'x' if not link else 'o', esc(kind), frm))
 
     def shell(title, desc, canon, inner):
         return ('<!doctype html>\n<html lang="ko">\n<head>\n<meta charset="utf-8">\n'
@@ -792,7 +801,7 @@ def ai_pages():
         '<a href="/ai/%s/">%s</a>' % (k, n) for k, n, _, _ in JOBS if k != cur) + '</p>')
 
     for key, name, lede, kw in JOBS:
-        tips = [t for t in TIPS if key in t['jobs']]
+        tips = [t for t in TIPS if key in t['ex']]
         if not tips:
             continue
         url = '%s/ai/%s/' % (SITE, key)
@@ -812,7 +821,7 @@ def ai_pages():
 
     rows = ''
     for (k, nm, lede, kw), (_, _, n) in zip(JOBS, made):
-        names = [t['name'] for t in TIPS if k in t['jobs']]
+        names = [t['name'] for t in TIPS if k in t['ex']]
         rows += ('<details class="job">'
                  '<summary><span class="jt">%s</span>'
                  '<span class="go">%s를 위한 프롬프트 보기</span></summary>'
