@@ -190,6 +190,14 @@ AI_CSS = ('<style>'
 '.jobs{font-size:13px;color:#7E6F64;margin:14px 0}'
 '.jobs a{color:#C8102E;text-decoration:none;font-weight:700}'
 '.note{border-left:3px solid #DBD2C7;padding:2px 0 2px 12px;color:#7E6F64;font-size:13px}'
+# DOC_CSS 는 다크 모드를 따라가는데 카드만 안 따라가면 흰 상자가 떠 보인다
+'@media(prefers-color-scheme:dark){'
+'.tip{background:#1E1814;border-color:#382E27}'
+'.tip h3,.tip .what{color:#F2EBE3}'
+'.tip .why,.tip .ex,.tip .trap{color:#D9CEC4}'
+'.tip .from,.kind,.jobs,.note{color:#B7A89C}'
+'.kind{border-color:#382E27}.note{border-left-color:#382E27}'
+'}'
 '</style>')
 
 SEC_CSS = """
