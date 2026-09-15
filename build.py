@@ -548,6 +548,22 @@ if HAS_KR:
 if HAS_EN:
     EDITIONS.append(('en', 'en/', 'Trending in Korea', DESC_E, HEAD_E, BODY_E))
 
+# 같은 도메인 안에 있는 다른 페이지로 보낸다. 내부 링크가 색인을 가장 빨리 당기고,
+# 이미 들어온 사람을 옮기는 것이 새 사람을 데려오는 것보다 싸다. 국문판에만 붙인다.
+MWOGA_CARD = (
+  '<div style="max-width:1180px;margin:0 auto;padding:0 18px 44px">'
+  '<a href="/mwoga/" style="display:block;text-decoration:none;background:#F3F6F4;'
+  'border:1px solid #CFDED6;border-radius:16px;padding:22px 24px;'
+  'font-family:Noto Sans KR,sans-serif">'
+  '<div style="font-size:13px;font-weight:700;color:#1F7A5A;letter-spacing:.4px">함께 보기</div>'
+  '<div style="font-size:22px;font-weight:800;color:#2A241F;margin-top:6px;letter-spacing:-.5px">'
+  '건강관리도 쉽게 — 40·50대 영양제 추천</div>'
+  '<div style="font-size:15px;color:#6B6057;margin-top:7px;line-height:1.6">'
+  '어디가 불편하신지 누르면 지금 챙기실 것 하나를 찍어드립니다. '
+  '드시는 약과 부딪히는 성분은 빼고 알려드립니다.</div>'
+  '<div style="font-size:14px;font-weight:700;color:#D9530C;margin-top:12px">바로 해보기 →</div>'
+  '</a></div>')
+
 for ed, sub, title, desc, head, body in EDITIONS:
     base = SITE + '/' + sub
 
@@ -573,7 +589,7 @@ for ed, sub, title, desc, head, body in EDITIONS:
           page(base,
                ('Trending in Korea — this week' if ed == 'en'
                 else '이번 주 %s 유행 총정리 — %s' % (lab, BRAND)),
-               desc, head, body + links, ed, alt_path=''))
+               desc, head, body + links + ('' if ed == 'en' else MWOGA_CARD), ed, alt_path=''))
     wdir = os.path.join(HERE, sub, 'week', str(WEEK))
     write(os.path.join(wdir, 'index.html'),
           page('%sweek/%d/' % (base, WEEK),
@@ -697,6 +713,9 @@ if HAS_KR:
 for ed, sub, *_ in EDITIONS:
     urls += [('%s/%sweek/%d/' % (SITE, sub, w), '0.5', 'never') for w in weeks_of(sub)]
 urls += [(u, '0.8', 'weekly') for u in SECTION_URLS]
+# 같은 도메인에 얹었지만 저장소가 다른 사이트. 하위 주소는 그쪽 sitemap.xml 이 맡고,
+# 여기서는 입구만 알려 색인이 타고 들어가게 한다.
+urls.append((SITE + '/mwoga/', '0.9', 'monthly'))
 write(os.path.join(HERE, 'sitemap.xml'),
       '<?xml version="1.0" encoding="UTF-8"?>\n'
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
