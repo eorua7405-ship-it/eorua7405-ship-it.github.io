@@ -639,11 +639,23 @@ for ed, sub, title, desc, head, body in EDITIONS:
                           for c, t in made) + '</div>')
     body = inject_part_links(body, sub, made)
     body = intros_below_first(body)   # 첫 화면에 항목이 보이게
+    # 해외판만 문구를 바꾼다. 국내판은 클릭이 나는 쪽이라 그대로 두고 비교군으로 쓴다.
+    n_items = body.count('<li class="item"')
+    # '09.14' 보다 '9월 14일' 이 검색결과에서 날짜로 읽힌다
+    _d = PERIOD.split('-')[0].strip().split('.')
+    day = '%d월 %d일' % (int(_d[0]), int(_d[1]))
+    if ed == 'global':
+        m_title = '이번 주 해외에서 유행하는 것 %d개 — %s' % (n_items, BRAND)
+        m_desc = ('%s 기준 해외에서 지금 뜨고 있는 %d개. 빌보드·스팀·박스오피스 순위부터 '
+                  '릴스 음원과 밈까지, 항목마다 언제 시작됐는지와 조회수·관객수 같은 수치를 '
+                  '붙였습니다. 매주 월요일 새로 뽑습니다.' % (day, n_items))
+    else:
+        m_title = ('Trending in Korea — this week' if ed == 'en'
+                   else '이번 주 %s 유행 총정리 — %s' % (lab, BRAND))
+        m_desc = desc
     write(os.path.join(HERE, sub, 'index.html'),
-          page(base,
-               ('Trending in Korea — this week' if ed == 'en'
-                else '이번 주 %s 유행 총정리 — %s' % (lab, BRAND)),
-               desc, head, body + links + ('' if ed == 'en' else MWOGA_CARD), ed, alt_path=''))
+          page(base, m_title, m_desc, head,
+               body + links + ('' if ed == 'en' else MWOGA_CARD), ed, alt_path=''))
     wdir = os.path.join(HERE, sub, 'week', str(WEEK))
     write(os.path.join(wdir, 'index.html'),
           page('%sweek/%d/' % (base, WEEK),
