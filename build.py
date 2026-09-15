@@ -192,6 +192,22 @@ AI_CSS = ('<style>'
 '.jobs{font-size:13px;color:#7E6F64;margin:14px 0}'
 '.jobs a{color:#C8102E;text-decoration:none;font-weight:700}'
 '.note{border-left:3px solid #DBD2C7;padding:2px 0 2px 12px;color:#7E6F64;font-size:13px}'
+# 펼치기 카드 — 기본 화살표를 지우고 직접 그린다
+'.job{border:1px solid #E6DFD6;border-radius:12px;margin:14px 0;background:#fff;overflow:hidden}'
+'.job summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;'
+'flex-wrap:wrap;align-items:center;gap:6px 12px}'
+'.job summary::-webkit-details-marker{display:none}'
+'.job .jt{font-size:17px;font-weight:800;color:#C8102E}'
+'.job .go{margin-left:auto;font-size:12.5px;font-weight:700;color:#7E6F64;'
+'border:1px solid #DBD2C7;border-radius:999px;padding:5px 12px;white-space:nowrap}'
+'.job .go::after{content:" \\25be";display:inline-block;margin-left:5px;transition:.15s}'
+'.job[open] .go::after{transform:rotate(180deg)}'
+'.job summary:hover .go{border-color:#C8102E;color:#C8102E}'
+'.jb{padding:0 18px 16px}'
+'.jb .what{margin:0 0 12px;font-size:14px;color:#5C4F45}'
+'.names{margin:0 0 14px;padding-left:18px}'
+'.names li{font-size:13.5px;color:#372E28;margin:0 0 4px}'
+'a.all{font-weight:700;color:#C8102E;text-decoration:none;font-size:13.5px}'
 # DOC_CSS 는 다크 모드를 따라가는데 카드만 안 따라가면 흰 상자가 떠 보인다
 '@media(prefers-color-scheme:dark){'
 '.tip{background:#1E1814;border-color:#382E27}'
@@ -199,6 +215,9 @@ AI_CSS = ('<style>'
 '.tip .why,.tip .ex,.tip .trap{color:#D9CEC4}'
 '.tip .from,.kind,.jobs,.note{color:#B7A89C}'
 '.kind{border-color:#382E27}.note{border-left-color:#382E27}'
+'.job{background:#1E1814;border-color:#382E27}'
+'.job .go{border-color:#382E27;color:#B7A89C}'
+'.jb .what{color:#D9CEC4}.names li{color:#E6DDD4}'
 '}'
 '</style>')
 
@@ -791,11 +810,21 @@ def ai_pages():
         AI_URLS.append(url)
         made.append((key, name, len(tips)))
 
-    rows = ''.join(
-        '<div class="tip"><h3><a href="/ai/%s/">%s</a></h3><p class="what">%s</p>'
-        '<p class="from"><span class="kind">기법 %d개</span></p></div>'
-        % (k, esc(kw), esc(lede), n)
-        for (k, nm, lede, kw), (_, _, n) in zip(JOBS, made))
+    rows = ''
+    for (k, nm, lede, kw), (_, _, n) in zip(JOBS, made):
+        names = [t['name'] for t in TIPS if k in t['jobs']]
+        rows += ('<details class="job">'
+                 '<summary><span class="jt">%s</span>'
+                 '<span class="go">%s를 위한 프롬프트 보기</span></summary>'
+                 '<div class="jb">'
+                 '<p class="what">%s</p>'
+                 '<ul class="names">%s</ul>'
+                 '<p class="from"><a class="all" href="/ai/%s/">'
+                 '%s 기법 %d개 전부 보기 &rarr;</a></p>'
+                 '</div></details>'
+                 % (esc(kw), esc(nm), esc(lede),
+                    ''.join('<li>%s</li>' % esc(x) for x in names),
+                    k, esc(nm), n))
     write(os.path.join(HERE, 'ai', 'index.html'),
           shell('직종별 AI 활용 기법 — ' + BRAND,
                 '마케터·콘텐츠 제작자·개발자·디자이너별로 AI를 다루는 기법을 '
