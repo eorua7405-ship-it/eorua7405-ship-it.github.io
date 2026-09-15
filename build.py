@@ -713,9 +713,18 @@ if HAS_KR:
 for ed, sub, *_ in EDITIONS:
     urls += [('%s/%sweek/%d/' % (SITE, sub, w), '0.5', 'never') for w in weeks_of(sub)]
 urls += [(u, '0.8', 'weekly') for u in SECTION_URLS]
-# 같은 도메인에 얹었지만 저장소가 다른 사이트. 하위 주소는 그쪽 sitemap.xml 이 맡고,
-# 여기서는 입구만 알려 색인이 타고 들어가게 한다.
+# 같은 도메인에 얹었지만 저장소가 다른 사이트(건강관리도 쉽게).
+# 네이버는 하위 디렉터리 사이트맵을 따로 받기 번거로워하므로, 그쪽 sitemap.xml 을
+# 읽어 루트 사이트맵에 합친다. 이러면 검색엔진마다 sitemap.xml 하나만 내면 된다.
 urls.append((SITE + '/mwoga/', '0.9', 'monthly'))
+try:
+    import urllib.request
+    _xml = urllib.request.urlopen(SITE + '/mwoga/sitemap.xml', timeout=15).read().decode('utf-8')
+    _locs = [u for u in re.findall(r'<loc>([^<]+)</loc>', _xml) if u != SITE + '/mwoga/']
+    urls += [(u, '0.7', 'monthly') for u in _locs]
+    print('mwoga 사이트맵 합침 · %d URL' % len(_locs))
+except Exception as e:
+    print('mwoga 사이트맵을 읽지 못해 입구만 넣었습니다 ·', e)
 write(os.path.join(HERE, 'sitemap.xml'),
       '<?xml version="1.0" encoding="UTF-8"?>\n'
       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
