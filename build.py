@@ -5,6 +5,7 @@
 sitemap.xml, robots.txt, og.png
 """
 import io, os, re, glob, json, datetime
+from ai_tips import JOBS, TIPS
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SITE = 'https://issueitnow.com'
@@ -173,6 +174,23 @@ AFF_NOTE_EN = ('<p style="max-width:820px;margin:14px auto 0;padding:6px 11px;'
                'We may earn a commission at no extra cost to you.</p>')
 
 SECTION_URLS = []
+AI_URLS = []
+AI_CSS = ('<style>'
+'.tip{border:1px solid #E6DFD6;border-radius:12px;padding:16px 18px;margin:14px 0;background:#fff}'
+'.tip h3{margin:0 0 8px;font-size:17px}'
+'.tip h3 a{color:#C8102E;text-decoration:none}'
+'.en2{font-weight:400;font-size:12.5px;color:#9A8B7E;margin-left:6px}'
+'.tip p{margin:6px 0;font-size:14px;line-height:1.75}'
+'.tip .what{color:#2B2320}'
+'.tip .why,.tip .ex,.tip .trap{color:#5C4F45}'
+'.tip b{color:#C8102E;font-weight:700;margin-right:4px}'
+'.tip .from{margin-top:10px;font-size:12.5px;color:#9A8B7E}'
+'.kind{display:inline-block;border:1px solid #DBD2C7;border-radius:999px;'
+'padding:2px 9px;margin-right:7px;font-size:11.5px;color:#7E6F64}'
+'.jobs{font-size:13px;color:#7E6F64;margin:14px 0}'
+'.jobs a{color:#C8102E;text-decoration:none;font-weight:700}'
+'.note{border-left:3px solid #DBD2C7;padding:2px 0 2px 12px;color:#7E6F64;font-size:13px}'
+'</style>')
 
 SEC_CSS = """
   :root{--bg:#F0EDE7;--card:#fff;--ink:#2A211B;--dim:#7E6F64;--line:#DBD2C7;--red:#C8102E}
@@ -704,6 +722,90 @@ privacy = ('<!doctype html>\n<html lang="ko">\n<head>\n<meta charset="utf-8">\n'
            '<a class="home" href="/">← 이번 주 보드로</a>\n' + AFF_NOTE_KO + '\n</div></body>\n</html>\n')
 write(os.path.join(HERE, 'privacy', 'index.html'), privacy)
 
+# ---------- 직종별 AI 기법 (상설 페이지) ----------
+def ai_pages():
+    """/ai/ 와 /ai/<직종>/ 을 쓴다. 주차 스냅샷에는 넣지 않는다."""
+    made = []
+
+    def card(t, job):
+        ex = t['jobs'].get(job)
+        kind, label, link = t['src']
+        return (
+            '<div class="tip">'
+            '<h3>%s <span class="en2">%s</span></h3>'
+            '<p class="what">%s</p>'
+            '<p class="why"><b>왜 듣나</b> %s</p>'
+            '%s'
+            '<p class="trap"><b>흔한 실수</b> %s</p>'
+            '<p class="from"><span class="kind">%s</span> '
+            '<a href="%s" rel="nofollow noopener" target="_blank">%s</a></p>'
+            '</div>' % (esc(t['name']), esc(t['en']), esc(t['what']), esc(t['why']),
+                        ('<p class="ex"><b>이렇게</b> %s</p>' % esc(ex)) if ex else '',
+                        esc(t['trap']), esc(kind), esc(link), esc(label)))
+
+    def shell(title, desc, canon, inner):
+        return ('<!doctype html>\n<html lang="ko">\n<head>\n<meta charset="utf-8">\n'
+                '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+                '<title>' + title + '</title>\n'
+                '<meta name="description" content="' + desc + '">\n'
+                '<link rel="canonical" href="' + canon + '">\n'
+                + GA_TAG + '\n'
+                '<link rel="icon" href="' + ICON + '">\n'
+                '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
+                '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
+                'family=Noto+Sans+KR:wght@400;700;800;900&display=swap">\n'
+                + DOC_CSS + AI_CSS + '\n</head>\n<body>' + NAV + '<div class="w">\n'
+                + inner +
+                '<a class="home" href="/">&larr; 이번 주 보드로</a>\n'
+                + AFF_NOTE_KO + '\n</div></body>\n</html>\n')
+
+    others = lambda cur: ('<p class="jobs">다른 직종 · ' + ' · '.join(
+        '<a href="/ai/%s/">%s</a>' % (k, n) for k, n, _, _ in JOBS if k != cur) + '</p>')
+
+    for key, name, lede, kw in JOBS:
+        tips = [t for t in TIPS if key in t['jobs']]
+        if not tips:
+            continue
+        url = '%s/ai/%s/' % (SITE, key)
+        inner = ('<h1>%s</h1>\n' % esc(kw)
+                 + '<p class="meta">%s · 기법 %d개 · 근거는 항목마다 원문 링크</p>\n'
+                 % (esc(lede), len(tips))
+                 + others(key)
+                 + ''.join(card(t, key) for t in tips)
+                 + others(key))
+        write(os.path.join(HERE, 'ai', key, 'index.html'),
+              shell(esc(kw) + ' — ' + BRAND,
+                    esc('%s %s 기법 %d개를 공식 문서·논문 출처와 함께 정리했습니다.'
+                        % (name, 'AI 활용', len(tips))),
+                    url, inner))
+        AI_URLS.append(url)
+        made.append((key, name, len(tips)))
+
+    rows = ''.join(
+        '<div class="tip"><h3><a href="/ai/%s/">%s</a></h3><p class="what">%s</p>'
+        '<p class="from"><span class="kind">기법 %d개</span></p></div>'
+        % (k, esc(kw), esc(lede), n)
+        for (k, nm, lede, kw), (_, _, n) in zip(JOBS, made))
+    write(os.path.join(HERE, 'ai', 'index.html'),
+          shell('직종별 AI 활용 기법 — ' + BRAND,
+                '마케터·콘텐츠 제작자·개발자·디자이너별로 AI를 다루는 기법을 '
+                '공식 문서와 논문 출처를 붙여 정리했습니다.',
+                SITE + '/ai/',
+                '<h1>직종별 AI 활용 기법</h1>\n'
+                '<p class="meta">하는 일이 다르면 쓸 기법도 다르다. '
+                '직종별로 골라 정리했고, 항목마다 근거가 되는 원문을 링크한다.</p>\n'
+                '<p class="note">여기 설명은 공식 문서와 논문을 읽고 '
+                '<b>우리말로 다시 쓴 것</b>이다. 남의 글을 옮기지 않는다. '
+                '효과 크기(몇 % 향상 같은 수치)는 적지 않는다 — '
+                '논문이 보고한 값은 그 실험 조건의 것이라 일반화하면 거짓이 된다.</p>\n'
+                + rows))
+    AI_URLS.append(SITE + '/ai/')
+    print('AI 기법 · 직종 %d · 페이지 %d' % (len(made), len(AI_URLS)))
+
+
+
+ai_pages()
+
 # ---------- sitemap · robots ----------
 today = TODAY
 urls = [(SITE + '/', '1.0', 'weekly'), (SITE + '/archive/', '0.6', 'weekly'),
@@ -713,6 +815,7 @@ if HAS_KR:
 for ed, sub, *_ in EDITIONS:
     urls += [('%s/%sweek/%d/' % (SITE, sub, w), '0.5', 'never') for w in weeks_of(sub)]
 urls += [(u, '0.8', 'weekly') for u in SECTION_URLS]
+urls += [(u, '0.7', 'monthly') for u in AI_URLS]   # 기법은 매주 안 바뀐다
 # 같은 도메인에 얹었지만 저장소가 다른 사이트(건강관리도 쉽게).
 # 네이버는 하위 디렉터리 사이트맵을 따로 받기 번거로워하므로, 그쪽 sitemap.xml 을
 # 읽어 루트 사이트맵에 합친다. 이러면 검색엔진마다 sitemap.xml 하나만 내면 된다.
