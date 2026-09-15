@@ -34,6 +34,8 @@ NAV = ('<div style="background:#2A211B;color:#F0EDE7;padding:7px 16px;font:600 1
        "'Noto Sans KR',sans-serif;text-align:center\">"
        '<a href="/" style="color:#F0EDE7;text-decoration:none">이번 주</a>'
        '<span style="opacity:.4;margin:0 10px">·</span>'
+       '<a href="/ai/" style="color:#F0EDE7;text-decoration:none">AI 기법</a>'
+       '<span style="opacity:.4;margin:0 10px">·</span>'
        '<a href="/archive/" style="color:#F0EDE7;text-decoration:none">지난 주 보관함</a>'
        '<span style="opacity:.4;margin:0 10px">·</span>'
        '<a href="/privacy/" style="color:#F0EDE7;text-decoration:none">개인정보처리방침</a></div>')
